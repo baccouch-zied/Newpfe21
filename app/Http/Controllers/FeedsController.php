@@ -77,8 +77,6 @@ class FeedsController extends Controller
             'commentaire'       =>   $request->commentaire,
             'image'            =>   $new_name,
             'userrestaurant_id' => $originalProduit->user_id
-
-
         );
 
         feedback::create($form_data);

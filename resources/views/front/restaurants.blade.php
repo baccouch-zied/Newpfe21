@@ -21,11 +21,11 @@
 </head>
 
 <body>
-    
+
     <div class="page-loading">
         <img src="{{asset('front/images/loader.gif')}}" alt="" />
     </div><!--page-loading end-->
-    
+
     <div class="wrapper">
 @include('front.header')<!--header end-->
 
@@ -53,104 +53,32 @@
                 <div class="row">
                     <div class="col-lg-3 order-md-1 order-sm-1 order-col-1">
                         <div class="sidebar left-sidebar">
-                            <form>
-                                <div class="widget widget-filter">
-                                    <h3 class="widget-title">Filter</h3>
-                                    <ul>
-                                        <li>
-                                            <label class="label">Beverages
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="label">Burgers
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="label">Meat & Steaks
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="label">Pastry
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="label">Pasta
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="label">Pizza
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="label">Sandwiches
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="label">Seafood
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="label">Soup & Salads
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="label">Sushi
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="label">Vegetarian Food
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div><!--widget-filter end-->
-                                <div class="widget widget-tags">
-                                    <h3 class="widget-title">Tags</h3>
-                                    <ul>
-                                        <li><a href="#" title="">Fish</a></li>
-                                        <li><a href="#" title="">Grill</a></li>
-                                        <li><a href="#" title="">Beer</a></li>
-                                        <li><a href="#" title="">Chicken</a></li>
-                                        <li><a href="#" title="">Beef</a></li>
-                                        <li><a href="#" title="">Hot</a></li>
-                                        <li><a href="#" title="">Vegetables</a></li>
-                                        <li><a href="#" title="">Chilly</a></li>
-                                        <li><a href="#" title="">Fruits</a></li>
-                                    </ul>
-                                </div><!--widget-tags end-->
-                                <div class="widget widget-price-filter">
-                                    <h3 class="widget-title">Rating</h3>
-                                    <div id="slider-range"></div>
-                                    <div class="price-bx">
-                                        <input type="text" id="amount" readonly>
+                                <div class="our-proptz v2 text-center">
+                                    <div class="proptz">
+                                        <div class="propt-icon">
+                                            <img src="{{asset('front/images/icons/discount.svg')}}" alt="">
+                                        </div>
+                                        <h3 class="semi-bold text-capitalize">Systéme sécurisé</h3>
+                                    <p>Nous avon un sytéme sécurisé pour vos données</p>
                                     </div>
-                                    <div class="clearfix"></div>
-                                </div><!--widget-filter end-->
-                            </form>
+                                    <div class="proptz">
+                                        <div class="propt-icon">
+                                            <img src="{{asset('front/images/icons/delivery.svg')}}" alt="">
+                                        </div>
+                                        <h3 class="semi-bold text-capitalize">Livraison rapide</h3>
+                                    <p>la livraison la plus rapide à n'importe quel endroit de notre ville.</p>
+                                    </div>
+                                    <div class="proptz">
+                                        <div class="propt-icon">
+                                            <img src="{{asset('front/images/icons/food.svg')}}" alt="">
+                                        </div>
+                                        <h3 class="semi-bold text-capitalize">+ restaurants</h3>
+                                    <p>Grand choix de restaurants à travers Zarzis</p>
+                                    </div>
+                                </div><!--our-proptz end-->
                         </div><!--sidebar end-->
                     </div>
-                   
+
                     <div class="col-lg-9">
                         <div class="search-prod">
                             <form action="{{ route('restaurant.search')}}" method="get">
@@ -164,31 +92,25 @@
                         @foreach($UserRestaurants as $UserRestaurant)
                             <div class="listing-product">
                                 <div class="product-thumb">
-                                    <img src="{{ URL::to('/') }}/images/{{ $UserRestaurant->image }}" alt="" class="w-100">                            
+                                    <img src="{{ URL::to('/') }}/images/{{ $UserRestaurant->image }}" alt="" class="w-100">
                                 </div>
                                 <div class="product-info">
                                     <h3><a href="/restaurant-details/{{$UserRestaurant->id}}" title="">{{$UserRestaurant->name}}</a></h3>
-                                    <ul class="rating">
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
+
                                     <p>{{$UserRestaurant->description}}</p>
                                     <ul class="btm">
                                         <li><a href="#" title="">Restaurant</a></li>
                                         <li><span><b class="statuss"></b>Ouvert</span></li>
                                     </ul>
-                                    <a href="/restaurant-details/{{$UserRestaurant->id}}" title="" class="view-menu">View Menu <i class="fa fa-long-arrow-alt-right"></i></a>
+                                    <a href="/restaurant-details/{{$UserRestaurant->id}}" title="" class="view-menu">Voir Menu <i class="fa fa-long-arrow-alt-right"></i></a>
                                     <div class="clearfix"></div>
                                 </div>
                             </div><!--listing-product end-->
                             @endforeach
-                                 
+
                         </div><!--listing-products end-->
                         <div class="load-more mt-40 text-center">
-                            <a href="#" title="" class="btn-default">Load More <span></span></a>
+                            <a href="#" title="" class="btn-default">Plus des restos <span></span></a>
                         </div>
                     </div>
                 </div>
@@ -196,7 +118,7 @@
         </section>
 
    @include('front.footer')<!--footer end-->
-        
+
     </div><!--wrapper end-->
 
 

@@ -73,6 +73,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- END: Page JS-->
     <script>
+
+
         //Warning Message
         $(document).ready(function(){
             $('.suppbtn').click(function (e)){

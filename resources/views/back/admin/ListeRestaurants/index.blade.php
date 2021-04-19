@@ -61,7 +61,7 @@
                                             <td>{{$UserRestaurant->email}}</td>
                                             <td>
 
-                                                        <a href="">
+                                                        <a href="{{ route('ListeResto.edit', $UserRestaurant->id) }}">
                                                             <i class="mr-50"></i>
                                                             <span>Valider ce restaurant</span>
                                                         </a>

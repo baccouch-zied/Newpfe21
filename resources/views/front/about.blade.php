@@ -20,11 +20,11 @@
 </head>
 
 <body>
-    
+
     <div class="page-loading">
         <img src="assets/images/loader.gif" alt="" />
     </div><!--page-loading end-->
-    
+
     <div class="wrapper">
 
        @include('front.header')<!--header end-->
@@ -104,8 +104,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="offer-post">
-                                <img src="https://via.placeholder.com/555x400" alt="" class="w-100">
-                                <h2><a href="/registerLivreur" title="">Get paid as a courier partner</a></h2>
+                                <img src="{{asset('front/images/livreur.jpg')}}" alt="" class="w-100">
+                                <h2><a href="/registerLivreur" title="">En tant que un livreur</a></h2>
                                 <a href="/registerLivreur" title="" class="arrow">
                                     <img src="{{asset('front/images/icons/arrow.svg')}}" alt="">
                                 </a>
@@ -113,8 +113,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="offer-post">
-                                <img src="https://via.placeholder.com/555x400" alt="" class="w-100">
-                                <h2><a href="/registerRestaurant" title="">Become a restaurant partner</a></h2>
+                                <img src="{{asset('front/images/resto.jpg')}}" alt="" class="w-100">
+                                <h2><a href="/registerRestaurant" title="">En tant que un restaurant</a></h2>
                                 <a href="/registerRestaurant" title="" class="arrow">
                                     <img src="{{asset('front/images/icons/arrow.svg')}}" alt="">
                                 </a>
@@ -127,7 +127,7 @@
 
 
       @include('front.footer')<!--footer end-->
-        
+
     </div><!--wrapper end-->
 
 

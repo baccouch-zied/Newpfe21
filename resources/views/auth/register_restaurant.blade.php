@@ -78,6 +78,7 @@
             </div>
             <div class="input-group input-group-merge form-password-toggle @error('password') is-invalid @enderror">
             <input type="hidden" name="type" value="restaurant" />
+            <input type="hidden" name="status" value="invalid" />
             </div>
             @error('password')
               <span class="invalid-feedback" role="alert">

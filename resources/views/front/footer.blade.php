@@ -15,7 +15,8 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-6">
                             <div class="widget widget-about">
-                                <img src="assets/images/logo.png" alt="">
+                                <img src="{{asset('front/images/logo.png')}}
+                                " alt="">
                                 <h4>Plan de travail</h4>
                                 <p>Lun - Sam:  9:00 am - 10:00 pm <br /> Dim:  10:00 am - 8:00 pm</p>
                             </div><!--widget-about end-->
@@ -33,7 +34,7 @@
                                     <h4>Payment Options</h4>
                                     <img src="{{asset('front/images/imgs.png')}}" alt="">
                                 </div>
-                        
+
                             </div><!--widget-payment end-->
                         </div>
                     </div>

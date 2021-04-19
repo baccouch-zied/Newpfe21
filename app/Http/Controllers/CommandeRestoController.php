@@ -8,6 +8,8 @@ use App\Commande;
 use App\UserRestaurant;
 use App\Client;
 use Cart;
+use App\CommandeProduits;
+use PDF;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +24,7 @@ class CommandeRestoController extends Controller
     public function index()
     {
         $id=Auth::user()->id;
-        $commandes= Commande::where('userrestaurant_id' ,'=' ,$id)->with('produits')->get();
+        $commandes= Commande::where('userrestaurant_id' ,'=' ,$id)->get();
         return view('back.restaurant.commandes.index',compact('commandes'));
     }
 
@@ -33,7 +35,12 @@ class CommandeRestoController extends Controller
      */
     public function create()
     {
-        //
+        $id=Auth::user()->id;
+        $UserRestaurant= DB::table('user_restaurants')->where('user_id' ,$id)->get();
+        $commandes= Commande::where('userrestaurant_id' ,'=' ,$id)->get();
+
+        return view('back.restaurant.commandes.telecharger',compact(['commandes','UserRestaurant']));
+
     }
 
     /**
@@ -53,11 +60,11 @@ class CommandeRestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Commande $commande)
+    public function show(Commande $commandes, UserRestaurant $UserRestaurant)
     {
-        $id=Auth::user()->id;
-        $UserRestaurant= DB::table('user_restaurants')->where('user_id' ,$id)->get();
-        return view('back.restaurant.commandes.show',compact(['commande','UserRestaurant']));
+
+
+        return view('back.restaurant.commandes.show',compact(['commandes','UserRestaurant']));
 
     }
 
@@ -79,7 +86,7 @@ class CommandeRestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Commande $commande)
+    public function update(Request $request, Commande $commandes)
     {
 
 

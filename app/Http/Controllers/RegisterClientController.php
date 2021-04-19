@@ -10,7 +10,8 @@ use App\User;
 use App\Client;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterFormMail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -88,14 +89,16 @@ class RegisterClientController extends Controller
             'name' => $request['name'],
             'prenom' => $request['prenom'],
             'telephone' => $request['telephone'],
-            'email' => $request['email'],
+            $email = 'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'user_id' => $user->id,
 
             'type' => "client",
 
         ]);
-        return redirect ('/loginC')->with('success', 'Votre compte a bien été crée, vous devez le confirmez avec l email que vous allez recevoir');
+        Mail::to('zizou.baccouch1998@gmail.com')->send(new RegisterFormMail($client));
+
+        return redirect ('/loginC')->with('success', 'Votre compte a bien été crée, Verfier le via votre email');
 
     }
 }

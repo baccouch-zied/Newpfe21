@@ -32,16 +32,16 @@ class RestaurantMiddleware
         {
             return redirect()->route('livreur');
         }
-        
+
         if(Auth::user()->type =='client')
         {
             return redirect()->route('/');
 
         }
-        
+
         else
         {
-            return redirect('/');
-        }      
+            return redirect('/')->with('success', 'Votre compte n a pas encore validé, vous devez attend la confirmation de l administrateur avec l email que vous allez recevoir');
+        }
     }
 }

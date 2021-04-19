@@ -7,7 +7,9 @@ use App\Commande;
 use App\UserRestaurant;
 use App\Client;
 use Cart;
+use App\CommandeProduits;
 use App\Produit;
+
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -74,10 +76,18 @@ class CommandeController extends Controller
                 $commande ->userrestaurant_id = $originalProduit->user_id;
                 $commande->save();
 
+
                 foreach(Cart::content() as $produit)
                 {
 
-                    $commande->produits()->attach($produit->id,['total'=>$produit->total, 'quantity'=>$produit->qty]);
+                   // $commande->produits()->attach($produit->id,['total'=>$produit->total, 'quantity'=>$produit->qty]);
+
+                    $commandeproduits = new CommandeProduits;
+                    $commandeproduits -> commande_id= $commande->id;
+                    $commandeproduits ->produit_id = $produit->id;
+                    $commandeproduits ->total = $produit->total;
+                    $commandeproduits ->quantity = $produit->qty;
+                    $commandeproduits->save();
 
                 }
             return redirect('/fini-commande')->with('success', 'Votre categorie est ajouté avec sucess');
@@ -121,12 +131,7 @@ class CommandeController extends Controller
             return redirect('fini-commande')->with('success', 'Votre categorie est ajouté avec sucess');*/
         }
 
-    public function fini()
-    {
-        $id=Auth::user()->id;
-        $Client= DB::table('clients')->where('user_id' ,$id)->get();
-        return view('front.commande.fini-commande',compact('Client'));
-    }
+
 
     /**
      * Display the specified resource.

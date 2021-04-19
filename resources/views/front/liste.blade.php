@@ -44,10 +44,10 @@
                                     <h2 class="text-capitalize"><a href="/restaurant-details/{{$UserRestaurant->id}}" title="">{{$UserRestaurant->name}}</a></h2>
                                 </div>
                             </div><!--featured-item end-->
-                        </div> 
-                    @endforeach                                                   
+                        </div>
+                    @endforeach
                     </div>
-            
+
                     <div class="row text-center">
                         <div class="col-12">
                             <a href="/restaurants" title="" class="btn-default">View all list <span></span></a>

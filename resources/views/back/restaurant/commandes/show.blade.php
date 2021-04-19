@@ -49,9 +49,9 @@
 
                                                         <h3 class="text-primary invoice-logo">Notre Restaurant</h3>
                                                     </div>
-                                                    <p class="card-text mb-25">{{$UserRestaurant[0]->name}}</p>
-                                                    <p class="card-text mb-25">{{$UserRestaurant[0]->adresse}}</p>
-                                                    <p class="card-text mb-0">{{$UserRestaurant[0]->telephone}}</p>
+                                                    <p class="card-text mb-25">{{$UserRestaurant->name}}</p>
+                                                    <p class="card-text mb-25">{{$UserRestaurant->adresse}}</p>
+                                                    <p class="card-text mb-0">{{$UserRestaurant->telephone}}</p>
                                                 </div>
                                                 <div class="mt-md-0 mt-2">
                                                     <h4 class="invoice-title">
@@ -63,14 +63,14 @@
                                                         <p class="invoice-date">25/08/2020</p>
                                                     </div>
                                                     <div class="invoice-date-wrapper">
-                                                    <form class="needs-validation user-add" method="POST" action="{{ route('commandes.update',$commande->id) }}">
+                                                    <form class="needs-validation user-add" method="POST" action="#">
                                                         @csrf
                                                         @method('PUT')
 
                                                         <p class="invoice-date-title">Etat de cet commande:</p>
                                                         <select class="custom-select ol-xl-8 col-sm-9"  name="categorie_id">
 
-                                                             @switch($commande->etat)
+                                                             @switch($commandes->etat)
                                                                      @case(1)
                                                                      <option>Validé</option>
                                                                       @break
@@ -98,10 +98,10 @@
                                             <div class="row invoice-spacing">
                                                 <div class="col-xl-8 p-0">
                                                     <h6 class="mb-2">Commande pour :</h6>
-                                                    <h6 class="mb-25">Client :{{$commande->name}} {{$commande->prenom}}</h6>
-                                                    <p class="card-text mb-25">{{$commande->adresse}}</p>
-                                                    <p class="card-text mb-25">{{$commande->telephone}}</p>
-                                                    <p class="card-text mb-0">{{$commande->email}}</p>
+                                                    <h6 class="mb-25">Client :{{$commandes->name}} {{$commandes->prenom}}</h6>
+                                                    <p class="card-text mb-25">{{$commandes->adresse}}</p>
+                                                    <p class="card-text mb-25">{{$commandes->telephone}}</p>
+                                                    <p class="card-text mb-0">{{$commandes->email}}</p>
                                                 </div>
                                                 <div class="col-xl-4 p-0 mt-xl-0 mt-2">
                                                     <h6 class="mb-2">Payment Details:</h6>
@@ -146,31 +146,22 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td class="py-1">
-                                                            <p class="card-text font-weight-bold mb-25">Native App Development</p>
-                                                            <p class="card-text text-nowrap">
-                                                                Developed a full stack native app using React Native, Bootstrap & Python
-                                                            </p>
-                                                        </td>
-                                                        <td class="py-1">
-                                                            <span class="font-weight-bold">$60.00</span>
-                                                        </td>
-                                                        <td class="py-1">
-                                                            <span class="font-weight-bold">30</span>
-                                                        </td>
+                                                        @foreach($commandes as $commande)
+                                                        @foreach ($commande->commandeProduits->produits as $produit)
 
-                                                    </tr>
-                                                    <tr class="border-bottom">
                                                         <td class="py-1">
-                                                            <p class="card-text font-weight-bold mb-25">Ui Kit Design</p>
-                                                            <p class="card-text text-nowrap">Designed a UI kit for native app using Sketch, Figma & Adobe XD</p>
+                                                            <p class="card-text font-weight-bold mb-25">{{$produit->name}}</p>
+
                                                         </td>
                                                         <td class="py-1">
-                                                            <span class="font-weight-bold">$60.00</span>
+                                                            <span class="font-weight-bold">{{$commande->commandeProduits->quantity}}</span>
                                                         </td>
                                                         <td class="py-1">
-                                                            <span class="font-weight-bold">20</span>
+                                                            <span class="font-weight-bold">{{$commande->commandeProduits->total}}</span>
                                                         </td>
+                                                        @endforeach
+                                                        @endforeach
+
 
                                                     </tr>
                                                 </tbody>
@@ -213,7 +204,7 @@
                                             <button id="submit" name="submit" class="btn btn-primary btn-block mb-75" >
                                                 Mettre à jour
                                             </button>
-                                            <button class="btn btn-primary btn-block mb-75">Télcharger</button>
+                                            <a href="/telecharger" class="btn btn-primary btn-block mb-75">Télcharger</a>
 
 
                                         </div>

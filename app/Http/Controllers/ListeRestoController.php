@@ -46,7 +46,7 @@ class ListeRestoController extends Controller
      */
     public function show(UserRestaurant $UserRestaurant)
     {
-        return view('back.admin.ListeRestaurants.show',compact('UserRestaurant'));
+
     }
 
     /**
@@ -57,7 +57,8 @@ class ListeRestoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $UserRestaurant= UserRestaurant::all();
+        return view('back.admin.ListeRestaurants.edit',compact('UserRestaurant'));
     }
 
     /**
@@ -67,9 +68,20 @@ class ListeRestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, UserRestaurant $UserRestaurant)
     {
-        //
+        $validatedData = request()->validate([
+            'status' => 'required',
+        ]);
+
+        /*$car->name = request('name');
+        $car->color = request('color');
+        $car->company = request('company');
+        $car->save();*/
+
+        $UserRestaurant->update($validatedData);
+
+        return redirect('/ListeResto')->with('success', 'Restaurant validé');
     }
 
     /**

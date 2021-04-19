@@ -17,26 +17,24 @@
 
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Gestion de site</span><i data-feather="more-horizontal"></i>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="app-email.html"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Gestion menu</span></a>
-                </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="commentaire/create"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Gestion Commentaires</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="app-chat.html"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Gestion des FAQS</span></a>
                 </li>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Liste des Contacts</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="ListeContact"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Liste des Contacts</span></a>
 
                 </li>
 
                 <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Gestion des acteurs</span><i data-feather="more-horizontal"></i>
                 </li>
 
-                <li class=" nav-item"><a class="d-flex align-items-center" href="/ListeResto"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Liste des restaurants</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="ListeResto"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Liste des restaurants</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="/ListeLivreurs"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Liste des livreurs</span></a>
                 </li>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Liste des clients</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="/ListeClients"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Liste des clients</span></a>
 
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="app-file-manager.html"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Commandes</span></a>

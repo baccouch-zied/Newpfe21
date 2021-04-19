@@ -17,13 +17,14 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('nom');
             $table->string('image');
+
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
             ->references('id')
             ->on('users');
-            
+
             $table->timestamps();
-  
+
         });
     }
 

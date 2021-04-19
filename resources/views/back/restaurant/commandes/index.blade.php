@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
 <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -55,7 +57,6 @@
                                     </thead>
                                     <tbody>
                                     @foreach($commandes as $commande)
-
                                     <tr>
 
                                     <td>{{$commande->id}}</td>
@@ -63,8 +64,12 @@
                                          <td>{{$commande->prenom}}</td>
                                          <td>{{$commande->adresse}}</td>
                                          <td>{{$commande->telephone}}</td>
-                                         <td>{{$commande->details}}</td>
-
+                                         <td>
+                                         @foreach ($commande->commandeProduits->produits as $produit)
+                                         {{$produit->name}} =
+                                         {{$commande->commandeProduits->total}}
+                                        @endforeach
+                                          </td>
                                          <td><span class="badge badge-success">Validé</span></td>
 
                                         <td>
@@ -104,6 +109,12 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+        $('.btnprn').printPage();
+        });
+        </script>
     <!-- END: Content-->
 
 

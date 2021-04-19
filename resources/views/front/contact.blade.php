@@ -20,11 +20,11 @@
 </head>
 
 <body>
-    
+
     <div class="page-loading">
         <img src="{{asset('front/images/loader.gif')}}" alt="" />
     </div><!--page-loading end-->
-    
+
     <div class="wrapper">
 
        @include('front.header')<!--header end-->
@@ -43,18 +43,25 @@
             </div>
         </section><!--pager-section end-->
 
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+
         <section class="sec-block">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="contact-us-section pr-100">
                             <div class="section-title">
-                                <span>Be In Touch </span>
-                                <h2 class="text-capitalize">Send us a message</h2>
-                                <p class="mx-auto mw-100">If you need a consultation regarding colaboration let us know or maybe you have another question don’t be shy send us a message.</p>
+                                <span>Être en contact
+                                </span>
+                                <h2 class="text-capitalize">Envoyer un message</h2>
+                                <p class="mx-auto mw-100">Si vous avez besoin d'une consultation concernant la collaboration, faites-le nous savoir ou si vous avez une autre question, n'hésitez pas, envoyez-nous un message.</p>
                             </div><!--sec-title end-->
-                            <form id="contact-form" method="post" action="#">
-                                <div class="response"></div>
+                            <form id="contact-form" method="POST" action="{{ route('contact.store') }}"  enctype="multipart/form-data">
+                                @csrf
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -72,7 +79,7 @@
                                         </div><!--form-group end-->
                                     </div>
                                     <div class="col-sm-12">
-                                        <button type="button" id="submit" class="btn-default">Submit <span></span></button>
+                                        <button type="submit" id="submit" class="btn-default">Envoyer <span></span></button>
                                     </div>
                                 </div>
                             </form>
@@ -82,16 +89,16 @@
                         <div class="sidebar">
                             <div class="widget contact-widget">
                                 <div class="numb">
-                                    <h5>Phone number:</h5>
-                                    <p>+1 654 847 52 25</p>
+                                    <h5>Notre numéro:</h5>
+                                    <p>+216 54312703</p>
                                 </div>
                                 <div class="numb">
                                     <h5>Email:</h5>
-                                    <p>info@sitename.com</p>
+                                    <p>zied.baccouch213@gmail.com</p>
                                 </div>
                                 <div class="numb">
-                                    <h5>Working hours:</h5>
-                                    <p>Mon - Sat: 9:00 am - 10:00 pm <br /> Sun: 10:00 am - 8:00 pm</p>
+                                    <h5>Heures de Travail:</h5>
+                                    <p>Lun - Sam: 9:00 am - 10:00 pm <br /> Dim: 10:00 am - 8:00 pm</p>
                                 </div>
                             </div><!--contact-widget end-->
                         </div><!--sidebar end-->
@@ -101,7 +108,7 @@
         </section>
 
         @include('front.footer')<!--footer end-->
-        
+
     </div><!--wrapper end-->
 
 

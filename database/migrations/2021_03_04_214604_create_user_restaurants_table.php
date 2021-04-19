@@ -26,6 +26,8 @@ class CreateUserRestaurantsTable extends Migration
             $table->string('image2')->nullable();
 
             $table->string('adresse')->nullable();
+            $table->string('status')->nullable();
+
             $table->boolean('etat')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -33,12 +35,13 @@ class CreateUserRestaurantsTable extends Migration
             $table->rememberToken();
 
             $table->string('type');
+            $table->string('token')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
             $table->timestamps();
-       
+
         });
     }
 

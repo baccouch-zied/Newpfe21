@@ -10,8 +10,8 @@ class Categorie extends Model
         'nom', 'image' ,'user_id'
     ];
 
-    public function produit() 
-    { 
+    public function produit()
+    {
         return $this->hasMany('App\produit');
     }
 

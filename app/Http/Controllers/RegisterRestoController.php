@@ -12,7 +12,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterFormMail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -82,6 +83,8 @@ class RegisterRestoController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'type' => "restaurant",
+            'status' => "invalid",
+
 
         ]);
 
@@ -91,9 +94,12 @@ class RegisterRestoController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'type' => "restaurant",
+            'status' => "invalid",
             'user_id' => $user->id,
 
         ]);
+        Mail::to('zied.baccouch213@gmail.com')->send(new RegisterFormMail($userrestaurant));
+
         return redirect ('/login')->with('success', 'Votre compte a bien été crée, vous devez attend la confirmation de l administrateur avec l email que vous allez recevoir');
 
     }

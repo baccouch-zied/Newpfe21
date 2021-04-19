@@ -18,7 +18,8 @@ class IndexController extends Controller
         //$Client= DB::table('clients')->where('user_id' ,$id)->get();
         $feedbacksite =  FeedbackSite::all();
         $UserRestaurants= DB::table('user_restaurants')->orderBy('created_at','desc')->limit(4)->get();
-        return view('front.index', compact(['UserRestaurants','feedbacksite']));
+        $User=User::all();
+        return view('front.index', compact(['UserRestaurants','feedbacksite','User']));
     }
 
     public function store(Request $request)
@@ -30,7 +31,7 @@ class IndexController extends Controller
             'image'         =>  'required',
 
         ]);
-     
+
         $image = $request->file('image');
         $new_name = rand() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('images'), $new_name);

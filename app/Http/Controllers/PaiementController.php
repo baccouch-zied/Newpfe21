@@ -19,6 +19,7 @@ class PaiementController extends Controller
      */
     public function index()
     {
+        // \Stripe\Stripe::setApiKey('sk_test_51IahNbE3b6CPfzYsUjU2LM0Bwl4EKa80yLAgUTj4UvGE8BQId6mB31fepWTH08QCvheXNKTQH3BFKMLhxQrmgTfi00K0LdMkbG');
         return view('front.commande.paiement');
     }
 

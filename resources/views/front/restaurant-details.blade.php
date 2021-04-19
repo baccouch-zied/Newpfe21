@@ -20,11 +20,11 @@
 </head>
 
 <body>
-    
+
     <div class="page-loading">
         <img src="{{asset('front/images/loader.gif')}}" alt="" />
     </div><!--page-loading end-->
-    
+
     <div class="wrapper">
 
        @include('front.header')<!--header end-->
@@ -50,7 +50,7 @@
                 <div class="restaurant-details">
                     <div class="food-thumbail-large">
                         <img src="{{ URL::to('/') }}/images/{{ $UserRestaurant->image2 }}" alt="" class="w-100">
-                   
+
                     </div>
                     <div class="food-info">
                         <ul class="meta">
@@ -64,7 +64,7 @@
                                 <img src="{{asset('front/images/icons/clock.svg')}}" alt="">
                                 <span>{{$UserRestaurant->fermeture}}</span>
                             </li>
-                  
+
                         </ul>
                         <h4>Description de notre restaurant :</h4>
                         <p>{{$UserRestaurant->description}}</p>
@@ -111,8 +111,8 @@
                                     <button type="submit" title="" class="btn-default gradient-bg half-radius height-2">Ajouter au panier <span></span></button>
                                     </form>
                                 </div>
-                            </div>   
-                         @endforeach                  
+                            </div>
+                         @endforeach
                         </div><!--masonary end-->
                     </div>
                 </div><!--popular-dishes end-->
@@ -132,18 +132,10 @@
                                         <ul>
                                             <li>
                                                 <img src="{{ URL::to('/') }}/images/{{ $feedback->image }}" alt="">
-                                                <span>{{$feedback->name}} {{$feedback->email}}</span>        
+                                                <span>{{$feedback->name}} {{$feedback->email}}</span>
                                             </li>
-                                          
-                                            <li>
-                                                <ul class="rating">
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                </ul>
-                                            </li>
+
+
                                         </ul>
                                     </div>
                                     <p>{{$feedback->commentaire}}</p>
@@ -152,13 +144,13 @@
                             </div>
                         </div><!--feedback section end-->
                     </div>
-          
+
                 </div>
             </div>
         </section>
 
        @include('front.footer')<!--footer end-->
-        
+
     </div><!--wrapper end-->
 
 

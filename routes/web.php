@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'IndexController@index');
 Route::get('/APropos', 'AboutController@index');
 Route::get('/faqs', 'FaqsController@index');
-Route::get('/contact', 'ContactController@index');
+Route::get('/contact', 'ContactController@create');
+Route::post('/contact/store', 'ContactController@store')->name('contact.store');
 Route::get('/restaurants', 'ListeRestoFrontController@index');
 Route::get('/Searchrestaurants', 'ListeRestoFrontController@search')->name('restaurant.search');
 Route::get('/restaurant-details/{id}','ListeRestoFrontController@details');
@@ -36,6 +37,8 @@ Route::group(['middleware' =>['auth','RestaurantMiddleware']], function(){
     Route::resource('commandes','CommandeRestoController');
     Route::resource('produit','ProduitController');
     Route::get('/feedback','FeedsController@indexResto');
+    Route::get('/telecharger','CommandeRestoController@create');
+
 
 
 });
@@ -53,10 +56,12 @@ Route::group(['middleware' =>['auth','ClientMiddleware']], function(){
 
 Route::group(['middleware' =>['auth','AdminMiddleware']], function(){
     Route::get('/dash','DashController@index');
-    Route::get('/ListeResto','ListeRestoController@index');
+    Route::resource('ListeResto','ListeRestoController');
     Route::get('/ListeLivreurs','ListeLivreurController@index');
+    Route::get('/ListeClients','ListeClientController@index');
+    Route::resource('ListeContact', 'ContactController');
     Route::resource('commentaire','DashController');
-
+    Route::post('/validate/store', 'ConfirmationController@update')->name('validate');
 
 });
 

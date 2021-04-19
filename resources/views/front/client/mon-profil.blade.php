@@ -20,12 +20,12 @@
 </head>
 
 <body>
-    
+
 
     <div class="page-loading">
         <img src="{{asset('front/images/loader.gif')}}" alt="" />
     </div><!--page-loading end-->
-    
+
     <div class="wrapper">
 
         @include('front.header')
@@ -65,74 +65,38 @@
                                             <ul>
                                                 <li class="date">Date</li>
                                                 <li class="delivery">Adress livraison</li>
-                                                <li class="amount">Montan</li>
+                                                <li class="amount">Montant</li>
                                                 <li>Etat</li>
                                             </ul>
                                     </div><!--ord-head end-->
                                         <div class="ord-tablez">
                                             <div class="oc-table active">
+                                                @foreach ($commandes as $commande)
                                                 <div class="oct-table-head">
                                                     <ul>
-                                                        <li class="date">May 22, 20</li>
-                                                        <li class="delivery">27 Division St, New York, NY 10002</li>
-                                                        <li class="amount">$130.57</li>
+                                                        <li class="date">{{$commande->created_at}}</li>
+                                                        <li class="delivery">{{$commande->adresse}}</li>
+                                                        @foreach ($commande->commandeProduits->produits as $produit)
+
+                                                        <li class="amount">{{$commande->commandeProduits->total}}dt</li>
                                                         <li class="status active">Preparing</li>
                                                     </ul>
                                                     <a href="#" title="" class="tog-down"><i class="fa fa-angle-down"></i></a>
                                                 </div><!--oct-table-head end-->
+
                                                 <div class="oct-table-body">
                                                     <ul>
                                                         <li>
-                                                            <h4>Shrimp and oyster soup <span>x2</span></h4>
-                                                            <span>$130.79</span>
+                                                            <h4>{{$produit->name}} <span>x{{$commande->commandeProduits->quantity}}</span></h4>
+                                                            <span>{{$commande->commandeProduits->total}}dt</span>
                                                         </li>
-                                                        <li>
-                                                            <h4>Rib-eye steaks <span>x2</span></h4>
-                                                            <span>$31.38</span>
-                                                        </li>
-                                                        <li>
-                                                            <h4>Greek salad <span>x1</span></h4>
-                                                            <span>$34.19</span>
-                                                        </li>
-                                                        <li>
-                                                            <h4><strong>Payment Method</strong></h4>
-                                                            <span>Credit Card: <strong>****5478</strong></span>
-                                                        </li>
+
                                                     </ul>
-                                                </div><!--oct-table-body end-->
+                                                </div>
+                                                @endforeach
+
+                                                @endforeach<!--oct-table-body end-->
                                             </div><!--oc-table end-->
-                                            <div class="oc-table">
-                                                <div class="oct-table-head">
-                                                    <ul>
-                                                        <li class="date">May 22, 20</li>
-                                                        <li class="delivery">27 Division St, New York, NY 10002</li>
-                                                        <li class="amount">$130.57</li>
-                                                        <li class="status">Delivered</li>
-                                                    </ul>
-                                                    <a href="#" title="" class="tog-down"><i class="fa fa-angle-down"></i></a>
-                                                </div><!--oct-table-head end-->
-                                                <div class="oct-table-body">
-                                                    <ul>
-                                                        <li>
-                                                            <h4>Shrimp and oyster soup <span>x2</span></h4>
-                                                            <span>$130.79</span>
-                                                        </li>
-                                                        <li>
-                                                            <h4>Rib-eye steaks <span>x2</span></h4>
-                                                            <span>$31.38</span>
-                                                        </li>
-                                                        <li>
-                                                            <h4>Greek salad <span>x1</span></h4>
-                                                            <span>$34.19</span>
-                                                        </li>
-                                                        <li>
-                                                            <h4><strong>Payment Method</strong></h4>
-                                                            <span>Credit Card: <strong>****5478</strong></span>
-                                                        </li>
-                                                    </ul>
-                                                </div><!--oct-table-body end-->
-                                            </div><!--oc-table end-->
-                                                <!--oc-table end-->
                                         </div><!--ord-tablez end-->
                                     </div><!--order-tables-sec end-->
                                 </div>
@@ -191,7 +155,7 @@
 
                                          <div class="col-md-6">
                                              <div class="form-group">
-                                                <input class="form-control half-radius" id="image" name="image" value="{{$Client[0]->image}}" type="file">                                            
+                                                <input class="form-control half-radius" id="image" name="image" value="{{$Client[0]->image}}" type="file">
                                              </div><!--form-group end-->
                                          </div>
                                           </div>
@@ -207,16 +171,16 @@
                     <div class="col-lg-4">
                         <div class="sidebar">
                             <div class="widget widget-help">
-                                <h3 class="widget-title">Need help?</h3>
-                                <p>If you have more questions please let us know. We will answer as soon as possible.</p>
-                                <a href="/contact" title="" class="btn-default height-2">Contact us <span></span></a>
+                                <h3 class="widget-title">Besoin d'aide ?</h3>
+                                <p>Si vous avez d'autres questions, veuillez nous en informer. Nous répondrons dès que possible.</p>
+                                <a href="/contact" title="" class="btn-default height-2">Contactez nous <span></span></a>
                             </div><!--widget-help end-->
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" >
                                         @csrf
                                         <button type="submit" class="btn btn-danger">
                                       Deconnexion
                                     </button>
-                                 
+
                                     </form>
                              <!--widget-newsletter end-->
                         </div><!--sidebar end-->
@@ -226,7 +190,7 @@
         </section>
 
      @include('front.footer')<!--footer end-->
-        
+
     </div><!--wrapper end-->
 
 

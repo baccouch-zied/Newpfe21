@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Commande;
 use App\UserRestaurant;
 use App\Client;
+use App\CommandeProduits;
+
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +17,9 @@ class ProfilClientController extends Controller
     public function index()
     {
         $id=Auth::user()->id;
-        $Client= DB::table('clients')->where('user_id' ,$id)->get();
-        return view('front.client.mon-profil',compact('Client'));
+        $Client= DB::table('clients')->where('user_id' ,'=' ,$id)->get();
+        $commandes= Commande::where('user_id' ,'=' ,$id)->get();
+        return view('front.client.mon-profil',compact(['Client','commandes']));
     }
 
     public function update(Request $request, $id)
@@ -60,7 +63,7 @@ class ProfilClientController extends Controller
             'adresse' => request('adresse'),
             'image'            =>   $image_name
         );
-  
+
         Client::whereId($id)->update($form_data);
 
         return redirect('/mon-profil')->with('success', 'Vos informations sont modifiées');

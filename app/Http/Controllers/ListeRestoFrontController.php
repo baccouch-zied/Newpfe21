@@ -31,7 +31,7 @@ class ListeRestoFrontController extends Controller
         $categories = DB::table('categories')->where('user_id' ,'=' ,$id)->get();
         $feedback = DB::table('feedback')->where('userrestaurant_id' ,'=' ,$id)->get();
 
-        $UserRestaurant=UserRestaurant::findOrFail($id); 
+        $UserRestaurant=UserRestaurant::findOrFail($id);
         return view('front.restaurant-details',compact(['produits','categories','UserRestaurant','feedback']));
     }
 }

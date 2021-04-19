@@ -16,10 +16,10 @@ class Produit extends Model
 		$delivery=3;
 	}
 
-	public function getTotal()
+	/*public function getTotal()
 	{
 		$total= $delivery+$price;
-	}
+	}*/
 
     public function user()
 	{
@@ -32,13 +32,11 @@ class Produit extends Model
 		return $this->belongsToMany('App\categorie');
 	}
 
-	public function commandes()
+    public function commandeProduits()
 	{
-		return $this->belongsToMany(
-        Commande::class,
-        'produits_commandes',
-        'produit_id',
-		'commande_id')->withPivot('total', 'quantity');
+		return $this->belongsTo('App\CommandeProduits','produit_id','id');
 	}
+
+
 
 }

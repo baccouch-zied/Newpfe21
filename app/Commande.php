@@ -15,6 +15,11 @@ class Commande extends Model
 		return $this->belongsToMany('App\client', 'id', 'client_id');
 	}
 
+    public function user()
+	{
+		return $this->belongsToMany('App\User', 'id', 'user_id');
+	}
+
     public function userrestaurant()
 	{
 		return $this->belongsToMany('App\UserRestaurant');
@@ -25,12 +30,9 @@ class Commande extends Model
 		return $this->belongsToMany('App\UserLivreur');
 	}
 
-	public function produits()
+    public function commandeProduits()
 	{
-		return $this->belongsToMany(
-        Produit::class,
-        'produits_commandes',
-        'commande_id',
-        'produit_id')->withPivot('total', 'quantity');
+		return $this->belongsTo('App\CommandeProduits','id','commande_id');
 	}
+
 }
