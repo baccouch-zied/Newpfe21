@@ -49,6 +49,7 @@
                                             <th>Prenom</th>
                                             <th>Telephone</th>
                                             <th>Email</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,6 +63,15 @@
                                             <td>{{$client->prenom}}</td>
                                             <td>{{$client->telephone}}</td>
                                             <td>{{$client->email}}</td>
+                                            <td>
+                                                <form method="POST" action="{{ route('ListeClients.destroy', $client->id) }}"  onsubmit="return confirm('Vous etes sure de Supprimer Cette Client ?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                 <button type="submit" class="btn btn-primary">
+                                                     Supprimer
+                                                 </button>
+                                                         </form>
+                                            </td>
 
                                         </tr>
                                         @endforeach

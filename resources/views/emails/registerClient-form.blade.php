@@ -5,7 +5,7 @@
 <strong> Email</strong> {{ $client['email'] }} <br/>
 <strong> Telephone</strong> {{ $client['telephone'] }} <br/>
 
-@component('mail::button', ['url' => route('/')])
+@component('mail::button', ['url' => route('login')])
 Validation du compte
 @endcomponent
 

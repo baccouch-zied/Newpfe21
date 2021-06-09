@@ -17,7 +17,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Modifier Produit</a>
                                     </li>
-                            
+
                                 </ol>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                 <!-- Basic Horizontal form layout section start -->
                 <section id="basic-horizontal-layouts">
                     <div class="row">
-                        <div class="col-md-6 col-12">
+                        <div class="col-md-12 col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Modifier Produit</h4>
@@ -75,9 +75,9 @@
                                                 <input class="form-control col-xl-8 col-md-7" id="image" name="image"type="file">
                                                 <img src="{{ URL::to('/') }}/images/{{ $categorie->image }}" class="img-thumbnail" width="100" />
                                                  <input type="hidden" name="hidden_image" value="{{ $categorie->image }}" />
-                                            </div>  
                                             </div>
-                     
+                                            </div>
+
                                             <div class="col-sm-9 offset-sm-3">
                                             <button id="submit" name="submit" class="btn btn-primary">Modifier</button>
                                             </div>
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                      
+
                     </div>
                 </section>
                 <!-- Basic Horizontal form layout section end -->

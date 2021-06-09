@@ -6,6 +6,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>DeliTaste</title>
     <meta name="description" content="Delitaste - Food delivery and Restaurant HTML Template" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="author" content="George_Fx">
     <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,14 +19,23 @@
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/flaticon.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/responsive.css')}}">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+
+    <style>
+        .container{
+        padding: 0.5%;
+        }
+     </style>
+
 </head>
 
 <body>
-    
+
     <div class="page-loading">
         <img src="{{asset('front/images/loader.gif')}}" alt="" />
     </div><!--page-loading end-->
-    
+
     <div class="wrapper">
 
         @include('front.header')<!--header end-->
@@ -85,55 +96,44 @@
                     </ul>
                 </div><!--checkout-head end-->
                 <a href="/details-commande" title="" class="btn-default2"><i class="fa fa-long-arrow-alt-left"></i>Retour au détails de mon commande</a>
+                <h4>Choisir votre type de paiement:</h4>
+
                 <div class="row mt-40">
-                    <div class="col-lg-8">
-                        <form class="checkout-form mt-0">
-                            <div class="payment-optionz">
-                                <div class="credit-card-payment">
-                                    <div class="cd-head">
-                                        <h4>
-                                            <img src="{{asset('front/images/icons/check-circle.svg')}}" alt="">
-                                            Credit card
-                                        </h4>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Card number</label>
-                                                <input type="number" name="credit" placeholder="xxxx xxxx xxxx xxxx" class="form-control">
-                                            </div><!--form-group end-->
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Expiration date</label>
-                                                <input type="number" name="month" placeholder="mm" class="form-control">
-                                            </div><!--form-group end-->
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="opacity-0">year</label>
-                                                <input type="number" name="year" placeholder="yy" class="form-control">
-                                            </div><!--form-group end-->
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Security code</label>
-                                                <input type="number" name="ccv" placeholder="CVV" class="form-control">
-                                            </div><!--form-group end-->
-                                        </div>
-                                    </div>
-                                </div><!--credit-card-payment end-->
-                                <div class="other-pay-optz">
-                                    <h4><span class="circle-box"></span><a href="#" title="">PayPal</a></h4>
-                                </div><!--other-pay-optz end-->
-                                <div class="other-pay-optz">
-                                    <h4><span class="circle-box"></span><a href="#" title="">Pay with cash</a></h4>
-                                </div><!--other-pay-optz end-->
-                            </div><!--payment-optionz end-->
-                            <a href="checkout-step3.html" title="" class="btn-default">Confirm Order <span></span></a>
-                        </form>
+                    <div class="col-lg-12">
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <input class="form-check-input" name="payement_method" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                          Paiement par carte bancaire
+                                        </label><br/>|
+                                    </div><!--form-group end-->
+                                </div><br/>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-check-input" name="payement_method" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                          Paiement sur place
+                                        </label>
+                                     </div><!--form-group end-->
+                                </div>
+                            </div>
+                            <label class="label">Montant de votre commande</label>
+                            <input type="text" name="amount" value="{{Cart::total()}}"class="form-control amount">
+                          </div>
+                          <button type="button" class="btn btn-primary btn-block">Payer</button><br/>
+
+                        <div class="col-md-4 offset-md-4">
+                            <div class="form-group"><br/>
+                                <a href="/fini-commande" class="btn btn-primary btn">Je valide mon methode de paiment</a>
+                        </div>
                     </div>
                     <div class="col-lg-4">
+
                         <div class="order-details">
                             <h3>Votre commande</h3>
                             <ul class="vl-ord">
@@ -144,7 +144,7 @@
                                         <b>2x</b>
                                     </div>
                                     <span>{{$item->price}}</span>
-                                </li> 
+                                </li>
                                 @endforeach
 
                             </ul>
@@ -154,8 +154,8 @@
                                     <span>{{Cart::subtotal()}}</span>
                                 </li>
                                 <li>
-                                    <h4 class="delivery">Delivery</h4>
-                                    <span>$25</span>
+                                    <h4 class="delivery">Livraision</h4>
+                                    <span>{{Cart::tax()}}</span>
                                 </li>
                                 <li>
                                     <h4 class="total-price">Total</h4>
@@ -169,8 +169,54 @@
         </section>
 
         @include('front.footer')<!--footer end-->
-        
+
     </div><!--wrapper end-->
+
+
+    <script src = "https://checkout.stripe.com/checkout.js" > </script>
+<script type = "text/javascript">
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    });
+
+$('.btn-block').click(function() {
+  var amount = $('.amount').val();
+  var handler = StripeCheckout.configure({
+      key: 'pk_test_51IahNbE3b6CPfzYs5K5zXgyGmwDiIB5pQ0fFOInReoyvEDndEYXePWF6pDZxpTrlQmZmAG1o3Z3ydKqbYfidvUHM00PIcbzkb9', // your publisher key id
+      locale: 'auto',
+      token: function(token) {
+          // You can access the token ID with `token.id`.
+          // Get the token ID to your server-side code for use.
+          $('#res_token').html(JSON.stringify(token));
+          $.ajax({
+              url: '{{ url("payment-process") }}',
+              method: 'post',
+              data: {
+                  tokenId: token.id,
+                  amount: amount
+              },
+              success: (response) => {
+                  console.log(response)
+              },
+              error: (error) => {
+                  console.log(error);
+                  alert('Oops! Something went wrong')
+              }
+          })
+      }
+  });
+  handler.open({
+      name: 'Payment Demo',
+      description: 'NiceSnippets',
+      amount: amount * 100
+  });
+})
+
+</script>
 
 
     <script src="{{asset('front/js/jquery.min.js')}}"></script>

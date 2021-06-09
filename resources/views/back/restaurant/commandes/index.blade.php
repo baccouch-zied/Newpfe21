@@ -12,12 +12,12 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Table Commande</h2>
+                            <h2 class="content-header-title float-left mb-0">Commandes</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="/resto">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Table Commandes
+                                    <li class="breadcrumb-item active">Commandes
                                     </li>
                                 </ol>
                             </div>
@@ -51,7 +51,9 @@
                                             <th>Adresse</th>
                                             <th>Telephone</th>
                                             <th>Details</th>
-                                            <th>Etat</th>
+                                            <th>Mode paiement</th>
+                                            <th>Etat au restaurant</th>
+                                            <th>Etat au livreur</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -67,12 +69,27 @@
                                          <td>
                                          @foreach ($commande->commandeProduits->produits as $produit)
                                          {{$produit->name}} =
-                                         {{$commande->commandeProduits->total}}
+                                         {{$commande->commandeProduits->total}}dt
                                         @endforeach
                                           </td>
-                                         <td><span class="badge badge-success">Validé</span></td>
+                                          <td>{{$commande->payement_method}}</td>
+                                        @if ($commande->etat=="en cours")
+                                        <td><span class="badge badge-primary">{{$commande->etat}}</span></td>
+                                        @elseif ($commande->etat=="réjeté")
+                                        <td><span class="badge badge-danger">{{$commande->etat}}</span></td>
+                                          @else
+                                          <td><span class="badge badge-success">{{$commande->etat}}</span></td>
+                                        @endif
+                                        @if ($commande->etatlivreur=="en cours")
 
+                                            <td><span class="badge badge-primary">{{$commande->etatlivreur}}</span></td>
+                                            @elseif ($commande->etatlivreur=="réjeté")
+                                            <td><span class="badge badge-danger">{{$commande->etatlivreur}}</span></td>
+                                              @else
+                                              <td><span class="badge badge-success">{{$commande->etatlivreur}}</span></td>
+                                        @endif
                                         <td>
+
                                         <div class="dropdown">
                                                 <button type="button" class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">
                                                     <i data-feather="more-vertical"></i>
@@ -82,19 +99,55 @@
                                                         <i data-feather="edit-2" class="mr-50"></i>
                                                         <span>Voir</span>
                                                     </a>
-                                                    <a class="dropdown-item">
+                                                    <a href="#myModal{{$commande->id}}" class="dropdown-item" data-toggle="modal" data-target="#myModal2">
                                                         <i data-feather="edit-2" class="mr-50"></i>
-                                                        <span>Envoyer</span>
+                                                        <span >Envoyer</span>
                                                     </a>
 
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
+
+                                <div class="modal fade" id="myModal{{$commande->id}}" role="dialog">
+                                    <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Envoyer commande</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="POST" action="{{ route('handleAffectCommandLivreur') }}">
+                                                @csrf
+                                              <div class="form-group">
+                                                    <input type="text" name="id" hidden value="{{$commande->id}}">
+                                                <label for="comment">Choix livreurs:</label>
+                                                <select name="livreurId" class="form-control form-control-lg">
+                                                    @foreach ($UserLivreurs as $UserLivreur )
+                                                    <option value="{{$UserLivreur->id}}">{{$UserLivreur->name}} {{$UserLivreur->prenom}}</option>
+
+                                                    @endforeach
+                                                  </select>
+                                        </div>
+                                              <button type="submit" class="btn btn-success">Envoyer</button>
+
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                </div>
                                     @endforeach
 
                                 </tbody>
                                 </table>
+
+
                             </div>
                         </div>
                     </div>

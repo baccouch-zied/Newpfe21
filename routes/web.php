@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index')->name('index');
 Route::get('/APropos', 'AboutController@index');
-Route::get('/faqs', 'FaqsController@index');
+Route::get('/faqs', 'FaqfrontController@index');
 Route::get('/contact', 'ContactController@create');
 Route::post('/contact/store', 'ContactController@store')->name('contact.store');
 Route::get('/restaurants', 'ListeRestoFrontController@index');
@@ -30,48 +30,52 @@ Auth::routes(['verify'=>true]);
 
 Route::group(['middleware' =>['auth','RestaurantMiddleware']], function(){
 
-    Route::get('/resto', 'RestaurantController@index');
+    Route::get('/resto', 'RestaurantController@index')->name('resto');
     Route::get('/infos','InfosController@index');
     Route::post('/infos/update/{id}','InfosController@update');
     Route::resource('categorie','CategorieController');
     Route::resource('commandes','CommandeRestoController');
     Route::resource('produit','ProduitController');
     Route::get('/feedback','FeedsController@indexResto');
-    Route::get('/telecharger','CommandeRestoController@create');
-
-
+    Route::get('/statistiques/{year}','StatisticsController@__invoke');
+    Route::resource('accepter','AccepterCommandeController');
+    Route::resource('rejeter','RejeterCommandeController');
+    Route::post('/command/livreur', 'EnvoyerCommande@envoi')->name('handleAffectCommandLivreur');
 
 });
 
 Route::group(['middleware' =>['auth','ClientMiddleware']], function(){
-    Route::get('/mon-profil', 'ProfilClientController@index')->name('monprofil');
+    Route::get('/mon-profil', 'ProfilClientController@index')->name('mon-profil');
     Route::post('/profil/update/{id}','ProfilClientController@update');
     Route::get('/details-commande','CommandeController@index');
     Route::post('/details-commande/store','CommandeController@store')->name('commande.store');
-    Route::get('/fini-commande','CommandeController@fini');
-    Route::get('/paiement','PaiementController@index');
+    Route::get('/fini-commande','CommandeController@create');
+    Route::get('stripe', 'StripePaymentController@index');
+    Route::post('payment-process', 'StripePaymentController@process');
     Route::post('/fini-commande','FeedsController@store')->name('feed.store');
 
 });
 
 Route::group(['middleware' =>['auth','AdminMiddleware']], function(){
-    Route::get('/dash','DashController@index');
+    Route::get('/dash','DashController@index')->name('dash');;
     Route::resource('ListeResto','ListeRestoController');
-    Route::get('/ListeLivreurs','ListeLivreurController@index');
-    Route::get('/ListeClients','ListeClientController@index');
+    Route::resource('ListeLivreur','ListeLivreurController');
+    Route::resource('ListeClients','ListeClientController');
     Route::resource('ListeContact', 'ContactController');
-    Route::resource('commentaire','DashController');
+    Route::resource('commentaire','CommentaireController');
+    Route::resource('faq','FaqController');
+    Route::resource('accepterLiv','AccepterCommandeLivController');
+    Route::resource('rejeterLiv','RejeterCommandeLivController');
     Route::post('/validate/store', 'ConfirmationController@update')->name('validate');
-
 });
 
 
 Route::group(['middleware' =>['auth','LivreurMiddleware']], function(){
-    Route::get('/livreur', function () {
-        return view('back.livreur.index');
-    });
+    Route::get('/livreur', 'LivreurController@index')->name('livreur');
     Route::get('/infosLivreur','InfosLivreurController@index');
     Route::post('/infosLivreur/update/{id}','InfosLivreurController@update');
+    Route::resource('commandesLiv','CommandeLivController');
+
 });
 
 Route::get('/registerLivreur', 'RegisterLivreurController@index')->name('registerLivreur');
@@ -90,7 +94,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/panier/ajouter','CartController@store')->name('cart.store');
 Route::get('/mon-panier','CartController@index')->name('cart.index');
 Route::delete('/panier/{rowId}','CartController@destroy')->name('cart.destroy');
-Route::patch('/panier/{produit}', 'CartController@update')->name('cart.update');
-
+Route::post('/panier/{produit}', 'CartController@update')->name('cart.update');
+Route::post('/update/{rowId}','CartController@increaseQuantity')->name('cart.update1');
+Route::post('/update2/{rowId}','CartController@decreaseQuantity')->name('cart.update2');
 
 

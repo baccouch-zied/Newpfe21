@@ -8,6 +8,8 @@ use App\FeedbackSite;
 
 use App\user;
 use App\Client;
+use App\faq;
+
 use Auth;
 use Illuminate\Support\Facades\DB;
 class IndexController extends Controller
@@ -19,7 +21,8 @@ class IndexController extends Controller
         $feedbacksite =  FeedbackSite::all();
         $UserRestaurants= DB::table('user_restaurants')->orderBy('created_at','desc')->limit(4)->get();
         $User=User::all();
-        return view('front.index', compact(['UserRestaurants','feedbacksite','User']));
+        $faqs= faq::all();
+        return view('front.index', compact(['UserRestaurants','feedbacksite','User','faqs']));
     }
 
     public function store(Request $request)

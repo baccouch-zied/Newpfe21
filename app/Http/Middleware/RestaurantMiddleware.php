@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use App\UserRestaurant;
 
 class RestaurantMiddleware
 {
@@ -25,7 +26,6 @@ class RestaurantMiddleware
         if(Auth::user()->type =='restaurant')
         {
             return $next($request);
-
         }
 
         if(Auth::user()->type =='livreur')
@@ -35,13 +35,13 @@ class RestaurantMiddleware
 
         if(Auth::user()->type =='client')
         {
-            return redirect()->route('/');
+            return redirect()->route('index');
 
         }
 
         else
         {
-            return redirect('/')->with('success', 'Votre compte n a pas encore validé, vous devez attend la confirmation de l administrateur avec l email que vous allez recevoir');
+            return redirect('/');
         }
     }
 }

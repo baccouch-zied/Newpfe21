@@ -20,9 +20,11 @@ class CreateCommandesTable extends Migration
             $table->string('telephone');
             $table->string('email');
             $table->string('adresse');
+            $table->string('payement_method')->nullable();;
             $table->time('heure');
             $table->longText('commentaire');
-            $table->boolean('etat')->nullable();
+            $table->string('etat')->nullable();
+            $table->string('etatlivreur')->nullable();
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')

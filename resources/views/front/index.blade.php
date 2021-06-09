@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>DeliTaste</title>
+    <title>Zarzis Delivery</title>
     <meta name="description" content="Delitaste - Food delivery and Restaurant HTML Template" />
     <meta name="author" content="George_Fx">
     <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="assets/images/favicon.png">
+    <link rel="icon" href="{{asset('front/images/logo.png')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/all.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/animate.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/js/lib/slick/slick.css')}}">
@@ -28,13 +28,12 @@
     <div class="wrapper">
 
         @include('front.header')
-        @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-        @endif
         <section class="main-banner">
-
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
             <div class="container">
                 <div class="banner-text">
                     <h2>Zarzis Delivery</h2>
@@ -161,7 +160,7 @@
         <section class="sec-block pb-0">
             <div class="container">
                 <div class="row">
-                <div class="col-md-6 col-6">
+                <div class="col-md-12">
                  <div class="section-title text-center">
                     <span>Testimonials </span>
                     <h2 class="text-capitalize">Nos clients disent</h2>
@@ -183,7 +182,7 @@
                 </div>
                 @if(auth()->user())
 
-                <div class="col-md-6 col-6">
+                <div class="col-md-12">
                 <div class="sidebar">
                             <div class="widget widget-review">
                                 <h3 class="widget-title">Donner votre avis</h3>
@@ -211,30 +210,22 @@
             <div class="fixed-bg bg2"></div>
             <div class="container">
                 <div class="order-appliction">
-                    <h2>Make orders With Our <span>Application</span></h2>
+                    <h2>Passez des commandes avec notre
+                        <span>Application</span></h2>
                     <ul class="vl-fzt">
                         <li>
-                            <span>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="transparent" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M22 11.0799V11.9999C21.9988 14.1563 21.3005 16.2545 20.0093 17.9817C18.7182 19.7088 16.9033 20.9723 14.8354 21.5838C12.7674 22.1952 10.5573 22.1218 8.53447 21.3744C6.51168 20.6271 4.78465 19.246 3.61096 17.4369C2.43727 15.6279 1.87979 13.4879 2.02168 11.3362C2.16356 9.18443 2.99721 7.13619 4.39828 5.49694C5.79935 3.85768 7.69278 2.71525 9.79619 2.24001C11.8996 1.76477 14.1003 1.9822 16.07 2.85986" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M22 4L12 14.01L9 11.01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </span>
+
                             <div class="vs-info">
-                                <h4>Order and pay in a few minutes</h4>
-                                <p>Сhoose food and pay for the order in a couple of clicks online also choose you current location using GPS.</p>
+                                <h4>Commandez et payez en quelques minutes</h4>
+                                <p>Choisissez de la nourriture et payez la commande en quelques clics en ligne.</p>
                             </div>
                         </li>
                         <li>
-                            <span>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="transparent" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M22 11.0799V11.9999C21.9988 14.1563 21.3005 16.2545 20.0093 17.9817C18.7182 19.7088 16.9033 20.9723 14.8354 21.5838C12.7674 22.1952 10.5573 22.1218 8.53447 21.3744C6.51168 20.6271 4.78465 19.246 3.61096 17.4369C2.43727 15.6279 1.87979 13.4879 2.02168 11.3362C2.16356 9.18443 2.99721 7.13619 4.39828 5.49694C5.79935 3.85768 7.69278 2.71525 9.79619 2.24001C11.8996 1.76477 14.1003 1.9822 16.07 2.85986" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M22 4L12 14.01L9 11.01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </span>
+
                             <div class="vs-info">
-                                <h4>Check Delivery Status</h4>
-                                <p>Follow the status of your order in real time and also track the delivery path until you get it.</p>
+                                <h4>
+                                    Vérifier l'état de la commande</h4>
+                                <p>Suivez l'état de votre commande en temps réel jusqu'à ce que vous l'obteniez</p>
                             </div>
                         </li>
                     </ul>
@@ -252,6 +243,23 @@
 
 
         @include('front.footer')<!--footer end-->
+
+
+ <!-- facebook chat section start -->
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <!-- Your customer chat code -->
+    <div class="fb-customerchat" attribution=setup_tool page_id="105913478290055" theme_color="#0084ff"
+        logged_in_greeting="Bonjour! Comment on peux vous aide ?"
+        logged_out_greeting="Bonjour! Comment on peux vous aide ?">
+    </div>
+    <!-- facebook chat section end -->
 
     </div><!--wrapper end-->
 

@@ -79,8 +79,9 @@ class ListeClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return redirect('/ListeClients')->with('success', 'Le client est supprimé avec sucess');
     }
 }

@@ -3,7 +3,7 @@
             <div class="container-fluid">
                 <div class="header-content d-flex flex-wrap align-items-center">
                     <div class="logo">
-                        <a href="index.html" title="">
+                        <a href="/" title="">
                             <img src="{{asset('front/images/logo.png')}}" alt="">
                         </a>
                     </div><!--logo end-->
@@ -14,10 +14,13 @@
                             <li><a href="/restaurants" title="">Restaurants</a></li>
                             <li><a href="/faqs" title="">Faqs</a>
                             </li>
-                           @if(auth()->user())
-                             <li><a href="{{ route('monprofil') }}">Profil</a></li>
-                              @endif
+
                             <li><a class="active" href="/contact" title="">Contact</a></li>
+                            @if(auth()->user())
+                            <li><a href="{{ route('mon-profil') }}">MonProfil</a>
+
+                            </li>
+                             @endif
                         </ul>
                     </nav><!--navigation end-->
                     <div class="menu-btn">
@@ -28,7 +31,14 @@
                     <ul class="oth-lnks ml-auto">
                         <li><img src="{{asset('front/images/icons/phone.svg')}}" alt="">+2165453225</li>
                         <li><a href="/mon-panier" title="" class="cart-ico"><img src="{{asset('front/images/icons/cart.svg')}}" alt=""></a><span class="cart-item-num">{{Cart::count()}}</span></li>
-                        <li><a href="/loginC" title="" class="cart-ico">Connexion<img src="{{asset('front/images/icons/sign-in.svg')}}" alt=""></a></li>
+
+                        @if (auth()->user())
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+                            @csrf
+                        <li><button type="submit" >Deconnexion</button></li>
+                        </form>                        @else
+                        <li><a href="/login" title="" class="cart-ico">Connexion<img src="{{asset('front/images/icons/sign-in.svg')}}" alt=""></a></li>
+                        @endif
 
                     </ul>
                     <!--oth-lnks end-->
@@ -52,7 +62,7 @@
                             </li>
 
                            @if(auth()->user())
-                             <li><a href="{{ route('monprofil') }}">Profil</a></li>
+                             <li><a href="{{ route('mon-profil') }}">MonProfil</a></li>
                               @endif
                             <li><a class="active" href="/contact" title="">Contact</a></li>
             </ul>

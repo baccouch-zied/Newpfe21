@@ -17,7 +17,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Ajouter Categorie</a>
                                     </li>
-                                    
+
                                 </ol>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                 <!-- Basic Horizontal form layout section start -->
                 <section id="basic-horizontal-layouts">
                     <div class="row">
-                        <div class="col-md-6 col-6">
+                        <div class="col-md-12 col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Ajouter Categorie</h4>
@@ -48,16 +48,16 @@
                                                   <strong>Nom obligé</strong>
                                                   </span>
                                                   @enderror
-                                            </div>  
+                                            </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Image</label>
                                                 <input class="form-control col-xl-8 col-md-7" id="image" name="image"type="file">
-                                            </div>  
                                             </div>
-                     
+                                            </div>
+
                                             <div class="col-sm-9 offset-sm-3">
                                             <button id="submit" name="submit" class="btn btn-primary">Save</button>
                                             </div>
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                         </div>
-                      
+
                     </div>
                 </section>
                 <!-- Basic Horizontal form layout section end -->

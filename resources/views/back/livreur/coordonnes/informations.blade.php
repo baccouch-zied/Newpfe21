@@ -7,7 +7,7 @@
                 <!-- Basic Horizontal form layout section start -->
                 <section id="basic-horizontal-layouts">
                     <div class="row">
-                        <div class="col-md-6 col-6">
+                        <div class="col-md-12 col-12">
                             <div class="card">
                             @if (session('success'))
                         <div class="alert alert-success">
@@ -26,53 +26,53 @@
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Nom</label>
                                                 <input class="form-control col-xl-8 col-md-7" id="nom" name="name" type="text" required="" value="{{$UserLivreur[0]->name}}">
-                                            </div>  
+                                            </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Prénom</label>
                                                 <input class="form-control col-xl-8 col-md-7" id="prenom" name="prenom" type="text" required="" value="{{$UserLivreur[0]->prenom}}">
-                                            </div>  
-                                            </div>    
+                                            </div>
+                                            </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Age</label>
                                                 <input class="form-control col-xl-8 col-md-7" id="age" name="age" type="text" required="" value="{{$UserLivreur[0]->age}}">
-                                            </div>  
-                                            </div>  
+                                            </div>
+                                            </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Adresse</label>
                                                 <input class="form-control col-xl-8 col-md-7" id="adresse" name="adresse" type="text" required="" value="{{$UserLivreur[0]->adresse}}">
-                                            </div>  
                                             </div>
-                                   
+                                            </div>
+
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Telephone</label>
                                                 <input class="form-control col-xl-8 col-md-7" id="telephone" name="telephone" type="text" required="" value="{{$UserLivreur[0]->telephone}}">
-                                            </div>  
+                                            </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Email</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="email" name="email" type="text" required="" value="{{$UserLivreur[0]->email}}"> 
-                                            </div>  
+                                                <input class="form-control col-xl-8 col-md-7" id="email" name="email" type="text" required="" value="{{$UserLivreur[0]->email}}">
+                                            </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Image</label>
                                                 <input class="form-control col-xl-8 col-md-7" id="image" name="image" value="{{$UserLivreur[0]->image}}"type="file">
-                                            </div>  
+                                            </div>
                                             </div>
 
-                                         
-                     
+
+
                                             <div class="col-sm-9 offset-sm-3">
                                             <button id="submit" name="submit" class="btn btn-primary">Save</button>
                                             </div>
@@ -81,8 +81,8 @@
                                 </div>
                             </div>
                         </div>
-                      
-                        <div class="col-md-6 col-6">
+
+                        <div class="col-md-12 col-12">
 
 <div class="card card-developer-meetup">
     <div class="card-body">
@@ -91,17 +91,17 @@
         <img src="{{ URL::to('/') }}/images/{{ $UserLivreur[0]->image }}" alt="Meeting Pic" height="170" />
     </div><hr>
         <div class="meetup-header d-flex align-items-center">
-           
+
             <div class="my-auto">
             <h4 class="card-text item-company">{{$UserLivreur[0]->name}}</h4><h4 class="card-text item-company">{{$UserLivreur[0]->prenom}}</h4>
             </div><br/>
         </div>
         <div class="meetup-header d-flex align-items-center">
-           
+
            <div class="my-auto">
            <h4 class="card-text item-company">- {{$UserLivreur[0]->age}}</h4>
            </div>
-           
+
        </div><hr/>
        <div class="media">
             <div class="avatar bg-light-primary rounded mr-1">
@@ -135,7 +135,7 @@
                 <small>{{$UserLivreur[0]->adresse}}</small>
             </div>
         </div>
- 
+
 
     </div>
 </div>
@@ -146,7 +146,7 @@
                 <!-- Basic Horizontal form layout section end -->
 
                   </div><br/>
-          
+
                     <!--/ Developer Meetup Card -->
 </div>
 @endsection

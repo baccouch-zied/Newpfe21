@@ -3,8 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use App\Commande;
 use App\UserRestaurant;
-class ConfirmationController extends Controller
+use App\UserLivreur;
+use App\Client;
+use Cart;
+use App\CommandeProduits;
+use PDF;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AccepterCommande;
+use Illuminate\Support\Facades\DB;
+
+class AccepterCommandeLivController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +26,9 @@ class ConfirmationController extends Controller
      */
     public function index()
     {
-        //
+        $id=Auth::user()->id;
+        $commandes= Commande::where('userrestaurant_id' ,'=' ,$id)->get();
+        return view('back.livreur.commandes.index',compact('commandes'));
     }
 
     /**
@@ -32,14 +47,9 @@ class ConfirmationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRestaurant $userrestaurant, $token)
+    public function store(Request $request)
     {
-        if($userrestaurant->exists){
-            return redirect('/login')->with('success','validation de compte');
-        }
-
-        return redirect('/login')->with('success','validation de compte');
-
+        //
     }
 
     /**
@@ -59,7 +69,7 @@ class ConfirmationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Commande $commande)
     {
         //
     }
@@ -71,9 +81,26 @@ class ConfirmationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        dd('ziz');
+
+        $this->validate($request,[
+            'nom' => 'required',
+            'message' => 'required',
+        ],
+        [
+            'nom.required' => 'nom Champ is required',
+            'message.required' => 'message Champ is required',
+        ]
+    );
+
+       Commande::where('id',$id)->update
+       ([
+        'etatlivreur' => "validé",
+    ]);
+
+     return redirect('commandesliv')->with('success','Mail envoyé ,Commande validé par livreur.');
     }
 
     /**

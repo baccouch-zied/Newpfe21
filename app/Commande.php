@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Commande extends Model
 {
     protected $fillable = [
-        'name', 'prenom', 'telephone','heure','produits','email','adresse','etat','commentaire','user_id','userrestaurant_id','userlivreur_id'
+        'name', 'prenom', 'telephone','heure','produits','email','adresse','payement_method','etat','commentaire','user_id','userrestaurant_id','userlivreur_id'
     ];
 
     public function client()

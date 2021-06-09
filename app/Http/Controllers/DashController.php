@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 
 use App\UserRestaurant;
 use App\FeedbackSite;
-
+use App\UserLivreur;
 use App\user;
 use App\Client;
 use App\Feedback;
+use Illuminate\Support\Facades\DB;
 use Auth;
 
 class DashController extends Controller
@@ -22,8 +23,10 @@ class DashController extends Controller
 
     public function index()
     {
-
-        return view('back.admin.index');
+        $UserRestaurant= UserRestaurant::all();
+        $UserLivreur= UserLivreur::all();
+        $Client= Client::all();
+        return view('back.admin.stat',compact(['UserRestaurant','UserLivreur','Client']));
     }
     /**
      * Show the form for creating a new resource.
@@ -32,8 +35,7 @@ class DashController extends Controller
      */
     public function create()
     {
-        $feedbacksite =  FeedbackSite::all();
-        return view('back.admin.feeds.index', compact('feedbacksite'));
+
     }
 
     /**
@@ -87,9 +89,8 @@ class DashController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Feedbacksite $feedbacksite)
+    public function destroy(Request $request, $id)
     {
-        $feedbacksite->delete();
-        return redirect('commentaire/create');
+
     }
 }

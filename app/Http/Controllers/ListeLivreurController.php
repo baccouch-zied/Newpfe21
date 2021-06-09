@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UserLivreur;
-
+use App\User;
 class ListeLivreurController extends Controller
 {
     /**
@@ -70,7 +70,16 @@ class ListeLivreurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        User::where('id',$id)->update
+        ([
+         'status' => "valid",
+     ]);
+
+     UserLivreur::where('id',$id)->update
+        ([
+         'status' => "valid",
+     ]);
+         return redirect('/ListeLivreur')->with('success', 'Livreur validé');
     }
 
     /**
@@ -79,8 +88,9 @@ class ListeLivreurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(UserLivreur $UserLivreur)
     {
-        //
+        $UserLivreur->delete();
+        return redirect('/ListeLivreur');
     }
 }

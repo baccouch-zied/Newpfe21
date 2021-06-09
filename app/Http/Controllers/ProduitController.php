@@ -128,7 +128,7 @@ class ProduitController extends Controller
             $image_name = rand() . '.' . $image->getClientOriginalExtension();
 
             $image->move(public_path('images'), $image_name);
-   
+
 
         }
         else
@@ -150,7 +150,7 @@ class ProduitController extends Controller
             'image'            =>   $image_name
 
         );
-  
+
         produit::whereId($id)->update($form_data);
 
         return redirect('produit')->with('success', 'Votre Porduit est modifié avec success');
@@ -165,6 +165,7 @@ class ProduitController extends Controller
     public function destroy(Produit $produit)
     {
         $produit->delete();
+        dd($produit);
         return redirect('/produit');
     }
 }

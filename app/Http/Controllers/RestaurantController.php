@@ -7,6 +7,8 @@ use App\User;
 use Auth;
 use DB;
 use App\Categorie;
+use App\Produit;
+use App\Commande;
 use App\UserRestaurant;
 
 class RestaurantController extends Controller
@@ -26,7 +28,9 @@ class RestaurantController extends Controller
     {
         $id=Auth::user()->id;
         $UserRestaurant= DB::table('user_restaurants')->where('user_id' ,'=' ,$id)->get();
-        $categorie= categorie::all();
-        return view('back.restaurant.index',compact(['UserRestaurant','categorie']));
+        $categories= DB::table('categories')->where('user_id' ,'=' ,$id)->get();
+        $produits= DB::table('produits')->where('user_id' ,'=' ,$id)->get();
+        $commandes= Commande::where('userrestaurant_id' ,'=' ,$id)->get();
+        return view('back.restaurant.stat',compact(['UserRestaurant','categories','produits','commandes']));
     }
 }

@@ -69,22 +69,17 @@
                                             <td>{{$feedback->commentaire}}</td>
 
                                             <td>
-                                            <div class="dropdown">
-                                                    <button type="button" class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">
-                                                        <i data-feather="more-vertical"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
+
 
 
                                                         <form method="POST" action="#"  onsubmit="return confirm('Vous etes sure de Supprimer Cette feedback ?');">
                                                @csrf
                                             @method('DELETE')
-                                             <button type="submit" class="btn btn-primary">
+                                             <button type="submit" class="btn btn-danger">
                                              Supprimer
                                             </button>
                                               </form>
-                                                    </div>
-                                                </div>
+
                                             </td>
                                         </tr>
                                         @endforeach

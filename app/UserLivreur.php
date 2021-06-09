@@ -12,7 +12,7 @@ class UserLivreur extends Model
     use Notifiable,HasApiTokens ;
 
     protected $fillable = [
-        'name','telephone','prenom','email','type','password','age','adresse','etat','image','user_id'
+        'name','telephone','prenom','email','type','password','age','adresse','status','image','user_id'
     ];
 
     public function user()

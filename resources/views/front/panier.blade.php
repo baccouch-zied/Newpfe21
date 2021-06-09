@@ -21,11 +21,11 @@
 </head>
 
 <body>
-    
+
     <div class="page-loading">
         <img src="{{asset('front/images/loader.gif')}}" alt="" />
     </div><!--page-loading end-->
-    
+
     <div class="wrapper">
 
      @include('front.header')<!--header end-->
@@ -57,7 +57,7 @@
                     <table>
                         <thead>
                             <tr>
-                            
+
                                 <th>Produit</th>
                                 <th>Quantity</th>
                                 <th>Prix</th>
@@ -70,7 +70,7 @@
                             <tr>
                                 <td>
                                     <div class="cart-prod-info d-flex flex-wrap align-items-center">
-                                        <img src="https://via.placeholder.com/360x250" alt="">
+                                        <img src="{{$item->image}}" alt="">
                                         <div class="cart-pro-info">
                                             <h4><a href="#" title="">{{$item->name}}</a></h4>
                                         </div>
@@ -79,20 +79,26 @@
                                 <td>
                                 <div class="item-counter">
                                         <div class="quantity">
-                                            <button class="plus-btn" type="button" name="button">
+                                            <form action="{{ route('cart.update1', $item->rowId)  }}" method="POST">
+                                                @csrf
+                                            <button type="submit" class="plus-btn">
                                                 <i class="fa fa-plus"></i>
                                             </button>
-                                            <input type="text" name="name" value="1">
-                                            <button class="minus-btn" type="button" name="button">
+                                        </form>
+                                            <input type="text" name="produit-quantity" value="{{$item->qty}}">
+                                            <form action="{{ route('cart.update2', $item->rowId)  }}" method="POST">
+                                                @csrf
+                                            <button type="submit" class="minus-btn">
                                                 <i class="fa fa-minus"></i>
                                             </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
                                     <span class="price">{{$item->price()}}</span>
                                 </td>
-                   
+
                                 <td>
                                     <form action="{{ route('cart.destroy', $item->rowId)  }}" method="POST">
                                     @csrf
@@ -102,9 +108,9 @@
                                 </td>
                             </tr>
                         @endforeach
-                       
+
                         </tbody>
-                    </table>              
+                    </table>
                     <div class="row justify-content-end">
                         <div class="col-lg-5">
                             <div class="price-table">
@@ -130,11 +136,11 @@
             </div>
         </section>
         @else
-            <h2 text-align="center">Votre Panier est Vide </h2>
+            <div><h2 text-align="center">Votre Panier est Vide </h2></div><br/><br/><br/><br/>
         @endif
 
        @include('front.footer')<!--footer end-->
-        
+
     </div><!--wrapper end-->
 
     <script>

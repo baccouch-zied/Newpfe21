@@ -76,13 +76,16 @@
                     <li>
                             <h2 ><span>01.</span> Détails commande</h2>
                         </li>
+
                         <li>
-                            <h2><span>02.</span> Payement</h2>
-                        </li>
-                        <li>
-                            <h2  class="active"><span>03.</span> Terminé</h2>
+                            <h2  class="active"><span>02.</span> Terminé</h2>
                         </li>
                     </ul>
+                    @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                    @endif
                 </div><!--checkout-head end-->
                 <div class="success-para text-center">
                     <img src="{{asset('front/images/check-circle.png')}}" alt="">

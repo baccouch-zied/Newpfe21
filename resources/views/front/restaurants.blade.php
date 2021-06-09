@@ -35,10 +35,10 @@
             <div class="fixed-bg bg4"></div>
             <div class="container">
                 <div class="pager-head">
-                    <h2>Restaurants and cafes</h2>
+                    <h2>Restaurants </h2>
                     <ul>
                         <li><a href="#" title="">Home</a></li>
-                        <li><span>Restaurants and cafes</span></li>
+                        <li><span>Restaurants</span></li>
                     </ul>
                 </div><!--pager-head end-->
             </div>

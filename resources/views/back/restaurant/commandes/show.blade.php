@@ -49,43 +49,21 @@
 
                                                         <h3 class="text-primary invoice-logo">Notre Restaurant</h3>
                                                     </div>
-                                                    <p class="card-text mb-25">{{$UserRestaurant->name}}</p>
-                                                    <p class="card-text mb-25">{{$UserRestaurant->adresse}}</p>
-                                                    <p class="card-text mb-0">{{$UserRestaurant->telephone}}</p>
+                                                    @foreach ($UserRestaurants as $UserRestaurant)
+
+                                                    <p class="card-text mb-25">{{$UserRestaurants->name}}</p>
+                                                    <p class="card-text mb-25">{{$UserRestaurants->adresse}}</p>
+                                                    <p class="card-text mb-0">{{$UserRestaurants->telephone}}</p>
+                                                    @endforeach
+
                                                 </div>
                                                 <div class="mt-md-0 mt-2">
-                                                    <h4 class="invoice-title">
-                                                        Invoice
-                                                        <span class="invoice-number">#3492</span>
-                                                    </h4>
+
                                                     <div class="invoice-date-wrapper">
-                                                        <p class="invoice-date-title">Date Issued:</p>
-                                                        <p class="invoice-date">25/08/2020</p>
+                                                        <p class="invoice-date-title">Date commande:</p>
+                                                        <p class="invoice-date">{{$commande->created_at}}</p>
                                                     </div>
-                                                    <div class="invoice-date-wrapper">
-                                                    <form class="needs-validation user-add" method="POST" action="#">
-                                                        @csrf
-                                                        @method('PUT')
 
-                                                        <p class="invoice-date-title">Etat de cet commande:</p>
-                                                        <select class="custom-select ol-xl-8 col-sm-9"  name="categorie_id">
-
-                                                             @switch($commandes->etat)
-                                                                     @case(1)
-                                                                     <option>Validé</option>
-                                                                      @break
-
-                                                                     @case(2)
-                                                                     <option>Réjeté</option>
-                                                                     @break
-
-                                                                     @default
-                                                                     <option>En cours</option>
-                                                            @endswitch
-
-                                                        </select>
-
-                                                    </div>
                                                 </div>
                                             </div>
                                             <!-- Header ends -->
@@ -98,35 +76,16 @@
                                             <div class="row invoice-spacing">
                                                 <div class="col-xl-8 p-0">
                                                     <h6 class="mb-2">Commande pour :</h6>
-                                                    <h6 class="mb-25">Client :{{$commandes->name}} {{$commandes->prenom}}</h6>
-                                                    <p class="card-text mb-25">{{$commandes->adresse}}</p>
-                                                    <p class="card-text mb-25">{{$commandes->telephone}}</p>
-                                                    <p class="card-text mb-0">{{$commandes->email}}</p>
+                                                    <h6 class="mb-25">Client :{{$commande->name}} {{$commande->prenom}}</h6>
+                                                    <p class="card-text mb-25">{{$commande->adresse}}</p>
+                                                    <p class="card-text mb-25">{{$commande->telephone}}</p>
+                                                    <p class="card-text mb-0">{{$commande->email}}</p>
                                                 </div>
                                                 <div class="col-xl-4 p-0 mt-xl-0 mt-2">
                                                     <h6 class="mb-2">Payment Details:</h6>
                                                     <table>
                                                         <tbody>
-                                                            <tr>
-                                                                <td class="pr-1">Total Due:</td>
-                                                                <td><span class="font-weight-bold">$12,110.55</span></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pr-1">Bank name:</td>
-                                                                <td>American Bank</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pr-1">Country:</td>
-                                                                <td>United States</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pr-1">IBAN:</td>
-                                                                <td>ETD95476213874685</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pr-1">SWIFT code:</td>
-                                                                <td>BR91905</td>
-                                                            </tr>
+
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -135,7 +94,7 @@
                                         <!-- Address and Contact ends -->
 
                                         <!-- Invoice Description starts -->
-                                        <div class="table-responsive">
+                                        {{-- <div class="table-responsive">
                                             <table class="table">
                                                 <thead>
                                                     <tr>
@@ -147,43 +106,35 @@
                                                 <tbody>
                                                     <tr>
                                                         @foreach($commandes as $commande)
-                                                        @foreach ($commande->commandeProduits->produits as $produit)
 
                                                         <td class="py-1">
-                                                            <p class="card-text font-weight-bold mb-25">{{$produit->name}}</p>
+                                                            <p class="card-text font-weight-bold mb-25"></p>
 
                                                         </td>
                                                         <td class="py-1">
-                                                            <span class="font-weight-bold">{{$commande->commandeProduits->quantity}}</span>
+                                                            <span class="font-weight-bold"></span>
                                                         </td>
                                                         <td class="py-1">
-                                                            <span class="font-weight-bold">{{$commande->commandeProduits->total}}</span>
+                                                            <span class="font-weight-bold"></span>
                                                         </td>
-                                                        @endforeach
                                                         @endforeach
 
 
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="card-body invoice-padding pb-0">
                                             <div class="row invoice-sales-total-wrapper">
-                                                <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
-                                                    <p class="card-text mb-0">
-                                                        <span class="font-weight-bold">Salesperson:</span> <span class="ml-75">Alfie Solomons</span>
-                                                    </p>
-                                                </div>
-                                                <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
-                                                    <div class="invoice-total-wrapper">
-                                                        <div class="invoice-total-item">
-                                                            <p class="invoice-total-title">Total commande:</p>
-                                                            <p class="invoice-total-amount">$1800</p>
-                                                        </div>
-
+                                                <div class="invoice-total-wrapper">
+                                                    <div class="invoice-total-item">
+                                                        <p class="invoice-total-title">Total commande:</p>
+                                                        <p class="invoice-total-amount">$1800</p>
                                                     </div>
+
                                                 </div>
+
                                             </div>
                                         </div>
                                         <!-- Invoice Description ends -->
@@ -201,16 +152,87 @@
                                 <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
                                     <div class="card">
                                         <div class="card-body">
-                                            <button id="submit" name="submit" class="btn btn-primary btn-block mb-75" >
-                                                Mettre à jour
-                                            </button>
-                                            <a href="/telecharger" class="btn btn-primary btn-block mb-75">Télcharger</a>
+
+                                            <button type="button" class="btn btn-success btn-block mb-75" data-toggle="modal" data-target="#myModal">Validé commande</button>
+                                            <button type="button" class="btn btn-danger btn-block mb-75" data-toggle="modal" data-target="#myModal1">Réjété commande</button>
+                                            <a href="{{ route('commandes.create', $commande->id) }}" class="btn btn-primary btn-block mb-75">Exporter facture</a>
 
 
                                         </div>
                                     </div>
                                 </div>
                             </form>
+
+                              <!-- Modal -->
+                                <div class="modal fade" id="myModal" role="dialog">
+                                    <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Validé commande</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="POST" action="{{ route('accepter.update',$commande->id) }}">
+                                                @csrf
+                                                @method('PUT')
+
+                                            <div class="form-group">
+                                                <label for="usr">Name:</label>
+                                                <input name="nom" type="text" class="form-control" id="usr">
+                                              </div>
+                                              <div class="form-group">
+                                                <label for="comment">Message:</label>
+                                                <textarea name="message" class="form-control" rows="5" id="comment"></textarea>
+                                              </div>
+                                              <button type="submit" class="btn btn-success">Envoyer</button>
+
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                </div>
+
+                                  <!-- Modal 2-->
+                                    <div class="modal fade" id="myModal1" role="dialog">
+                                        <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Réjeté commande </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="POST" action="{{ route('rejeter.update',$commande->id) }}">
+                                                    @csrf
+                                                    @method('PUT')
+
+                                                <div class="form-group">
+                                                    <label for="usr">Name:</label>
+                                                    <input name="nom" type="text" class="form-control" id="usr">
+                                                  </div>
+                                                  <div class="form-group">
+                                                    <label for="comment">Raison:</label>
+                                                    <textarea name="raison" class="form-control" rows="5" id="comment"></textarea>
+                                                  </div>
+                                                  <button type="submit" class="btn btn-success">Envoyer</button>
+
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                    </div>
+
                                 <!-- /Invoice Actions -->
                             </div>
                         </section>

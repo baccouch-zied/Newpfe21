@@ -35,7 +35,7 @@
                             {{ session('success') }}
                         </div>
                         @endif
-                        
+
             <div class="content-body">
                 <!-- Basic Tables start -->
                 <div class="row" id="basic-table">
@@ -44,7 +44,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">Mes Categories</h4>
                             </div>
-                      
+
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -80,13 +80,13 @@
                                                             <span>Voir</span>
                                                         </a>
 
-                                                        <form method="POST" action="{{ route('categorie.destroy', $categorie->id) }}"  onsubmit="return confirm('Vous etes sure de Supprimer Cette produit ?');">   
-                                         @csrf
-                                  @method('DELETE')
-                                      <button type="submit" class="btn btn-primary">
-                                      Supprimer
-                                    </button>
-                                    </form> 
+                                                        <form method="POST" action="{{ route('categorie.destroy', $categorie->id) }}"  onsubmit="return confirm('Vous etes sure de Supprimer Cette produit ?');">
+                                                     @csrf
+                                                     @method('DELETE')
+                                                  <button type="submit" class="btn btn-primary">
+                                                      Supprimer
+                                                  </button>
+                                                          </form>
                                                     </div>
                                                 </div>
                                             </td>
@@ -101,16 +101,16 @@
                 </div>
                 <!-- Basic Tables end -->
 
-   
+
                 <!-- Small Table end -->
 
-  
+
 
             </div>
         </div>
     </div>
     <!-- END: Content-->
-      
+
 
 
 @endsection

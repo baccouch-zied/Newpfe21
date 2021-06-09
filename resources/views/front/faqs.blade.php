@@ -20,11 +20,11 @@
 </head>
 
 <body>
-    
+
     <div class="page-loading">
         <img src="assets/images/loader.gif" alt="" />
     </div><!--page-loading end-->
-    
+
     <div class="wrapper">
 
       @include('front.header')<!--header end-->
@@ -44,74 +44,21 @@
             </div>
         </section><!--pager-section end-->
 
+
+
         <section class="sec-block">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="faqs toggle">
+                            @foreach($faqs as $faq)
                             <div class="toggle-item">
-                                <h4 class="active"><span>01.</span>Can I return the product after purchase?</h4>
+                                <h4 class="active"><span>01.</span>{{$faq->question}}</h4>
                                 <div class="content">
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna. Non nulla commodo laborum magna id. Deserunt irure amet adipisicing adipisicing veniam nostrud Lorem anim non voluptate culpa sit. Et veniam dolor reprehenderit non. Ut laboris pariatur tempor pariatur pariatur ad enim veniam duis. Exercitation sint eiusmod amet reprehenderit ipsum.</p>
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna.</p>
+                                    <p>{{$faq->reponse}}</p>
                                 </div>
-                            </div><!--toggle-item end-->
-                            <div class="toggle-item">
-                                <h4><span>02.</span>Can I pay with Visa and MasterCard payment cards?   </h4>
-                                <div class="content">
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna. Non nulla commodo laborum magna id. Deserunt irure amet adipisicing adipisicing veniam nostrud Lorem anim non voluptate culpa sit. Et veniam dolor reprehenderit non. Ut laboris pariatur tempor pariatur pariatur ad enim veniam duis. Exercitation sint eiusmod amet reprehenderit ipsum.</p>
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna.</p>
-                                </div>
-                            </div><!--toggle-item end-->
-                            <div class="toggle-item">
-                                <h4><span>03.</span>What if the prepaid goods are not delivered?</h4>
-                                <div class="content">
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna. Non nulla commodo laborum magna id. Deserunt irure amet adipisicing adipisicing veniam nostrud Lorem anim non voluptate culpa sit. Et veniam dolor reprehenderit non. Ut laboris pariatur tempor pariatur pariatur ad enim veniam duis. Exercitation sint eiusmod amet reprehenderit ipsum.</p>
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna.</p>
-                                </div>
-                            </div><!--toggle-item end-->
-                            <div class="toggle-item">
-                                <h4><span>04.</span>How do I use a promotional code?</h4>
-                                <div class="content">
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna. Non nulla commodo laborum magna id. Deserunt irure amet adipisicing adipisicing veniam nostrud Lorem anim non voluptate culpa sit. Et veniam dolor reprehenderit non. Ut laboris pariatur tempor pariatur pariatur ad enim veniam duis. Exercitation sint eiusmod amet reprehenderit ipsum.</p>
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna.</p>
-                                </div>
-                            </div><!--toggle-item end-->
-                            <div class="toggle-item">
-                                <h4><span>05.</span>What payment methods exist in your company?</h4>
-                                <div class="content">
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna. Non nulla commodo laborum magna id. Deserunt irure amet adipisicing adipisicing veniam nostrud Lorem anim non voluptate culpa sit. Et veniam dolor reprehenderit non. Ut laboris pariatur tempor pariatur pariatur ad enim veniam duis. Exercitation sint eiusmod amet reprehenderit ipsum.</p>
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna.</p>
-                                </div>
-                            </div><!--toggle-item end-->
-                            <div class="toggle-item">
-                                <h4><span>06.</span>What is the validity period of the gift certificate?</h4>
-                                <div class="content">
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna. Non nulla commodo laborum magna id. Deserunt irure amet adipisicing adipisicing veniam nostrud Lorem anim non voluptate culpa sit. Et veniam dolor reprehenderit non. Ut laboris pariatur tempor pariatur pariatur ad enim veniam duis. Exercitation sint eiusmod amet reprehenderit ipsum.</p>
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna.</p>
-                                </div>
-                            </div><!--toggle-item end-->
-                            <div class="toggle-item">
-                                <h4><span>07.</span>What if the prepaid goods are not delivered?</h4>
-                                <div class="content">
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna. Non nulla commodo laborum magna id. Deserunt irure amet adipisicing adipisicing veniam nostrud Lorem anim non voluptate culpa sit. Et veniam dolor reprehenderit non. Ut laboris pariatur tempor pariatur pariatur ad enim veniam duis. Exercitation sint eiusmod amet reprehenderit ipsum.</p>
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna.</p>
-                                </div>
-                            </div><!--toggle-item end-->
-                            <div class="toggle-item">
-                                <h4><span>08.</span>How do I use a promotional code?</h4>
-                                <div class="content">
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna. Non nulla commodo laborum magna id. Deserunt irure amet adipisicing adipisicing veniam nostrud Lorem anim non voluptate culpa sit. Et veniam dolor reprehenderit non. Ut laboris pariatur tempor pariatur pariatur ad enim veniam duis. Exercitation sint eiusmod amet reprehenderit ipsum.</p>
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna.</p>
-                                </div>
-                            </div><!--toggle-item end-->
-                            <div class="toggle-item">
-                                <h4><span>09.</span>Can I pay with Visa and MasterCard payment cards?</h4>
-                                <div class="content">
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna. Non nulla commodo laborum magna id. Deserunt irure amet adipisicing adipisicing veniam nostrud Lorem anim non voluptate culpa sit. Et veniam dolor reprehenderit non. Ut laboris pariatur tempor pariatur pariatur ad enim veniam duis. Exercitation sint eiusmod amet reprehenderit ipsum.</p>
-                                    <p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna.</p>
-                                </div>
-                            </div><!--toggle-item end-->
+                            </div>
+                            @endforeach<!--toggle-item end-->
                         </div><!--faqs end-->
                     </div>
                     <div class="col-lg-4">
@@ -152,7 +99,7 @@
         </section>
 
       @include('front.footer')<!--footer end-->
-        
+
     </div><!--wrapper end-->
 
 

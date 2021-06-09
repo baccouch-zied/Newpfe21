@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Livreur extends Model
 {
     protected $fillable = [
-    'nom', 'prenom', 'telephone','etat','image'
+    'id','nom', 'prenom', 'telephone','etat','image'
     ];
 
-    public function commande() 
-    { 
+    public function commande()
+    {
         return $this->hasMany('App\commande');
     }
 }

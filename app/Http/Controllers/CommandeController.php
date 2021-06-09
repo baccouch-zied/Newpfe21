@@ -36,7 +36,10 @@ class CommandeController extends Controller
      */
     public function create()
     {
-        //
+        $id=Auth::user()->id;
+        $Client= DB::table('clients')->where('user_id' ,$id)->get();
+        return view('front.commande.fini-commande',compact('Client'));
+
     }
 
     /**
@@ -57,6 +60,7 @@ class CommandeController extends Controller
             'heure' => 'required',
             'produits' => 'required',
             'commentaire' => 'required',
+            'payement_method' =>'required'
             //'client_id'=> 'required'
         ]);
 
@@ -72,6 +76,9 @@ class CommandeController extends Controller
                 $commande ->adresse = request('adresse');
                 $commande ->heure = request('heure');
                 $commande ->commentaire = request('commentaire');
+                $commande ->etat = "en cours";
+                $commande ->etatlivreur="en cours";
+                $commande ->payement_method = request('payement_method');
                 $commande ->user_id = $id;
                 $commande ->userrestaurant_id = $originalProduit->user_id;
                 $commande->save();
@@ -90,7 +97,7 @@ class CommandeController extends Controller
                     $commandeproduits->save();
 
                 }
-            return redirect('/fini-commande')->with('success', 'Votre categorie est ajouté avec sucess');
+            return redirect('/fini-commande')->with('success', 'Votre commande est passé avec sucess');
 
 
            /* $request->validate([

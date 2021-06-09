@@ -11,7 +11,7 @@ use App\Client;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\RegisterFormMail;
+use App\Mail\RegisterClientForm;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -47,7 +47,7 @@ class RegisterClientController extends Controller
      */
     public function index()
     {
-        return view('front.client.register');
+        return view('auth.register_client');
     }
 
     public function register(Request $request)
@@ -96,9 +96,9 @@ class RegisterClientController extends Controller
             'type' => "client",
 
         ]);
-        Mail::to('zizou.baccouch1998@gmail.com')->send(new RegisterFormMail($client));
+        Mail::to('zizou.baccouch1998@gmail.com')->send(new RegisterClientForm($client));
 
-        return redirect ('/loginC')->with('success', 'Votre compte a bien été crée, Verfier le via votre email');
+        return redirect ('/login')->with('success', 'Votre compte a bien été crée, Verfier le via votre email');
 
     }
 }

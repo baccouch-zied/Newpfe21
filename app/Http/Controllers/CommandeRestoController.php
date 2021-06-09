@@ -9,6 +9,8 @@ use App\UserRestaurant;
 use App\Client;
 use Cart;
 use App\CommandeProduits;
+use App\User;
+use App\UserLivreur;
 use PDF;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -24,8 +26,10 @@ class CommandeRestoController extends Controller
     public function index()
     {
         $id=Auth::user()->id;
+        $UserLivreurs=UserLivreur::all();
+        $UserRestaurants= DB::table('user_restaurants')->where('user_id' ,$id)->get();
         $commandes= Commande::where('userrestaurant_id' ,'=' ,$id)->get();
-        return view('back.restaurant.commandes.index',compact('commandes'));
+        return view('back.restaurant.commandes.index',compact(['commandes','UserLivreurs','UserRestaurants']));
     }
 
     /**
@@ -33,13 +37,10 @@ class CommandeRestoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Commande $commande, UserRestaurant $UserRestaurants)
     {
-        $id=Auth::user()->id;
-        $UserRestaurant= DB::table('user_restaurants')->where('user_id' ,$id)->get();
-        $commandes= Commande::where('userrestaurant_id' ,'=' ,$id)->get();
 
-        return view('back.restaurant.commandes.telecharger',compact(['commandes','UserRestaurant']));
+        return view('back.restaurant.commandes.telecharger',compact(['commande','UserRestaurants']));
 
     }
 
@@ -60,11 +61,9 @@ class CommandeRestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Commande $commandes, UserRestaurant $UserRestaurant)
+    public function show(Commande $commande, UserRestaurant $UserRestaurants)
     {
-
-
-        return view('back.restaurant.commandes.show',compact(['commandes','UserRestaurant']));
+        return view('back.restaurant.commandes.show',compact(['commande','UserRestaurants']));
 
     }
 
@@ -89,22 +88,6 @@ class CommandeRestoController extends Controller
     public function update(Request $request, Commande $commandes)
     {
 
-
-        $validatedData = request()->validate([
-
-            'etat' => 'required'
-        ]);
-
-        dd($validatedData);
-
-        /*$car->name = request('name');
-        $car->color = request('color');
-        $car->company = request('company');
-        $car->save();*/
-
-        $commande->update($validatedData);
-
-        return redirect('commandes');
     }
 
     /**

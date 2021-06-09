@@ -22,14 +22,14 @@
                         </div>
                     </div>
                 </div>
-          
+
             </div>
             @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
                         </div>
                         @endif
-                        
+
             <div class="content-body">
                 <!-- Basic Tables start -->
                 <div class="row" id="basic-table">
@@ -38,7 +38,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">Livreurs</h4>
                             </div>
-                      
+
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -61,19 +61,24 @@
                                             <td>{{$UserLivreur->prenom}}</td>
                                             <td>{{$UserLivreur->telephone}}</td>
                                             <td>{{$UserLivreur->email}}</td>
+                                            @if ($UserLivreur->status=="invalid")
                                             <td>
-                                            <div class="dropdown">
-                                                    <button type="button" class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">
-                                                        <i data-feather="more-vertical"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">
-                                                            <i data-feather="edit-2" class="mr-50"></i>
-                                                            <span>Valider</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
+                                                <form method="POST" action="{{ route('ListeLivreur.update',$UserLivreur->id) }}">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="submit" class="btn btn-primary">Validé</button>
+                                                </form>
+                                                </a>
                                             </td>
+
+                                            @elseif ($UserLivreur->status=="valid")
+                                            <td><span class="badge badge-success">Livreur Validé</span><br/><br/><form method="POST" action="{{ route('ListeLivreur.destroy', $UserLivreur->id) }}"  onsubmit="return confirm('Vous etes sure de Supprimer Cette faq ?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="badge badge-danger">Supprimer ce livreur</button>
+                                            </form>
+                                            </td>
+                                            @endif
                                         </tr>
                                         @endforeach
 
@@ -85,16 +90,16 @@
                 </div>
                 <!-- Basic Tables end -->
 
-   
+
                 <!-- Small Table end -->
 
-  
+
 
             </div>
         </div>
     </div>
     <!-- END: Content-->
-      
+
 
 
 @endsection

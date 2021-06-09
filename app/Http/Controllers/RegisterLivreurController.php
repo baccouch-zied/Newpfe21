@@ -50,12 +50,12 @@ class RegisterLivreurController extends Controller
         return view('auth.register_livreur');
     }
 
-    public function register(Request $request)
+  /*  public function register(Request $request)
     {
         $this->validator($request->all())->validate();
         event (new Registered($user = $this->create($request->all())));
         return redirect ('/login')->with('success', 'Votre compte a bien été crée, vous devez le confirmez avec l email que vous allez recevoir');
-    }
+    }*/
     public function validator(array $data)
     {
         return Validator::make($data, [
@@ -82,16 +82,20 @@ class RegisterLivreurController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'type' => "livreur",
+            'status' => "invalid",
+
 
         ]);
 
         $userlivreur = UserLivreur::create([
+            'id' => $user->id,
             'name' => $request['name'],
             'prenom' => $request['prenom'],
             'telephone' => $request['telephone'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'type' => "livreur",
+            'status' => "invalid",
             'user_id' => $user->id,
 
 

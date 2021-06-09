@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UserRestaurant;
+use App\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ConfirmationCompte;
 class ListeRestoController extends Controller
 {
     /**
@@ -55,10 +58,9 @@ class ListeRestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(UserRestaurant $UserRestaurant)
     {
-        $UserRestaurant= UserRestaurant::all();
-        return view('back.admin.ListeRestaurants.edit',compact('UserRestaurant'));
+
     }
 
     /**
@@ -68,19 +70,20 @@ class ListeRestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserRestaurant $UserRestaurant)
+    public function update(Request $request,$id)
     {
-        $validatedData = request()->validate([
-            'status' => 'required',
+        User::where('id',$id)->update
+
+       ([
+        'status' => "valid",
         ]);
 
-        /*$car->name = request('name');
-        $car->color = request('color');
-        $car->company = request('company');
-        $car->save();*/
+        UserRestaurant::where('id',$id)->update
+       ([
+        'status' => "valid",
+    ]);
 
-        $UserRestaurant->update($validatedData);
-
+        Mail::to('zizou.baccouch1998@gmail.com')->send(new ConfirmationCompte($id));
         return redirect('/ListeResto')->with('success', 'Restaurant validé');
     }
 
@@ -90,8 +93,9 @@ class ListeRestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(UserRestaurant $UserRestaurant)
     {
-        //
+        $UserRestaurant->delete();
+        return redirect('/ListeResto');
     }
 }

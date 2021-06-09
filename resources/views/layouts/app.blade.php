@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 
@@ -46,7 +46,7 @@
 </style>
   <body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
   <div id="app">
-     
+
 
                         @if (session('success'))
                         <div class="alert alert-success">
@@ -60,7 +60,7 @@
                         </div>
                         @endif
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>

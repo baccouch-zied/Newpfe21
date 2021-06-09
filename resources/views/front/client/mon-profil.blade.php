@@ -79,7 +79,7 @@
                                                         @foreach ($commande->commandeProduits->produits as $produit)
 
                                                         <li class="amount">{{$commande->commandeProduits->total}}dt</li>
-                                                        <li class="status active">Preparing</li>
+                                                        <li class="status active">{{$commande->etat}}</li>
                                                     </ul>
                                                     <a href="#" title="" class="tog-down"><i class="fa fa-angle-down"></i></a>
                                                 </div><!--oct-table-head end-->

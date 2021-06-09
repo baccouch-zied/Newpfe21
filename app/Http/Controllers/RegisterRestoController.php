@@ -26,7 +26,7 @@ class RegisterRestoController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = "home";
+    protected $redirectTo = "resto";
 
     //*protected $redirectTo = RouteServiceProvider::HOME;
 
@@ -46,12 +46,12 @@ class RegisterRestoController extends Controller
     }
 
 
-    public function register(Request $request)
+    /*public function register(Request $request)
     {
         $this->validator($request->all())->validate();
         event (new Registered($user = $this->create($request->all())));
         return redirect ('/login')->with('success', 'Votre compte a bien été crée, vous devez le confirmez avec l email que vous allez recevoir');
-    }
+    }*/
 
     /**
      * Get a validator for an incoming registration request.
@@ -59,12 +59,12 @@ class RegisterRestoController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(Request $request)
+    protected function validator(array $data)
     {
-        return Validator::make($request, [
+        return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'telephone' => ['required'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:user_restaurants'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
 
         ]);
@@ -78,14 +78,16 @@ class RegisterRestoController extends Controller
      */
     protected function create(Request $request)
     {
+       /* $user = User::where("email", '=', $request->email)->get();
+        if($user){
+             echo('helo');
+        }*/
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'type' => "restaurant",
             'status' => "invalid",
-
-
         ]);
 
         $userrestaurant = UserRestaurant::create([

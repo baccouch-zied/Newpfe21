@@ -6,7 +6,7 @@
 @import 'bootstrap.min.css';
 /*===================== TABLE OF CONTENT =======================
 
-1 - UNIQUE HOMEPAGE 
+1 - UNIQUE HOMEPAGE
 2 - RESET CSS
 3 - ABOUT US
 4 - 2 DIFFERENT BLOG PAGES
@@ -277,7 +277,7 @@ a:hover {
 }
 
 .bg4 {
-  background-image: url(https://via.placeholder.com/1920x450);
+  background-image: url('/front/images/apr.jpg');
 }
 
 .slick-slide {
@@ -831,7 +831,7 @@ header .menu-btn.active span.bar3 {
 }
 
 .main-banner {
-  background-image: url(https://via.placeholder.com/1920x900);
+  background-image: url('/front/images/livraison.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   padding: 283px 0 254px;
@@ -1168,7 +1168,6 @@ header .menu-btn.active span.bar3 {
 }
 
 .oder-sec {
-  background-image: url(https://via.placeholder.com/828x900);
   background-repeat: no-repeat;
   background-position: right;
 }

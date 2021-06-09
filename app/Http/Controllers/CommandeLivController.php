@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Commande;
 use App\UserRestaurant;
+use App\UserLivreur;
 use App\Client;
 use Cart;
-use App\Produit;
+use App\CommandeProduits;
+use PDF;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class CommandeClientController extends Controller
+class CommandeLivController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +23,11 @@ class CommandeClientController extends Controller
      */
     public function index()
     {
-        //
+        $id=Auth::User()->id;
+        $UserLivreur=UserLivreur::where('user_id' ,'=' ,$id)->first();
+        $commandes= Commande::where('userlivreur_id' ,'=' ,$UserLivreur->id)->get();
+
+        return view('back.livreur.commandes.index',compact('commandes'));
     }
 
     /**

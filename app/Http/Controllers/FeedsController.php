@@ -32,7 +32,7 @@ class FeedsController extends Controller
     {
         $id=Auth::user()->id;
         $UserRestaurant= DB::table('user_restaurants')->where('user_id' ,$id)->get();
-        $feedback = DB::table('feedback')->where('user_id' ,'=' ,$id)->get();
+        $feedback = DB::table('feedback')->where('userrestaurant_id' ,'=' ,$id)->get();
 
         return view('back.restaurant.feeds.index',compact(['UserRestaurant','feedback']));
     }

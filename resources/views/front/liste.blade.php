@@ -1,9 +1,10 @@
 <section class="sec-block pb-0">
             <div class="container">
                 <div class="section-title text-center">
-                    <span>Featured </span>
-                    <h2 class="text-capitalize">restaurants & Cafes</h2>
-                    <p class="mx-auto">The best restaurants and cafes that have been working with us for a long time.</p>
+                    <span>Choix </span>
+                    <h2 class="text-capitalize">restaurants </h2>
+                    <p class="mx-auto">Les meilleurs restaurants qui travaillent avec nous .
+                    </p>
                 </div><!--sec-title end-->
                 <div class="featured-sec">
                 <div class="featured-sec">
@@ -50,7 +51,7 @@
 
                     <div class="row text-center">
                         <div class="col-12">
-                            <a href="/restaurants" title="" class="btn-default">View all list <span></span></a>
+                            <a href="/restaurants" title="" class="btn-default">Tous les restaurants <span></span></a>
                         </div>
                     </div>
                 </div><!--featured-sec end-->

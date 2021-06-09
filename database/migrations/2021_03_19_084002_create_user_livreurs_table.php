@@ -20,7 +20,7 @@ class CreateUserLivreursTable extends Migration
             $table->string('telephone');
             $table->string('age')->nullable();
             $table->string('adresse')->nullable();
-            $table->boolean('etat')->nullable();
+            $table->string('status')->nullable();
             $table->string('image')->nullable();
 
             $table->string('email')->unique();

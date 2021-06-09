@@ -9,6 +9,8 @@
     <meta name="author" content="George_Fx">
     <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="icon" href="assets/images/favicon.png">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/all.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/animate.min.css')}}">
@@ -17,14 +19,16 @@
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/flaticon.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/responsive.css')}}">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 </head>
 
 <body>
-    
+
     <div class="page-loading">
         <img src="{{asset('front/images/loader.gif')}}" alt="" />
     </div><!--page-loading end-->
-    
+
     <div class="wrapper">
 
         @include('front.header')<!--header end-->
@@ -77,10 +81,7 @@
                             <h2 class="active"><span>01.</span> Détails commande</h2>
                         </li>
                         <li>
-                            <h2><span>02.</span> Payement</h2>
-                        </li>
-                        <li>
-                            <h2><span>03.</span> Terminé</h2>
+                            <h2><span>02.</span> Terminé</h2>
                         </li>
                     </ul>
                 </div><!--checkout-head end-->
@@ -124,13 +125,13 @@
                             </div>
                             <div class="ck-form">
                                 <h4>Delivery info:</h4>
-                                <div class="row">      
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="text" name="adresse" class="form-control half-radius" required="" placeholder="Address *" value="{{$Client[0]->adresse}}">
                                         </div><!--form-group end-->
                                     </div>
-                
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="time" name="heure" class="form-control half-radius" required="" placeholder="Delivery time *">
@@ -144,10 +145,28 @@
                                     <textarea name="commentaire" placeholder="Order note"></textarea>
                                 </div><!--form-group end-->
                             </div>
+
+                            <div class="ck-form">
+                                <h4>Mode paiement:</h4>
+                                <div class="form-group">
+                                    <input class="form-check-input" name="payement_method" type="checkbox" value="sur place" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                      Paiement sur place
+                                    </label>  <br/>
+                                    <input class="form-check-input" name="payement_method" type="checkbox" value="carte bancaire" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                      Carte bancaire
+                                    </label>  <br/>
+                                    <label class="label">Montant de votre commande</label>
+                            <input type="text" name="amount" value="{{Cart::total()}}"class="form-control amount">
+                          <button type="button" class="btn btn-primary btn-block">Payer</button><br/>
+                                </div><!--form-group end-->
+                            </div>
+
                             <div class="form-group">
-                                    <button type="submit" class="btn-default w-100">Enregistrer <span></span></button>
+                                    <button type="submit" class="btn-default w-100">Enregistrer <span></button></a>
                                 </div>
-                        
+
                     </div>
                     <div class="col-lg-4">
                         <div class="order-details">
@@ -160,7 +179,7 @@
                                         <b>2x</b>
                                     </div>
                                     <span>{{$item->price}}</span>
-                                </li> 
+                                </li>
                                 @endforeach
 
                             </ul>
@@ -187,9 +206,53 @@
 
         @include('front.footer')
     <!--footer end-->
-        
+
     </div><!--wrapper end-->
 
+    <script src = "https://checkout.stripe.com/checkout.js" > </script>
+    <script type = "text/javascript">
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
+
+    $('.btn-block').click(function() {
+      var amount = $('.amount').val();
+      var handler = StripeCheckout.configure({
+          key: 'pk_test_51IahNbE3b6CPfzYs5K5zXgyGmwDiIB5pQ0fFOInReoyvEDndEYXePWF6pDZxpTrlQmZmAG1o3Z3ydKqbYfidvUHM00PIcbzkb9', // your publisher key id
+          locale: 'auto',
+          token: function(token) {
+              // You can access the token ID with `token.id`.
+              // Get the token ID to your server-side code for use.
+              $('#res_token').html(JSON.stringify(token));
+              $.ajax({
+                  url: '{{ url("payment-process") }}',
+                  method: 'post',
+                  data: {
+                      tokenId: token.id,
+                      amount: amount
+                  },
+                  success: (response) => {
+                      console.log(response)
+                  },
+                  error: (error) => {
+                      console.log(error);
+                      alert('Oops! Something went wrong')
+                  }
+              })
+          }
+      });
+      handler.open({
+          name: 'Payment Demo',
+          description: 'NiceSnippets',
+          amount: amount * 100
+      });
+    })
+
+    </script>
 
     <script src="{{asset('front/js/jquery.min.js')}}"></script>
     <script src="{{asset('front/js/bootstrap.min.js')}}"></script>

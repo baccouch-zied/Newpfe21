@@ -49,8 +49,8 @@ class LoginController extends Controller
         {
             return 'mon-profil';
         }
-   
-    } 
+
+    }
     /**
      * Create a new controller instance.
      *

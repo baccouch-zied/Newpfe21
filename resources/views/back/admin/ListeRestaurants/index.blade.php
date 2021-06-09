@@ -59,13 +59,25 @@
                                             <td>{{$UserRestaurant->name}}</td>
                                             <td>{{$UserRestaurant->telephone}}</td>
                                             <td>{{$UserRestaurant->email}}</td>
+                                            @if ($UserRestaurant->status=="invalid")
                                             <td>
-
-                                                        <a href="{{ route('ListeResto.edit', $UserRestaurant->id) }}">
-                                                            <i class="mr-50"></i>
-                                                            <span>Valider ce restaurant</span>
-                                                        </a>
+                                                <form method="POST" action="{{ route('ListeResto.update',$UserRestaurant->id) }}">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="submit" class="btn btn-primary">Validé</button>
+                                                </form>
+                                                </a>
                                             </td>
+
+                                            @elseif ($UserRestaurant->status=="valid")
+                                            <td><span class="badge badge-success">Restaurant Validé</span><br/><br/><form method="POST" action="{{ route('ListeResto.destroy', $UserRestaurant->id) }}"  onsubmit="return confirm('Vous etes sure de Supprimer Cette faq ?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="badge badge-danger">Supprimer ce resto</button>
+                                            </form>
+                                            </td>
+                                            @endif
+
                                         </tr>
                                         @endforeach
 

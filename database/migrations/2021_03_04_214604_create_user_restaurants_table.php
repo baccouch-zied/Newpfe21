@@ -28,7 +28,6 @@ class CreateUserRestaurantsTable extends Migration
             $table->string('adresse')->nullable();
             $table->string('status')->nullable();
 
-            $table->boolean('etat')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
