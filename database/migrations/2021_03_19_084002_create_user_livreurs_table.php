@@ -33,7 +33,7 @@ class CreateUserLivreursTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
 
                         // then the foreign key
-                        $table->foreign('user_id')->references('id')->on('users');
+                        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
 
 
             $table->timestamps();

@@ -28,20 +28,21 @@ class LivreurMiddleware
 
         }
 
-        if(Auth::user()->type =='livreur')
+        if((Auth::user()->type =='livreur')&&(Auth::user()->status =='valid'))
         {
             return $next($request);
         }
-        
+
         if(Auth::user()->type =='client')
         {
             return redirect()->route('/');
 
         }
-        
-        else
-        {
-            return redirect('/');
-        }   
+
+        else{
+            Auth::logout();
+            return redirect()->route('index');
+
+        }
     }
 }

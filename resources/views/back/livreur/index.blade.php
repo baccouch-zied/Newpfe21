@@ -10,9 +10,10 @@
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>Votre interface livreur</title>
-    <link rel="apple-touch-icon" href="{{asset('back/images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('back/images/ico/favicon.ico')}}">
+    <link rel="apple-touch-icon" href="{{asset('front/images/logo.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('front/images/logo.png')}}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('back/vendors/css/vendors.min.css')}}">
@@ -43,7 +44,6 @@
 </head>
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
 
-@include('back.livreur.navbar')
 
 @include('back.livreur.sidebar')
 
@@ -52,7 +52,6 @@
         </main>
 
 
-@include('back.livreur.footer')
 
 <script src="{{asset('back/vendors/js/vendors.min.js')}}"></script>
     <!-- BEGIN Vendor JS-->

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
+use App\User;
 
 class ListeClientController extends Controller
 {
@@ -14,8 +15,8 @@ class ListeClientController extends Controller
      */
     public function index()
     {
-        $client= Client::all();
-        return view('back.admin.ListeClients.index', compact('client'));
+        $Users=User::where('type' ,'=' ,'client')->get();
+        return view('back.admin.ListeClients.index', compact('Users'));
     }
 
     /**
@@ -79,9 +80,9 @@ class ListeClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy($id)
     {
-        $client->delete();
-        return redirect('/ListeClients')->with('success', 'Le client est supprimé avec sucess');
+        $user= User::findOrFail($id)->delete();
+        return redirect('/ListeClients');
     }
 }

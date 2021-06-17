@@ -9,9 +9,9 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Invoice Print - Vuexy - Bootstrap HTML admin template</title>
-    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
+    <title>Zarzis Delivery</title>
+    <link rel="apple-touch-icon" href="{{asset('front/images/logo.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('front/images/logo.png')}}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
@@ -103,24 +103,11 @@
                                                     <table>
                                                         <tbody>
                                                             <tr>
-                                                                <td class="pr-1">Total Due:</td>
+                                                                <td class="pr-1">Façon de paiement:</td>
+                                                                <td class="pr-1">{{$commande->payement_method}}</td>
                                                                 <td><span class="font-weight-bold">$12,110.55</span></td>
                                                             </tr>
-                                                            <tr>
-                                                                <td class="pr-1">Bank name:</td>
-                                                                <td>American Bank</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pr-1">Country:</td>
-                                                                <td>United States</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pr-1">IBAN:</td>
-                                                                <td>ETD95476213874685</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pr-1">SWIFT code:</td>
-                                                                <td>BR91905</td>
+
                                                             </tr>
                                                         </tbody>
                                                     </table>

@@ -49,7 +49,7 @@ class ProduitController extends Controller
         $request->validate([
             'name' => 'required',
             'details' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric',
             'categorie_id' => 'required',
             'image'    =>'required|image|max:2048'
             ]);
@@ -119,7 +119,7 @@ class ProduitController extends Controller
             $request->validate([
                 'name'    =>  'required',
                 'details'     =>  'required',
-                'price'        =>  'required',
+                'price'        =>  'required|numeric',
                 'categorie_id'     =>  'required',
                 'image'    =>  'image|max:2048'
 

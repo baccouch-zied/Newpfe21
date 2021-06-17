@@ -67,7 +67,7 @@ class InfosLivreurController extends Controller
 
 
         );
-  
+
         UserLivreur::whereId($id)->update($form_data);
 
         return redirect('/infosLivreur')->with('success', 'Vos informations sont enregistrés');

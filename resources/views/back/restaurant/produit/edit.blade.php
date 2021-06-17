@@ -44,29 +44,43 @@
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom0" class="col-xl-3 col-md-4"> Nom </label>
-                                                <input class="form-control col-xl-8 col-md-7" id="name" name="name" type="text" required="" value="{{$produit->name}}">
+                                                <input class="form-control col-xl-8 col-md-7" class="@error('name') is-invalid @enderror" id="name" name="name" type="text" required="" value="{{$produit->name}}">
+                                                @error('name')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                             </div>
                                             </div>
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom0" class="col-xl-3 col-md-4"> Details </label>
-                                                <input class="form-control col-xl-8 col-md-7" id="details" name="details" type="text" required="" value="{{$produit->details}}">
+                                                <input class="form-control col-xl-8 col-md-7" class="@error('details') is-invalid @enderror" id="details" name="details" type="text" required="" value="{{$produit->details}}">
+                                                @error('details')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+
                                             </div>
                                             </div>
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom0" class="col-xl-3 col-md-4"> Prix </label>
-                                                <input class="form-control col-xl-8 col-md-7" id="price" name="price" type="text" required="" value="{{$produit->price}}">
+                                                <input class="form-control col-xl-8 col-md-7" class="@error('price') is-invalid @enderror" id="price" name="price" type="text" required="" value="{{$produit->price}}">
+                                                @error('price')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+
                                             </div>
                                             </div>
                                             <div class="col-12">
                                             <div class="form-group row">
                                                     <label for="exampleFormControlSelect1" class="col-xl-3 col-sm-4 mb-0">Select categorie :</label>
-                                                    <select class="custom-select ol-xl-8 col-sm-7"  name="categorie_id" value="{{$produit->categorie_id}}">
+                                                    <select class="custom-select ol-xl-8 col-sm-7"  class="@error('categorie_id') is-invalid @enderror" name="categorie_id" value="{{$produit->categorie_id}}">
                                                     @foreach($categories as $categorie)
                                                         <option value="{{$categorie->id}}">{{$categorie->nom}}</option>
                                                         @endforeach
                                                     </select>
+                                                    @error('categorie_id')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                                 </div>
                                                 </div>
                                             <div class="col-12">

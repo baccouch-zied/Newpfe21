@@ -26,7 +26,6 @@ class CommandeLivController extends Controller
         $id=Auth::User()->id;
         $UserLivreur=UserLivreur::where('user_id' ,'=' ,$id)->first();
         $commandes= Commande::where('userlivreur_id' ,'=' ,$UserLivreur->id)->get();
-
         return view('back.livreur.commandes.index',compact('commandes'));
     }
 

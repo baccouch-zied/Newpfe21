@@ -13,7 +13,7 @@
                             <h2 class="content-header-title float-left mb-0">Liste Livreurs</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="/dash">Accueil</a>
                                     </li>
                                     <li class="breadcrumb-item active">Liste Livreurs
                                     </li>
@@ -45,7 +45,6 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Nom Livreur</th>
-                                            <th>Prenom</th>
                                             <th>Telephone</th>
                                             <th>Email</th>
                                             <th>Actions</th>
@@ -53,17 +52,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($UserLivreurs as $UserLivreur)
+                                    @foreach($Users as $User)
 
                                         <tr>
-                                            <td>{{$UserLivreur->id}}</td>
-                                            <td>{{$UserLivreur->name}}</td>
-                                            <td>{{$UserLivreur->prenom}}</td>
-                                            <td>{{$UserLivreur->telephone}}</td>
-                                            <td>{{$UserLivreur->email}}</td>
-                                            @if ($UserLivreur->status=="invalid")
+                                            <td>{{$User->id}}</td>
+                                            <td>{{$User->name}}</td>
+                                            <td>{{$User->telephone}}</td>
+                                            <td>{{$User->email}}</td>
+                                            @if ($User->status=="")
                                             <td>
-                                                <form method="POST" action="{{ route('ListeLivreur.update',$UserLivreur->id) }}">
+                                                <form method="POST" action="{{ route('ListeLivreur.update',$User->id) }}">
                                                     @csrf
                                                     @method('PUT')
                                                     <button type="submit" class="btn btn-primary">Validé</button>
@@ -71,12 +69,14 @@
                                                 </a>
                                             </td>
 
-                                            @elseif ($UserLivreur->status=="valid")
-                                            <td><span class="badge badge-success">Livreur Validé</span><br/><br/><form method="POST" action="{{ route('ListeLivreur.destroy', $UserLivreur->id) }}"  onsubmit="return confirm('Vous etes sure de Supprimer Cette faq ?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="badge badge-danger">Supprimer ce livreur</button>
-                                            </form>
+                                            @elseif ($User->status=="valid")
+                                            <td><i class="bi bi-check-lg"> </i><span>Livreur validé</span><br/><br/>
+                                                <form action="{{route("ListeLivreur.destroy",$User->id)}}" method="POST" onsubmit="return confirm('Vous etes sure de Supprimer Cette compte ?');" style="display: inline-block;">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <button class="btn waves-effect waves-light btn-danger" type="submit"> <i class="bi bi-archive"></i></button>
+
+                                                </form>
                                             </td>
                                             @endif
                                         </tr>

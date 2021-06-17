@@ -14,8 +14,8 @@ class ListeLivreurController extends Controller
      */
     public function index()
     {
-        $UserLivreurs= UserLivreur::all();
-        return view('back.admin.ListeLivreurs.index', compact('UserLivreurs'));
+        $Users=User::where('type' ,'=' ,'livreur')->get();
+        return view('back.admin.ListeLivreurs.index', compact('Users'));
     }
 
     /**
@@ -56,7 +56,7 @@ class ListeLivreurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $User)
     {
         //
     }
@@ -88,9 +88,9 @@ class ListeLivreurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserLivreur $UserLivreur)
+    public function destroy($id)
     {
-        $UserLivreur->delete();
+        $User= User::findOrFail($id)->delete();
         return redirect('/ListeLivreur');
     }
 }

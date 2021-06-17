@@ -3,7 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\UserRestaurant;
+use App\FeedbackSite;
 
+use App\user;
+use App\Client;
+use App\faq;
+
+use Auth;
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +31,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-    }
+        $feedbacksite =  FeedbackSite::all();
+        $UserRestaurants= DB::table('user_restaurants')->orderBy('created_at','desc')->limit(4)->get();
+        $User=User::all();
+        $faqs= faq::all();
+        return view('front.index', compact(['UserRestaurants','feedbacksite','User','faqs']));    }
 }

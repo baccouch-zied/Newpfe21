@@ -26,9 +26,7 @@ class AccepterCommandeLivController extends Controller
      */
     public function index()
     {
-        $id=Auth::user()->id;
-        $commandes= Commande::where('userrestaurant_id' ,'=' ,$id)->get();
-        return view('back.livreur.commandes.index',compact('commandes'));
+
     }
 
     /**
@@ -83,24 +81,14 @@ class AccepterCommandeLivController extends Controller
      */
     public function update(Request $request,$id)
     {
-        dd('ziz');
-
-        $this->validate($request,[
-            'nom' => 'required',
-            'message' => 'required',
-        ],
-        [
-            'nom.required' => 'nom Champ is required',
-            'message.required' => 'message Champ is required',
-        ]
-    );
 
        Commande::where('id',$id)->update
        ([
-        'etatlivreur' => "validé",
+        'etat' => "validé",
+        'etatlivreur' => "confirmé",
     ]);
 
-     return redirect('commandesliv')->with('success','Mail envoyé ,Commande validé par livreur.');
+     return redirect('commandesLiv')->with('success','Commande confirmé par le livreur , et en cours de livrer.');
     }
 
     /**

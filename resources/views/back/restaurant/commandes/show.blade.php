@@ -12,12 +12,12 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Table Commande</h2>
+                            <h2 class="content-header-title float-left mb-0">Détails Commande</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Commande Détails
+                                    <li class="breadcrumb-item active">Commandes
                                     </li>
                                 </ol>
                             </div>
@@ -83,8 +83,11 @@
                                                 </div>
                                                 <div class="col-xl-4 p-0 mt-xl-0 mt-2">
                                                     <h6 class="mb-2">Payment Details:</h6>
+
                                                     <table>
                                                         <tbody>
+                                                            <tr>
+                                          <td>{{$commande->payement_method}}</td></tr>
 
                                                         </tbody>
                                                     </table>
@@ -129,8 +132,38 @@
                                             <div class="row invoice-sales-total-wrapper">
                                                 <div class="invoice-total-wrapper">
                                                     <div class="invoice-total-item">
-                                                        <p class="invoice-total-title">Total commande:</p>
-                                                        <p class="invoice-total-amount">$1800</p>
+                                                        <p class="invoice-total-title">Commande:</p>
+
+                                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="py-1">Produits</th>
+                                                                        <th class="py-1">Quantity</th>
+                                                                        <th class="py-1">Total</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($commande->commandeProduits->produits as $produit)
+
+                                                                    <tr>
+                                                                        <td class="py-1">
+                                                                            <p class="card-text font-weight-bold mb-25">{{$produit->name}}</p>
+
+                                                                        </td>
+                                                                        <td class="py-1">
+                                                                            <span class="font-weight-bold">{{$commande->commandeProduits->quantity}}
+                                                                            </span>
+                                                                        </td>
+
+                                                                        <td class="py-1">
+                                                                            <span class="font-weight-bold">{{$commande->commandeProduits->total}}DT</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -152,11 +185,13 @@
                                 <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
                                     <div class="card">
                                         <div class="card-body">
-
+                                            @if (($commande->etat=="Livré")||($commande->etat=="confirmé"))
+                                            <a href="{{ route('commandes.create', $commande->id) }}" class="btn btn-primary btn-block mb-75">Exporter facture</a>
+                                            @else
                                             <button type="button" class="btn btn-success btn-block mb-75" data-toggle="modal" data-target="#myModal">Validé commande</button>
                                             <button type="button" class="btn btn-danger btn-block mb-75" data-toggle="modal" data-target="#myModal1">Réjété commande</button>
                                             <a href="{{ route('commandes.create', $commande->id) }}" class="btn btn-primary btn-block mb-75">Exporter facture</a>
-
+                                            @endif
 
                                         </div>
                                     </div>
@@ -178,13 +213,21 @@
                                                 @csrf
                                                 @method('PUT')
 
-                                            <div class="form-group">
-                                                <label for="usr">Name:</label>
-                                                <input name="nom" type="text" class="form-control" id="usr">
-                                              </div>
+
+                                                  <div class="form-group">
+                                                        <input type="text" name="id" hidden value="{{$commande->id}}">
+                                                    <label for="comment">Choix livreurs:</label>
+                                                    <select name="livreurId" class="form-control form-control-lg">
+                                                        @foreach ($UserLivreurs as $UserLivreur )
+                                                        <option value="{{$UserLivreur->id}}">{{$UserLivreur->name}} {{$UserLivreur->prenom}}</option>
+
+                                                        @endforeach
+                                                      </select>
+                                            </div>
+
                                               <div class="form-group">
                                                 <label for="comment">Message:</label>
-                                                <textarea name="message" class="form-control" rows="5" id="comment"></textarea>
+                                                <textarea name="message" class="form-control" rows="5" required="" id="comment"></textarea>
                                               </div>
                                               <button type="submit" class="btn btn-success">Envoyer</button>
 
@@ -215,11 +258,11 @@
 
                                                 <div class="form-group">
                                                     <label for="usr">Name:</label>
-                                                    <input name="nom" type="text" class="form-control" id="usr">
+                                                    <input name="nom" type="text" class="form-control" required=""  id="usr">
                                                   </div>
                                                   <div class="form-group">
                                                     <label for="comment">Raison:</label>
-                                                    <textarea name="raison" class="form-control" rows="5" id="comment"></textarea>
+                                                    <textarea name="raison" class="form-control" rows="5" required=""  id="comment"></textarea>
                                                   </div>
                                                   <button type="submit" class="btn btn-success">Envoyer</button>
 

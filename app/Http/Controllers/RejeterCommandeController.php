@@ -96,6 +96,8 @@ class RejeterCommandeController extends Controller
        Commande::where('id',$id)->update
        ([
         'etat' => "réjeté",
+        'etatlivreur' => "",
+
     ]);
 
         Mail::to('zizou.baccouch1998@gmail.com')->send(new RejeteCommande($request));

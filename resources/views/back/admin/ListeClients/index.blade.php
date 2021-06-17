@@ -13,7 +13,7 @@
                             <h2 class="content-header-title float-left mb-0">Liste Clients</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="/dash">Accueil</a>
                                     </li>
                                     <li class="breadcrumb-item active">Liste Clients
                                     </li>
@@ -44,33 +44,28 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Image</th>
                                             <th>Nom Client</th>
-                                            <th>Prenom</th>
                                             <th>Telephone</th>
                                             <th>Email</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($client as $client)
+                                    @foreach($Users as $user)
 
                                         <tr>
-                                        <td>{{$client->id}}</td>
-                                        <td><img src="{{ URL::to('/') }}/images/{{ $client->image }}" class="img-thumbnail" width="75" /></td>
+                                        <td>{{$user->id}}</td>
 
-                                            <td>{{$client->name}}</td>
-                                            <td>{{$client->prenom}}</td>
-                                            <td>{{$client->telephone}}</td>
-                                            <td>{{$client->email}}</td>
+                                            <td>{{$user->name}}</td>
+                                            <td>{{$user->telephone}}</td>
+                                            <td>{{$user->email}}</td>
                                             <td>
-                                                <form method="POST" action="{{ route('ListeClients.destroy', $client->id) }}"  onsubmit="return confirm('Vous etes sure de Supprimer Cette Client ?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                 <button type="submit" class="btn btn-primary">
-                                                     Supprimer
-                                                 </button>
-                                                         </form>
+                                                <form action="{{route("ListeClients.destroy",$user->id)}}" method="POST" onsubmit="return confirm('Vous etes sure de Supprimer Cette compte ?');" style="display: inline-block;">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <button class="btn waves-effect waves-light btn-danger" type="submit"> <i class="bi bi-archive"></i></button>
+
+                                                </form>
                                             </td>
 
                                         </tr>

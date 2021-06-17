@@ -34,12 +34,20 @@ class CommandeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         $id=Auth::user()->id;
         $Client= DB::table('clients')->where('user_id' ,$id)->get();
         return view('front.commande.fini-commande',compact('Client'));
 
+    }
+
+    public function feedclient()
+    {
+        $id=Auth::user()->id;
+        $Client= DB::table('clients')->where('user_id' ,$id)->get();
+        return view('front.client.feed',compact('Client'));
     }
 
     /**
@@ -76,8 +84,8 @@ class CommandeController extends Controller
                 $commande ->adresse = request('adresse');
                 $commande ->heure = request('heure');
                 $commande ->commentaire = request('commentaire');
-                $commande ->etat = "en cours";
-                $commande ->etatlivreur="en cours";
+                $commande ->etat = "en attente";
+                $commande ->etatlivreur="non affecté";
                 $commande ->payement_method = request('payement_method');
                 $commande ->user_id = $id;
                 $commande ->userrestaurant_id = $originalProduit->user_id;

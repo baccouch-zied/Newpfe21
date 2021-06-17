@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>DeliTaste</title>
+    <title>Zarzis Delivery</title>
     <meta name="description" content="Delitaste - Food delivery and Restaurant HTML Template" />
     <meta name="author" content="George_Fx">
     <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="assets/images/favicon.png">
+    <link rel="icon" href="{{asset('front/images/logo.png')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/all.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/animate.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/js/lib/slick/slick.css')}}">
@@ -70,7 +70,7 @@
                                             </ul>
                                     </div><!--ord-head end-->
                                         <div class="ord-tablez">
-                                            <div class="oc-table active">
+                                            <div class="oc-table">
                                                 @foreach ($commandes as $commande)
                                                 <div class="oct-table-head">
                                                     <ul>
@@ -79,8 +79,14 @@
                                                         @foreach ($commande->commandeProduits->produits as $produit)
 
                                                         <li class="amount">{{$commande->commandeProduits->total}}dt</li>
-                                                        <li class="status active">{{$commande->etat}}</li>
+                                                        <li class="status active">{{$commande->etat}}
+                                                        </li>
+
                                                     </ul>
+                                                    @if ($commande->etat=="Livré")
+                                                    <a href="/feedbackclient" class="btn btn-primary" >Mettre un Feed</a>
+                                                    @endif
+
                                                     <a href="#" title="" class="tog-down"><i class="fa fa-angle-down"></i></a>
                                                 </div><!--oct-table-head end-->
 
@@ -175,13 +181,7 @@
                                 <p>Si vous avez d'autres questions, veuillez nous en informer. Nous répondrons dès que possible.</p>
                                 <a href="/contact" title="" class="btn-default height-2">Contactez nous <span></span></a>
                             </div><!--widget-help end-->
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" >
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">
-                                      Deconnexion
-                                    </button>
 
-                                    </form>
                              <!--widget-newsletter end-->
                         </div><!--sidebar end-->
                     </div>

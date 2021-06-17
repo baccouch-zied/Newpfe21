@@ -22,7 +22,7 @@
 <body>
 
     <div class="page-loading">
-        <img src="assets/images/loader.gif" alt="" />
+        <img src="{{asset('front/images/loader.gif')}}" alt="" />
     </div><!--page-loading end-->
 
     <div class="wrapper">
@@ -129,7 +129,7 @@
 <section class="sec-block pb-0">
             <div class="container">
             <div class="section-title text-center">
-                    <span>Votre Rêve</span>
+                    <span>Cherchez vous un solution ?</span>
                     <h2 class="text-capitalize">Devenir un partenaire</h2>
                 </div>
                 <div class="offer-posts">

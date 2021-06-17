@@ -63,7 +63,8 @@ class CommandeRestoController extends Controller
      */
     public function show(Commande $commande, UserRestaurant $UserRestaurants)
     {
-        return view('back.restaurant.commandes.show',compact(['commande','UserRestaurants']));
+        $UserLivreurs=UserLivreur::all();
+        return view('back.restaurant.commandes.show',compact(['commande','UserRestaurants','UserLivreurs']));
 
     }
 

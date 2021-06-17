@@ -4,13 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>DeliTaste</title>
+    <title>Zarzis Delivery</title>
     <meta name="description" content="Delitaste - Food delivery and Restaurant HTML Template" />
     <meta name="author" content="George_Fx">
     <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="assets/images/favicon.png">
+    <link rel="icon" href="{{asset('front/images/logo.png')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/all.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/animate.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/js/lib/slick/slick.css')}}">
@@ -58,6 +58,7 @@
                         <thead>
                             <tr>
 
+                                <th>image</th>
                                 <th>Produit</th>
                                 <th>Quantity</th>
                                 <th>Prix</th>
@@ -70,33 +71,28 @@
                             <tr>
                                 <td>
                                     <div class="cart-prod-info d-flex flex-wrap align-items-center">
-                                        <img src="{{$item->image}}" alt="">
-                                        <div class="cart-pro-info">
-                                            <h4><a href="#" title="">{{$item->name}}</a></h4>
-                                        </div>
+                                        <img src="/images/{{ $item->model->image }}"  alt="">
+
                                     </div>
+                                </td>
+                                <td>
+                                    <span class="price">{{$item->name}}</span>
                                 </td>
                                 <td>
                                 <div class="item-counter">
                                         <div class="quantity">
-                                            <form action="{{ route('cart.update1', $item->rowId)  }}" method="POST">
-                                                @csrf
-                                            <button type="submit" class="plus-btn">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </form>
-                                            <input type="text" name="produit-quantity" value="{{$item->qty}}">
-                                            <form action="{{ route('cart.update2', $item->rowId)  }}" method="POST">
-                                                @csrf
-                                            <button type="submit" class="minus-btn">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
-                                            </form>
+                                            <select name="qty"  id="qty" data-id="{{ $item->rowId }}" class="custom-select">
+                                                @for ($i = 1; $i <= 10; $i++)
+                                                    <option @if ($item->qty == $i)
+                                                        selected
+                                                    @endif value="{{ $i }}"> {{ $i }} </option>
+                                                @endfor
+                                            </select>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="price">{{$item->price()}}</span>
+                                    <span class="price">{{$item->subtotal()}}</span>
                                 </td>
 
                                 <td>
@@ -144,27 +140,31 @@
     </div><!--wrapper end-->
 
     <script>
-    (function(){
-            const classname = document.querySelectorAll('.quantity')
-            Array.from(classname).forEach(function(element) {
-                element.addEventListener('change', function() {
-                    const id = element.getAttribute('data-id')
-                    const productQuantity = element.getAttribute('data-productQuantity')
-                    axios.patch(`/panier/${id}`, {
-                        quantity: this.value,
-                        productQuantity: productQuantity
-                    })
-                    .then(function (response) {
-                        // console.log(response);
-                        window.location.href = '{{ route('cart.index') }}'
-                    })
-                    .catch(function (error) {
-                        // console.log(error);
-                        window.location.href = '{{ route('cart.index') }}'
-                    });
-                })
-            })
-        })();
+var qty = document.querySelectorAll('#qty');
+    Array.from(qty).forEach((element) => {
+        element.addEventListener('change', function () {
+            var rowId = this.getAttribute('data-id');
+            console.log('theehdekjcg', rowId);
+            var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        $.ajax({
+        url:'mon-panier/update/qty/produit',
+        type:"POST",
+        headers: {
+
+                    "X-CSRF-TOKEN": token
+                },
+        data:{
+            quantity: this.value,
+            abc: rowId,
+        },
+        success:function(response){
+          console.log(response);
+          if(response) {
+            alert('quantité modifié');
+          }
+        },
+       });
+    })});
     </script>
     <script src="{{asset('front/js/jquery.min.js')}}"></script>
     <script src="{{asset('front/js/bootstrap.min.js')}}"></script>

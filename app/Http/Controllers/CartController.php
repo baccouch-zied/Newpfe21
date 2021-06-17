@@ -91,9 +91,13 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $rowId)
+    public function updateqty(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+
+        $rowId = $request['abc'];
+        Cart::update($rowId,$request->quantity);
+        return response()->json(['success' => $request->abc]);
+       /* $validator = Validator::make($request->all(), [
             'quantity' => 'required|numeric|between:1,5'
         ]);
 
@@ -109,7 +113,7 @@ class CartController extends Controller
 
         Cart::update($id, $request->quantity);
         session()->flash('success_message', 'Quantity was updated successfully!');
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true]);*/
     }
 
     public function increaseQuantity($rowId)

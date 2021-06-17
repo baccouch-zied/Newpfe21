@@ -85,6 +85,7 @@ class RegisterRestoController extends Controller
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
+            'telephone' => $request['telephone'],
             'password' => Hash::make($request['password']),
             'type' => "restaurant",
             'status' => "invalid",
@@ -102,7 +103,7 @@ class RegisterRestoController extends Controller
         ]);
         Mail::to('zied.baccouch213@gmail.com')->send(new RegisterFormMail($userrestaurant));
 
-        return redirect ('/login')->with('success', 'Votre compte a bien été crée, vous devez attend la confirmation de l administrateur avec l email que vous allez recevoir');
+        return redirect ('/login');
 
     }
 }

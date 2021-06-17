@@ -35,6 +35,7 @@ class InfosController extends Controller
                 'ouverture' => 'required|string',
                 'fermeture' => 'required|string',
                 'jour' => 'required|string',
+                'specialite' => 'required|string',
                 'adresse' => 'required|string',
                 'description' => 'required|string',
                 'image'    =>'required',
@@ -59,6 +60,7 @@ class InfosController extends Controller
                 'ouverture' => 'required|string',
                 'fermeture' => 'required|string',
                 'jour' => 'required|string',
+                'specialite' => 'required|string',
                 'adresse' => 'required|string',
                 'description' => 'required|string',
                 'image'    =>'required',
@@ -74,14 +76,15 @@ class InfosController extends Controller
             'ouverture' => request('ouverture'),
             'fermeture' => request('fermeture'),
             'jour'=>request('jour'),
+            'specialite' =>request('specialite'),
             'adresse' => request('adresse'),
-            'description'=>request('description'),     
+            'description'=>request('description'),
             'image'            =>   $image_name,
             'image2'            =>   $image_name2
 
 
         );
-  
+
         UserRestaurant::whereId($id)->update($form_data);
 
         return redirect('/infos')->with('success', 'Vos informations sont enregistrés');

@@ -29,7 +29,7 @@
                 <!-- Basic Horizontal form layout section start -->
                 <section id="basic-horizontal-layouts">
                     <div class="row">
-                        <div class="col-md-6 col-6">
+                        <div class="col-md-12 col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Ajouter Faq</h4>
@@ -41,13 +41,19 @@
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom0" class="col-xl-3 col-md-4"> Question </label>
-                                                <input class="form-control col-xl-8 col-md-7" id="question" name="question" type="text" required="" >
+                                                <input class="form-control col-xl-8 col-md-7" class="@error('question') is-invalid @enderror" id="question" name="question" type="text">
+                                                @error('question')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                             </div>
                                             </div>
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom0" class="col-xl-3 col-md-4"> Reponse </label>
-                                                <input class="form-control col-xl-8 col-md-7" id="reponse" name="reponse" type="text" required="" >
+                                                <input class="form-control col-xl-8 col-md-7" class="@error('reponse') is-invalid @enderror" id="reponse" name="reponse" type="text">
+                                                @error('reponse')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                             </div>
                                             </div>
 

@@ -16,8 +16,8 @@ class ListeRestoController extends Controller
      */
     public function index()
     {
-        $UserRestaurants= UserRestaurant::all();
-        return view('back.admin.ListeRestaurants.index', compact('UserRestaurants'));
+        $Users=User::where('type' ,'=' ,'restaurant')->get();
+        return view('back.admin.ListeRestaurants.index', compact('Users'));
     }
 
     /**
@@ -58,7 +58,7 @@ class ListeRestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserRestaurant $UserRestaurant)
+    public function edit(User $User)
     {
 
     }
@@ -72,16 +72,15 @@ class ListeRestoController extends Controller
      */
     public function update(Request $request,$id)
     {
-        User::where('id',$id)->update
+        UserRestaurant::where('id',$id)->update
+        ([
+         'status' => "valid",
+     ]);
 
+        User::where('id',$id)->update
        ([
         'status' => "valid",
         ]);
-
-        UserRestaurant::where('id',$id)->update
-       ([
-        'status' => "valid",
-    ]);
 
         Mail::to('zizou.baccouch1998@gmail.com')->send(new ConfirmationCompte($id));
         return redirect('/ListeResto')->with('success', 'Restaurant validé');
@@ -93,9 +92,9 @@ class ListeRestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserRestaurant $UserRestaurant)
+    public function destroy($id)
     {
-        $UserRestaurant->delete();
+        $User= User::findOrFail($id)->delete();
         return redirect('/ListeResto');
     }
 }

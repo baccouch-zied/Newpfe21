@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>DeliTaste</title>
+    <title>Zarzis Delivery</title>
     <meta name="description" content="Delitaste - Food delivery and Restaurant HTML Template" />
     <meta name="author" content="George_Fx">
     <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="assets/images/favicon.png">
+    <link rel="icon" href="{{asset('front/images/logo.png')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/all.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/animate.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/js/lib/slick/slick.css')}}">
@@ -99,8 +99,7 @@
 
                                     <p>{{$UserRestaurant->description}}</p>
                                     <ul class="btm">
-                                        <li><a href="#" title="">Restaurant</a></li>
-                                        <li><span><b class="statuss"></b>Ouvert</span></li>
+                                        <li><a href="#" title="">Spécialité : {{$UserRestaurant->specialite}}</a></li>
                                     </ul>
                                     <a href="/restaurant-details/{{$UserRestaurant->id}}" title="" class="view-menu">Voir Menu <i class="fa fa-long-arrow-alt-right"></i></a>
                                     <div class="clearfix"></div>

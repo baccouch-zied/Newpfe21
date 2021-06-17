@@ -13,9 +13,9 @@
                             <h2 class="content-header-title float-left mb-0">Categorie</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="/resto">Accueil</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Ajouter Categorie</a>
+                                    <li class="breadcrumb-item">Ajouter Categorie
                                     </li>
 
                                 </ol>
@@ -42,12 +42,10 @@
                                         <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Nom</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="nom" name="nom" type="text">
-                                                @if(($errors))
-                                                 <span class="invalid-feedback" role="alert">
-                                                  <strong>Nom obligé</strong>
-                                                  </span>
-                                                  @enderror
+                                                <input class="form-control col-xl-8 col-md-7" class="@error('nom') is-invalid @enderror" id="nom" name="nom" type="text">
+                                                @error('nom')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                             </div>
                                             </div>
 
@@ -59,7 +57,7 @@
                                             </div>
 
                                             <div class="col-sm-9 offset-sm-3">
-                                            <button id="submit" name="submit" class="btn btn-primary">Save</button>
+                                            <button id="submit" name="submit" class="btn btn-primary">Enregistrer</button>
                                             </div>
                                         </div>
                                     </form>

@@ -25,53 +25,75 @@
                                         <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Nom</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="nom" name="name" type="text" required="" value="{{$UserRestaurant[0]->name}}">
+                                                <input class="form-control col-xl-8 col-md-7 @error('telephone') is-invalid @enderror" id="nom" name="name" type="text" value="{{$UserRestaurant[0]->name}}">
+
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                                </span>
+                                              @enderror
+
                                             </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Description</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="description" name="description" type="text" required="" value="{{$UserRestaurant[0]->description}}">
+                                                <input class="form-control col-xl-8 col-md-7 @error('description') is-invalid @enderror" id="description" name="description" type="text"  value="{{$UserRestaurant[0]->description}}">
+
+                                                @error('description')
+                                                <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                                </span>
+                                              @enderror
+
                                             </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Adresse</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="adresse" name="adresse" type="text" required="" value="{{$UserRestaurant[0]->adresse}}">
+                                                <input class="form-control col-xl-8 col-md-7" id="adresse" name="adresse" type="text"  value="{{$UserRestaurant[0]->adresse}}">
                                             </div>
                                             </div>
+
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <label for="validationCustom3" class="col-xl-3 col-md-4">Spécialité</label>
+                                                    <input class="form-control col-xl-8 col-md-7" id="specialite" name="specialite" type="text"  value="{{$UserRestaurant[0]->specialite}}">
+                                                </div>
+                                                </div>
+
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Ouverture</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="ouverture" name="ouverture" type="time" required="" value="{{$UserRestaurant[0]->ouverture}}">
+                                                <input class="form-control col-xl-8 col-md-7" id="ouverture" name="ouverture" type="time" value="{{$UserRestaurant[0]->ouverture}}">
                                             </div>
                                             </div>
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Fermeture</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="fermeture" name="fermeture" type="time" required="" value="{{$UserRestaurant[0]->fermeture}}">
+                                                <input class="form-control col-xl-8 col-md-7" id="fermeture" name="fermeture" type="time" value="{{$UserRestaurant[0]->fermeture}}">
                                             </div>
                                             </div>
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Jour de Travails</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="jour" name="jour" type="text" required="" value="{{$UserRestaurant[0]->jour}}">
+                                                <input class="form-control col-xl-8 col-md-7" id="jour" name="jour" type="text" value="{{$UserRestaurant[0]->jour}}">
                                             </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Telephone</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="telephone" name="telephone" type="text" required="" value="{{$UserRestaurant[0]->telephone}}">
+                                                <input class="form-control col-xl-8 col-md-7" id="telephone" name="telephone" type="text" value="{{$UserRestaurant[0]->telephone}}">
                                             </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Email</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="email" name="email" type="text" required="" value="{{$UserRestaurant[0]->email}}">
+                                                <input class="form-control col-xl-8 col-md-7" id="email" name="email" type="text" value="{{$UserRestaurant[0]->email}}">
                                             </div>
                                             </div>
 
@@ -156,6 +178,8 @@
             <h6 class="mb-0">{{$UserRestaurant[0]->jour}}</h6><br/>
             <h6 class="mb-0">Ouverture</h6> <small>{{$UserRestaurant[0]->ouverture}}</small><br/>
             <h6 class="mb-0">Fermeture</h6> <small>{{$UserRestaurant[0]->fermeture}}</small>
+            <h6 class="mb-0">Spécialité</h6> <small>{{$UserRestaurant[0]->specialite}}</small>
+
 
             </div>
         </div><hr/>

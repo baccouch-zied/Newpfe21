@@ -28,6 +28,7 @@ class FeedsController extends Controller
         return view('front.commande.details-commande',compact('Client'));
     }
 
+
     public function indexResto()
     {
         $id=Auth::user()->id;

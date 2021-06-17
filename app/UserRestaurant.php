@@ -12,7 +12,7 @@ class UserRestaurant extends Authenticatable
     use Notifiable,HasApiTokens ;
 
     protected $fillable = [
-        'name','telephone','ouverture','fermeture','jour','adresse','etat','description','image','image2','email','password','type','status','user_id'
+        'name','telephone','ouverture','fermeture','jour','specialite','adresse','etat','description','image','image2','email','password','type','status','user_id'
     ];
 
     public function user()

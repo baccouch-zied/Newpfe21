@@ -80,6 +80,8 @@ class RegisterClientController extends Controller
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
+            'telephone' => $request['telephone'],
+
             'password' => Hash::make($request['password']),
             'type' => "client",
 

@@ -15,7 +15,7 @@
                             <h2 class="content-header-title float-left mb-0">Commandes</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/resto">Home</a>
+                                    <li class="breadcrumb-item"><a href="/resto">Accuiel</a>
                                     </li>
                                     <li class="breadcrumb-item active">Commandes
                                     </li>
@@ -50,6 +50,7 @@
                                             <th>Prenom</th>
                                             <th>Adresse</th>
                                             <th>Telephone</th>
+                                            <th>Message</th>
                                             <th>Details</th>
                                             <th>Mode paiement</th>
                                             <th>Etat au restaurant</th>
@@ -66,46 +67,53 @@
                                          <td>{{$commande->prenom}}</td>
                                          <td>{{$commande->adresse}}</td>
                                          <td>{{$commande->telephone}}</td>
+                                         <td>{{$commande->commentaire}}</td>
+
                                          <td>
                                          @foreach ($commande->commandeProduits->produits as $produit)
-                                         {{$produit->name}} =
+                                         {{$produit->name}} *{{$commande->commandeProduits->quantity}}=
                                          {{$commande->commandeProduits->total}}dt
                                         @endforeach
                                           </td>
                                           <td>{{$commande->payement_method}}</td>
-                                        @if ($commande->etat=="en cours")
-                                        <td><span class="badge badge-primary">{{$commande->etat}}</span></td>
+
+                                          @if ($commande->etat=="en attente")
+                                          <td><span class="badge badge-primary">{{$commande->etat}}</span></td>
+                                        @elseif ($commande->etat=="en cours")
+                                        <td><span class="badge badge-info">{{$commande->etat}}</span></td>
                                         @elseif ($commande->etat=="réjeté")
                                         <td><span class="badge badge-danger">{{$commande->etat}}</span></td>
                                           @else
                                           <td><span class="badge badge-success">{{$commande->etat}}</span></td>
                                         @endif
-                                        @if ($commande->etatlivreur=="en cours")
 
+                                        @if ($commande->etatlivreur=="non affecté")
                                             <td><span class="badge badge-primary">{{$commande->etatlivreur}}</span></td>
+                                            @elseif ($commande->etatlivreur=="en cours")
+                                            <td><span class="badge badge-info">{{$commande->etatlivreur}}</span></td>
+
                                             @elseif ($commande->etatlivreur=="réjeté")
                                             <td><span class="badge badge-danger">{{$commande->etatlivreur}}</span></td>
+                                            @elseif ($commande->etatlivreur=="non confirmé")
+                                              <td><span class="badge badge-info">{{$commande->etatlivreur}}</span></td>
+                                              @elseif ($commande->etatlivreur=="")
+                                              <td><span>{{$commande->etatlivreur}}</span></td>
+
                                               @else
                                               <td><span class="badge badge-success">{{$commande->etatlivreur}}</span></td>
+
                                         @endif
                                         <td>
 
-                                        <div class="dropdown">
-                                                <button type="button" class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">
-                                                    <i data-feather="more-vertical"></i>
-                                                </button>
-                                                <div class="dropdown-menu">
+
                                                     <a class="dropdown-item" href="{{ route('commandes.show', $commande->id) }}">
                                                         <i data-feather="edit-2" class="mr-50"></i>
                                                         <span>Voir</span>
                                                     </a>
-                                                    <a href="#myModal{{$commande->id}}" class="dropdown-item" data-toggle="modal" data-target="#myModal2">
+                                                   <!-- <a href="#myModal{{$commande->id}}" class="dropdown-item" data-toggle="modal" data-target="#myModal2">
                                                         <i data-feather="edit-2" class="mr-50"></i>
                                                         <span >Envoyer</span>
-                                                    </a>
-
-                                                </div>
-                                            </div>
+                                                    </a>-->
                                         </td>
                                     </tr>
 

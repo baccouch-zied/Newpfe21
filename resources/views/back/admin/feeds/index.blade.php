@@ -13,7 +13,7 @@
                             <h2 class="content-header-title float-left mb-0">Liste des feedsback</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="/dash">Accueil</a>
                                     </li>
                                     <li class="breadcrumb-item active">Liste FeedsBack
                                     </li>

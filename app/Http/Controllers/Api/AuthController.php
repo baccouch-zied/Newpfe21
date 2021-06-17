@@ -28,11 +28,13 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
+            'telephone' => 'required',
             'password' => 'required|string'
         ]);
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->telephone = $request->telephone;
         $user->type = 'client';
         $user->password = bcrypt($request->password);
         $user->save();
@@ -84,6 +86,11 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Successfully logged out'
         ]);
+    }
+
+    public function user(Request $request)
+    {
+        return response()->json($request->user());
     }
 
 

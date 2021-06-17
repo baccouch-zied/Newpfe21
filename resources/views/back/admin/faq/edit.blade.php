@@ -44,13 +44,19 @@
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom0" class="col-xl-3 col-md-4"> Question </label>
-                                                <input class="form-control col-xl-8 col-md-7" id="question" name="question" type="text" required="" value="{{$faq->question}}">
+                                                <input class="form-control col-xl-8 col-md-7" class="@error('question') is-invalid @enderror" id="question" name="question" type="text" required="" value="{{$faq->question}}">
+                                               @error('question')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             </div>
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom0" class="col-xl-3 col-md-4"> Question </label>
-                                                <input class="form-control col-xl-8 col-md-7" id="reponse" name="reponse" type="text" required="" value="{{$faq->reponse}}">
+                                                <input class="form-control col-xl-8 col-md-7" class="@error('reponse') is-invalid @enderror" id="reponse" name="reponse" type="text" required="" value="{{$faq->reponse}}">
+                                                @error('reponse')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             </div>
 

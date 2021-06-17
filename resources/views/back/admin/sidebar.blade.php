@@ -17,9 +17,9 @@
 
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Gestion de site</span><i data-feather="more-horizontal"></i>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="commentaire"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Gestion Commentaires</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="commentaire"><i class="bi bi-chat-left-text"></i><span class="menu-title text-truncate" data-i18n="Email">Gestion Commentaires</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="faq"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Gestion des FAQS</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="faq"><i class="bi bi-question-octagon-fill"></i><span class="menu-title text-truncate" data-i18n="Chat">Gestion des FAQS</span></a>
                 </li>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="ListeContact"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Liste des Contacts</span></a>
@@ -29,16 +29,16 @@
                 <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Gestion des acteurs</span><i data-feather="more-horizontal"></i>
                 </li>
 
-                <li class=" nav-item"><a class="d-flex align-items-center" href="ListeResto"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Email">Liste des restaurants</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="ListeResto"><i class="bi bi-people-fill"></i> <span class="menu-title text-truncate" data-i18n="Email">Liste des restaurants</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="ListeLivreur"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Chat">Liste des livreurs</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="ListeLivreur"><i class="bi bi-people-fill"></i><span class="menu-title text-truncate" data-i18n="Chat">Liste des livreurs</span></a>
                 </li>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="ListeClients"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Invoice">Liste des clients</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="ListeClients"><i class="bi bi-people-fill"></i><span class="menu-title text-truncate" data-i18n="Invoice">Liste des clients</span></a>
 
                 </li>
             </ul>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="padding-left: 50px;">
                                         @csrf
                                         <button type="submit" class="btn btn-primary">
                                       Deconnexion

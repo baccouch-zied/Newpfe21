@@ -80,6 +80,8 @@ class RegisterLivreurController extends Controller
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
+            'telephone' => $request['telephone'],
+
             'password' => Hash::make($request['password']),
             'type' => "livreur",
             'status' => "invalid",
@@ -100,7 +102,7 @@ class RegisterLivreurController extends Controller
 
 
         ]);
-        return redirect ('/login')->with('success', 'Votre compte a bien été crée, vous devez attend la confirmation de l administrateur avec l email que vous allez recevoir');
+        return redirect ('/login');
 
     }
 }

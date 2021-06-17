@@ -13,9 +13,9 @@
                             <h2 class="content-header-title float-left mb-0">Categorie</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="/resto">Accueil</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Modifier Categorie</a>
+                                    <li class="breadcrumb-item">Modifier Categorie
                                     </li>
 
                                 </ol>
@@ -44,7 +44,10 @@
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom0" class="col-xl-3 col-md-4"> Nom </label>
-                                                <input class="form-control col-xl-8 col-md-7" id="nom" name="nom" type="text" required="" value="{{$categorie->nom}}">
+                                                <input class="form-control col-xl-8 col-md-7" class="@error('nom') is-invalid @enderror"  id="nom" name="nom" type="text" required="" value="{{$categorie->nom}}">
+                                                @error('nom')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                             </div>
                                             </div>
                                             <div class="col-12">

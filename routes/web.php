@@ -41,6 +41,7 @@ Route::group(['middleware' =>['auth','RestaurantMiddleware']], function(){
     Route::resource('accepter','AccepterCommandeController');
     Route::resource('rejeter','RejeterCommandeController');
     Route::post('/command/livreur', 'EnvoyerCommande@envoi')->name('handleAffectCommandLivreur');
+    Route::get('/listelivreurs', 'RestaurantController@liste');
 
 });
 
@@ -52,6 +53,7 @@ Route::group(['middleware' =>['auth','ClientMiddleware']], function(){
     Route::get('/fini-commande','CommandeController@create');
     Route::get('stripe', 'StripePaymentController@index');
     Route::post('payment-process', 'StripePaymentController@process');
+    Route::get('/feedbackclient','CommandeController@feedclient');
     Route::post('/fini-commande','FeedsController@store')->name('feed.store');
 
 });
@@ -64,8 +66,7 @@ Route::group(['middleware' =>['auth','AdminMiddleware']], function(){
     Route::resource('ListeContact', 'ContactController');
     Route::resource('commentaire','CommentaireController');
     Route::resource('faq','FaqController');
-    Route::resource('accepterLiv','AccepterCommandeLivController');
-    Route::resource('rejeterLiv','RejeterCommandeLivController');
+
     Route::post('/validate/store', 'ConfirmationController@update')->name('validate');
 });
 
@@ -75,6 +76,9 @@ Route::group(['middleware' =>['auth','LivreurMiddleware']], function(){
     Route::get('/infosLivreur','InfosLivreurController@index');
     Route::post('/infosLivreur/update/{id}','InfosLivreurController@update');
     Route::resource('commandesLiv','CommandeLivController');
+    Route::resource('accepterLiv','AccepterCommandeLivController');
+    Route::resource('rejeterLiv','RejeterCommandeLivController');
+    Route::resource('livrer','LivrerCommandeController');
 
 });
 
@@ -95,6 +99,7 @@ Route::post('/panier/ajouter','CartController@store')->name('cart.store');
 Route::get('/mon-panier','CartController@index')->name('cart.index');
 Route::delete('/panier/{rowId}','CartController@destroy')->name('cart.destroy');
 Route::post('/panier/{produit}', 'CartController@update')->name('cart.update');
+Route::post('/mon-panier/update/qty/produit','CartController@updateqty');
 Route::post('/update/{rowId}','CartController@increaseQuantity')->name('cart.update1');
 Route::post('/update2/{rowId}','CartController@decreaseQuantity')->name('cart.update2');
 

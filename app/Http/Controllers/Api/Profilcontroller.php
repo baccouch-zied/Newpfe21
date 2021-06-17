@@ -15,7 +15,7 @@ class Profilcontroller extends Controller
     public function index()
     {
         $id=Auth::user()->id;
-        $Client= DB::table('clients')->where('user_id' ,'=' ,$id)->get();
+        $Client= DB::table('clients')->where('user_id' ,'=' ,$id)->first();
         return response($Client);
     }
 }

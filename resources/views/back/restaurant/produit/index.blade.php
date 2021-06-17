@@ -10,12 +10,12 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Table Produits</h2>
+                            <h2 class="content-header-title float-left mb-0">Produits</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="/resto">Accueil</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Table Produits
+                                    <li class="breadcrumb-item active">Mes Produits
                                     </li>
                                 </ol>
                             </div>
@@ -35,7 +35,7 @@
                             {{ session('success') }}
                         </div>
                         @endif
-                        
+
             <div class="content-body">
                 <!-- Basic Tables start -->
                 <div class="row" id="basic-table">
@@ -44,7 +44,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">Mes Produits</h4>
                             </div>
-                      
+
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -86,7 +86,7 @@
                                                             <i data-feather="edit-2" class="mr-50"></i>
                                                             <span>Voir</span>
                                                         </a>
-                                                        <form method="POST" action="{{ route('produit.destroy', $produit->id) }}" onsubmit="return confirm('Vous etes sure de Supprimer Cette produit ?');">   
+                                                        <form method="POST" action="{{ route('produit.destroy', $produit->id) }}" onsubmit="return confirm('Vous etes sure de Supprimer Cette produit ?');">
                                                         @csrf
                                   @method('DELETE')
                                       <button type="submit" class="btn btn-primary suppbtn">
@@ -108,16 +108,16 @@
                 </div>
                 <!-- Basic Tables end -->
 
-   
+
                 <!-- Small Table end -->
 
-  
+
 
             </div>
         </div>
     </div>
     <!-- END: Content-->
-      
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- END: Page JS-->
     <script>

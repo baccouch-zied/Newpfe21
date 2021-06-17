@@ -74,7 +74,7 @@
 
 
                                             <div class="col-sm-9 offset-sm-3">
-                                            <button id="submit" name="submit" class="btn btn-primary">Save</button>
+                                            <button id="submit" name="submit" class="btn btn-primary">Enregistrer</button>
                                             </div>
                                         </div>
                                     </form>

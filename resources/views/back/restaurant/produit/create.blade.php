@@ -13,9 +13,9 @@
                             <h2 class="content-header-title float-left mb-0">Produit</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="/resto">Accueil</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Ajouter Produit</a>
+                                    <li class="breadcrumb-item">Ajouter Produit
                                     </li>
 
                                 </ol>
@@ -43,21 +43,30 @@
                                         <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Nom</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="name" name="name" type="text" required="">
+                                                <input class="form-control col-xl-8 col-md-7" class="@error('question') is-invalid @enderror" id="name" name="name" type="text">
+                                                @error('name')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                             </div>
                                             </div>
                                             <div class="col-12">
 
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Details</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="details" name="details" type="text" required="">
+                                                <input class="form-control col-xl-8 col-md-7" class="@error('question') is-invalid @enderror" id="details" name="details" type="text">
+                                                @error('details')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                             </div>
                                             </div>
                                             <div class="col-12">
 
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Prix</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="price" name="price" type="text" required="">
+                                                <input class="form-control col-xl-8 col-md-7" class="@error('question') is-invalid @enderror" id="price" name="price" type="text">
+                                                @error('price')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                             </div>
                                             </div>
                                             <div class="col-12">
@@ -69,6 +78,9 @@
                                                         @endforeach
 
                                                     </select>
+                                                    @error('categorie_id')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                                 </div>
 
                                             <div class="col-12">

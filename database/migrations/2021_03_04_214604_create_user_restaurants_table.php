@@ -22,6 +22,7 @@ class CreateUserRestaurantsTable extends Migration
             $table->time('ouverture')->nullable();
             $table->time('fermeture')->nullable();
             $table->longText('jour')->nullable();
+            $table->longText('specialite')->nullable();
             $table->string('image')->nullable();
             $table->string('image2')->nullable();
 
@@ -38,7 +39,9 @@ class CreateUserRestaurantsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
+
             $table->timestamps();
 
         });

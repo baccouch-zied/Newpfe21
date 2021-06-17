@@ -83,23 +83,27 @@ class AccepterCommandeController extends Controller
      */
     public function update(Request $request,$id)
     {
+        $com = Commande::find($request->id);
+        $com->userlivreur_id = $request->livreurId;
+         $com->save();
+
         $this->validate($request,[
-            'nom' => 'required',
-            'message' => 'required',
+            'message' => 'required'
         ],
         [
-            'nom.required' => 'nom Champ is required',
             'message.required' => 'message Champ is required',
         ]
     );
 
        Commande::where('id',$id)->update
        ([
-        'etat' => "validé",
+        'etat' => "en cours",
+        'etatlivreur' => "non confirmé",
+
     ]);
 
     Mail::to('zizou.baccouch1998@gmail.com')->send(new AccepterCommande($request));
-     return redirect('commandes')->with('success','Mail envoyé ,Commande validé.');
+     return redirect('commandes')->with('success','Mail envoyé ,Commande validé et en attente la confirmation de livreur.');
     }
 
     /**

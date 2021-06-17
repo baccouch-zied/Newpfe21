@@ -9,6 +9,7 @@ use DB;
 use App\Categorie;
 use App\Produit;
 use App\Commande;
+use App\UserLivreur;
 use App\UserRestaurant;
 
 class RestaurantController extends Controller
@@ -32,5 +33,11 @@ class RestaurantController extends Controller
         $produits= DB::table('produits')->where('user_id' ,'=' ,$id)->get();
         $commandes= Commande::where('userrestaurant_id' ,'=' ,$id)->get();
         return view('back.restaurant.stat',compact(['UserRestaurant','categories','produits','commandes']));
+    }
+
+    public function liste()
+    {
+        $UserLivreurs= UserLivreur::all();
+        return view('back.restaurant.listelivreurs',compact('UserLivreurs'));
     }
 }

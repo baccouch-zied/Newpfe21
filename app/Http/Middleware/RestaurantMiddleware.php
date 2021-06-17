@@ -23,7 +23,7 @@ class RestaurantMiddleware
 
         }
 
-        if(Auth::user()->type =='restaurant')
+        if((Auth::user()->type =='restaurant')&&(Auth::user()->status =='valid'))
         {
             return $next($request);
         }
@@ -39,9 +39,12 @@ class RestaurantMiddleware
 
         }
 
-        else
-        {
-            return redirect('/');
+        else{
+            Auth::logout();
+            return redirect()->route('index');
+
         }
+
+
     }
 }

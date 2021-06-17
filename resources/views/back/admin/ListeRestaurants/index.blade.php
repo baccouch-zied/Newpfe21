@@ -13,7 +13,7 @@
                             <h2 class="content-header-title float-left mb-0">Liste Restaurants</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="/dash">Accueil</a>
                                     </li>
                                     <li class="breadcrumb-item active">Liste Restaurants
                                     </li>
@@ -52,16 +52,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($UserRestaurants as $UserRestaurant)
+                                    @foreach($Users as $User)
 
                                         <tr>
-                                            <td>{{$UserRestaurant->id}}</td>
-                                            <td>{{$UserRestaurant->name}}</td>
-                                            <td>{{$UserRestaurant->telephone}}</td>
-                                            <td>{{$UserRestaurant->email}}</td>
-                                            @if ($UserRestaurant->status=="invalid")
+                                            <td>{{$User->id}}</td>
+                                            <td>{{$User->name}}</td>
+                                            <td>{{$User->telephone}}</td>
+                                            <td>{{$User->email}}</td>
+                                            @if ($User->status=="")
                                             <td>
-                                                <form method="POST" action="{{ route('ListeResto.update',$UserRestaurant->id) }}">
+                                                <form method="POST" action="{{ route('ListeResto.update',$User->id) }}">
                                                     @csrf
                                                     @method('PUT')
                                                     <button type="submit" class="btn btn-primary">Validé</button>
@@ -69,12 +69,15 @@
                                                 </a>
                                             </td>
 
-                                            @elseif ($UserRestaurant->status=="valid")
-                                            <td><span class="badge badge-success">Restaurant Validé</span><br/><br/><form method="POST" action="{{ route('ListeResto.destroy', $UserRestaurant->id) }}"  onsubmit="return confirm('Vous etes sure de Supprimer Cette faq ?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="badge badge-danger">Supprimer ce resto</button>
+                                            @elseif ($User->status=="valid")
+                                            <td><i class="bi bi-check-lg"></i><span>Restaurant validé</span><br/><br/>
+                                                <form action="{{route("ListeResto.destroy",$User->id)}}" method="POST" onsubmit="return confirm('Vous etes sure de Supprimer Cette compte ?');" style="display: inline-block;">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <button class="btn waves-effect waves-light btn-danger" type="submit"> <i class="bi bi-archive"></i></button>
+
                                             </form>
+
                                             </td>
                                             @endif
 

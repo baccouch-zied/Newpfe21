@@ -25,9 +25,7 @@ class RejeterCommandeLivController extends Controller
      */
     public function index()
     {
-        $id=Auth::user()->id;
-        $commandes= Commande::where('userrestaurant_id' ,'=' ,$id)->get();
-        return view('back.livreur.commandes.index',compact('commandes'));
+
     }
 
     /**
@@ -82,22 +80,13 @@ class RejeterCommandeLivController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'nom' => 'required',
-            'raison' => 'required',
-        ],
-        [
-            'nom.required' => 'nom Champ is required',
-            'raison.required' => 'raison Champ is required',
-        ]
-    );
 
        Commande::where('id',$id)->update
        ([
         'etatlivreur' => "réjeté",
     ]);
 
-        return redirect('commandes')->with('success','Mail envoyé ,Commande réjeté par livreur.');
+        return redirect('commandesLiv')->with('success','Mail envoyé ,Commande réjeté par livreur.');
     }
 
     /**
