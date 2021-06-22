@@ -41,7 +41,7 @@
                                         <div class="row">
                                         <div class="col-12">
                                             <div class="form-group row">
-                                                <label for="validationCustom3" class="col-xl-3 col-md-4">Nom</label>
+                                                <label for="validationCustom3" class="col-xl-3 col-md-4">Nom du catégorie</label>
                                                 <input class="form-control col-xl-8 col-md-7" class="@error('nom') is-invalid @enderror" id="nom" name="nom" type="text">
                                                 @error('nom')
                                                 <div class="alert alert-danger">{{ $message }}</div>

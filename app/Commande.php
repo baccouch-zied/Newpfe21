@@ -32,7 +32,12 @@ class Commande extends Model
 
     public function commandeProduits()
 	{
-		return $this->belongsTo('App\CommandeProduits','id','commande_id');
+		return $this->hasMany('App\CommandeProduits','commande_id','id');
 	}
+
+    public function produits()
+    {
+        return $this->belongToMany('App\Produit');
+    }
 
 }

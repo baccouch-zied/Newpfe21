@@ -61,9 +61,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h4>We deliver food as soon as possible. Our team works seven days a week and is always ready to answer any of your questions.</h4>
-                                <p>We are a team of hardworking and friendly people who work every day on a common goal for more than 5 years. Each ctro at us begins with coffee. Together we develop, grow and relax. More than 50 restaurants and cafes cooperate with us. More than 250 employees are working to improve our service. We always work for our beloved customers and try to be on top. We have a favorable system of discounts for regular customers and good conditions for cooperation with partners.</p>
-                            </div><!--about-content end-->
+                                <h4>Qui sommes-nous ?</h4>
+                                <p>Zarzis Delivery est une société qui vous offre un service de livraison à domicile et aux bureaux.
+                                    Il vous suffit de consulter notre site web ou bien notre application mobile pour commander , vous commandez ou demandez ce que vous voulez de n'importe où à Zarzis, et nous vous le livrons où que vous soyez.
+                                    Notre objectif est de vous faciliter la vie.</p>                            </div><!--about-content end-->
                         </div>
                         <div class="col-md-4">
                             <div class="our-proptz v2 text-center">

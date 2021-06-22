@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UserRestaurant;
+use App\User;
+
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +32,6 @@ class InfosController extends Controller
         {
             $request->validate([
                 'name' => 'required|string',
-                'email' => 'required|string',
                 'telephone' => 'required|string',
                 'ouverture' => 'required|string',
                 'fermeture' => 'required|string',
@@ -55,7 +56,6 @@ class InfosController extends Controller
         {
             $request->validate([
                 'name' => 'required|string',
-                'email' => 'required|string',
                 'telephone' => 'required|string',
                 'ouverture' => 'required|string',
                 'fermeture' => 'required|string',
@@ -82,9 +82,16 @@ class InfosController extends Controller
             'image'            =>   $image_name,
             'image2'            =>   $image_name2
 
+        );
+        $form_data1 = array(
+            'name' => request('name'),
+            'telephone' => request('telephone'),
+            'email' => request('email'),
+            'adresse' => request('adresse'),
+            'image'            =>   $image_name,
 
         );
-
+        User::whereId($id)->update($form_data1);
         UserRestaurant::whereId($id)->update($form_data);
 
         return redirect('/infos')->with('success', 'Vos informations sont enregistrés');

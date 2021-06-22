@@ -84,11 +84,9 @@ class RejeterCommandeController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'nom' => 'required',
             'raison' => 'required',
         ],
         [
-            'nom.required' => 'nom Champ is required',
             'raison.required' => 'raison Champ is required',
         ]
     );

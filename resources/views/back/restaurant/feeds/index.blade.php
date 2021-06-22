@@ -70,15 +70,11 @@
 
                                             <td>
 
-
-
-                                                        <form method="POST" action="#"  onsubmit="return confirm('Vous etes sure de Supprimer Cette feedback ?');">
-                                               @csrf
-                                            @method('DELETE')
-                                             <button type="submit" class="btn btn-danger">
-                                             Supprimer
-                                            </button>
-                                              </form>
+                                            <form action="{{route("feedback.destroy",$feedback->id)}}" method="POST" onsubmit="return confirm('Vous etes sure de Supprimer ce feedback ?');" style="display: inline-block;">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <button class="btn waves-effect waves-light btn-danger" type="submit"> <i class="bi bi-archive"></i></button>
+                                            </form>
 
                                             </td>
                                         </tr>

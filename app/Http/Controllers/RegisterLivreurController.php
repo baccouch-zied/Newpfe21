@@ -77,15 +77,21 @@ class RegisterLivreurController extends Controller
      */
     public function create(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'prenom' => ['required', 'string', 'max:255'],
+            'telephone' => ['required','numeric'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users','unique:user_livreurs'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'telephone' => $request['telephone'],
-
             'password' => Hash::make($request['password']),
             'type' => "livreur",
             'status' => "invalid",
-
 
         ]);
 
@@ -99,8 +105,6 @@ class RegisterLivreurController extends Controller
             'type' => "livreur",
             'status' => "invalid",
             'user_id' => $user->id,
-
-
         ]);
         return redirect ('/login');
 

@@ -93,23 +93,7 @@
                     <p>Votre commande a bien passé au restaurant . Voir votre email à propos l'avancement </p>
                 </div>
 
-                <div class="col-lg-8">
-                        <div class="sidebar">
-                            <div class="widget widget-review">
-                                <h3 class="widget-title">Donner votre avis</h3>
-                                <form method="POST" action="{{ route('feed.store') }}"  enctype="multipart/form-data">
-                                @csrf
-                                    <input type="text" name="name" placeholder="Name*" value="{{$Client[0]->name}}" class="half-radius">
-                                    <input type="email" name="email" placeholder="Email*" value="{{$Client[0]->email}}" class="half-radius">
-                                    <input class="form-control half-radius" id="image" name="image" value="{{$Client[0]->image}}" type="file">
 
-                                    <textarea name="commentaire" placeholder="Write a review"></textarea>
-
-                                    <button type="submit" class="btn-default half-radius">Enregistrer avis <span></span></button>
-                                </form>
-                            </div><!--widget-review end-->
-                        </div><!--sidebar end-->
-                    </div>
                     <!--success-para end-->
                 <div class="order-infoo">
                     <div class="order-details">
@@ -118,10 +102,10 @@
                         @foreach(Cart::content() as $item)
                             <li>
                                 <div class="ppc">
-                                    <span>{{$item->name}}</span>
-                                    <b>2x</b>
+                                    <span>{{$item->price}} DT *</span>
+                                    <b>{{$item->qty}}</b>
                                 </div>
-                                <span>{{$item->price}}</span>
+                                <span>{{$item->subtotal}} DT</span>
                             </li>
                         @endforeach
                         </ul>
@@ -130,15 +114,15 @@
                         <ul class="price-tablee">
                             <li>
                                 <h4>Subtotal</h4>
-                                <span>{{$item->subtotal()}}</span>
+                                <span>{{Cart::subtotal()}} DT</span>
                             </li>
                             <li>
                                 <h4 class="delivery">Livraison</h4>
-                                <span>{{Cart::tax()}}</span>
+                                <span>{{Cart::tax()}} DT</span>
                             </li>
                             <li>
                                 <h4 class="total-price">Total</h4>
-                                <span class="total-price">{{$item->total()}}</span>
+                                <span class="total-price">{{Cart::total()}} DT</span>
                             </li>
                         </ul>
                     </div><!--order-details end-->

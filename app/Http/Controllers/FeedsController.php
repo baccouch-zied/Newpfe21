@@ -29,15 +29,6 @@ class FeedsController extends Controller
     }
 
 
-    public function indexResto()
-    {
-        $id=Auth::user()->id;
-        $UserRestaurant= DB::table('user_restaurants')->where('user_id' ,$id)->get();
-        $feedback = DB::table('feedback')->where('userrestaurant_id' ,'=' ,$id)->get();
-
-        return view('back.restaurant.feeds.index',compact(['UserRestaurant','feedback']));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -57,32 +48,7 @@ class FeedsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'    =>  'required',
-            'email'    =>  'required',
-            'commentaire'    =>  'required',
-            'image'         =>  'required',
 
-        ]);
-
-        $first = Cart::content()->first();
-        $originalProduit = Produit::find($first->id);
-
-        $image = $request->file('image');
-        $new_name = rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images'), $new_name);
-
-        $form_data = array(
-            'name'       =>   $request->name,
-            'email'       =>   $request->email,
-            'commentaire'       =>   $request->commentaire,
-            'image'            =>   $new_name,
-            'userrestaurant_id' => $originalProduit->user_id
-        );
-
-        feedback::create($form_data);
-
-        return redirect('/restaurants')->with('success', 'Votre feed est ajouté avec sucess');
     }
 
     /**

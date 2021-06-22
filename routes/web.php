@@ -36,7 +36,7 @@ Route::group(['middleware' =>['auth','RestaurantMiddleware']], function(){
     Route::resource('categorie','CategorieController');
     Route::resource('commandes','CommandeRestoController');
     Route::resource('produit','ProduitController');
-    Route::get('/feedback','FeedsController@indexResto');
+    Route::resource('feedback','FeedsRestoController');
     Route::get('/statistiques/{year}','StatisticsController@__invoke');
     Route::resource('accepter','AccepterCommandeController');
     Route::resource('rejeter','RejeterCommandeController');
@@ -53,8 +53,10 @@ Route::group(['middleware' =>['auth','ClientMiddleware']], function(){
     Route::get('/fini-commande','CommandeController@create');
     Route::get('stripe', 'StripePaymentController@index');
     Route::post('payment-process', 'StripePaymentController@process');
-    Route::get('/feedbackclient','CommandeController@feedclient');
-    Route::post('/fini-commande','FeedsController@store')->name('feed.store');
+    Route::resource('feedbackclient','FeedclientController');
+    Route::get('getAddressFeed/{id}','FeedclientController@getAddressFeed')->name('getAddressFeed');
+
+   // Route::post('/mon-profil','FeedsController@store')->name('feed.store');
 
 });
 

@@ -17,7 +17,7 @@
 
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Gestion de site</span><i data-feather="more-horizontal"></i>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="commentaire"><i class="bi bi-chat-left-text"></i><span class="menu-title text-truncate" data-i18n="Email">Gestion Commentaires</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="commentaire"><i class="bi bi-chat-left-text"></i><span class="menu-title text-truncate" data-i18n="Email">Gestion Feedbacks</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="faq"><i class="bi bi-question-octagon-fill"></i><span class="menu-title text-truncate" data-i18n="Chat">Gestion des FAQS</span></a>
                 </li>

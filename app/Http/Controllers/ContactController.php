@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactFormMail;
-
+use App\Mail\ReponseContact;
 use App\Contact;
 
 class ContactController extends Controller
@@ -41,7 +41,7 @@ class ContactController extends Controller
     {
         $validatedData = request()->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => ['required', 'string', 'email'],
             'message' => 'required'
 
         ]);
@@ -50,6 +50,7 @@ class ContactController extends Controller
                 $contact ->name = request('name');
                 $contact ->email = request('email');
                 $contact ->message = request('message');
+                $contact ->reponse = "en attente de reponse";
 
             $contact->save();
             //return redirect('/cars');
@@ -78,8 +79,11 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contact = Contact::findOrFail($id);
+        return view('back.admin.reponse', compact('contact'));
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -88,10 +92,24 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
-    }
+        $this->validate($request,[
+            'reponse' => 'required'
+        ],
+        [
+            'reponse.required' => 'message Champ is required',
+        ]
+    );
+
+       Contact::where('id',$id)->update
+       ([
+        'reponse' => request('reponse'),
+       ]);
+
+    Mail::to('zizou.baccouch1998@gmail.com')->send(new ReponseContact($request));
+     return redirect('listecontacts')->with('success','Reponse envoyé.');
+}
 
     /**
      * Remove the specified resource from storage.
@@ -99,9 +117,11 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
+    public function destroy($id)
     {
-        $contact->delete();
+        $contact= Contact::findOrFail($id)->delete();
         return redirect('/ListeContact');
     }
+
+
 }

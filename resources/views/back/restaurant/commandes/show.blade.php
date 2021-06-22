@@ -15,7 +15,7 @@
                             <h2 class="content-header-title float-left mb-0">Détails Commande</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="/resto">Accueil</a>
                                     </li>
                                     <li class="breadcrumb-item active">Commandes
                                     </li>
@@ -144,20 +144,19 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    @foreach ($commande->commandeProduits->produits as $produit)
-
+                                                                    @foreach ($commande->commandeProduits as $produitCommand)
                                                                     <tr>
                                                                         <td class="py-1">
-                                                                            <p class="card-text font-weight-bold mb-25">{{$produit->name}}</p>
+                                                                            <p class="card-text font-weight-bold mb-25">{{$produitCommand->produit->name}}</p>
 
                                                                         </td>
                                                                         <td class="py-1">
-                                                                            <span class="font-weight-bold">{{$commande->commandeProduits->quantity}}
+                                                                            <span class="font-weight-bold">{{$produitCommand->quantity}}
                                                                             </span>
                                                                         </td>
 
                                                                         <td class="py-1">
-                                                                            <span class="font-weight-bold">{{$commande->commandeProduits->total}}DT</span>
+                                                                            <span class="font-weight-bold">{{$produitCommand->total}}DT</span>
                                                                         </td>
                                                                     </tr>
                                                                     @endforeach
@@ -225,10 +224,7 @@
                                                       </select>
                                             </div>
 
-                                              <div class="form-group">
-                                                <label for="comment">Message:</label>
-                                                <textarea name="message" class="form-control" rows="5" required="" id="comment"></textarea>
-                                              </div>
+
                                               <button type="submit" class="btn btn-success">Envoyer</button>
 
                                             </form>
@@ -256,10 +252,7 @@
                                                     @csrf
                                                     @method('PUT')
 
-                                                <div class="form-group">
-                                                    <label for="usr">Name:</label>
-                                                    <input name="nom" type="text" class="form-control" required=""  id="usr">
-                                                  </div>
+
                                                   <div class="form-group">
                                                     <label for="comment">Raison:</label>
                                                     <textarea name="raison" class="form-control" rows="5" required=""  id="comment"></textarea>

@@ -87,14 +87,6 @@ class AccepterCommandeController extends Controller
         $com->userlivreur_id = $request->livreurId;
          $com->save();
 
-        $this->validate($request,[
-            'message' => 'required'
-        ],
-        [
-            'message.required' => 'message Champ is required',
-        ]
-    );
-
        Commande::where('id',$id)->update
        ([
         'etat' => "en cours",

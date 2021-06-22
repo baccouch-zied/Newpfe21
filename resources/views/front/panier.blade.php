@@ -158,10 +158,8 @@ var qty = document.querySelectorAll('#qty');
             abc: rowId,
         },
         success:function(response){
-          console.log(response);
-          if(response) {
-            alert('quantité modifié');
-          }
+          //console.log(response);
+          window.location.href = '{{route('cart.index')}}'
         },
        });
     })});

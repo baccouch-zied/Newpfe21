@@ -29,7 +29,6 @@ class InfosLivreurController extends Controller
             $request->validate([
                 'name' => 'required|string',
                 'prenom' => 'required|string',
-                'email' => 'required|string',
                 'telephone' => 'required|string',
                 'age' => 'required|string',
                 'adresse' => 'required|string',
@@ -47,7 +46,6 @@ class InfosLivreurController extends Controller
             $request->validate([
                 'name' => 'required|string',
                 'prenom' => 'required|string',
-                'email' => 'required|string',
                 'telephone' => 'required|string',
                 'age' => 'required|string',
                 'adresse' => 'required|string',

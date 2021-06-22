@@ -7,7 +7,7 @@ use App\Commande;
 use App\UserRestaurant;
 use App\Client;
 use App\CommandeProduits;
-
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +25,8 @@ class ProfilClientController extends Controller
     public function update(Request $request, $id)
     {
 
+
+
         $image_name = $request->hidden_image;
         $image_name2 = $request->hidden_image;
         $image = $request->file('image');
@@ -34,10 +36,11 @@ class ProfilClientController extends Controller
         {
             $request->validate([
                 'name' => 'required|string',
-                'email' => 'required|string',
-                'telephone' => 'required|string',
+                'prenom' => 'required|string',
+                'email' => ['required', 'string', 'email', 'max:255'],
+                'telephone' => 'numeric',
                 'adresse' => 'required|string',
-                'image'    =>'required'
+                'image'    =>'dimensions:max_width=376,max_height=376',
             ]);
 
             $image_name = rand() . '.' . $image->getClientOriginalExtension();
@@ -48,20 +51,28 @@ class ProfilClientController extends Controller
         {
             $request->validate([
                 'name' => 'required|string',
-                'email' => 'required|string',
-                'telephone' => 'required|string',
+                'prenom' => 'required|string',
+                'email' => ['required', 'string', 'email', 'max:255'],
+                'telephone' => 'numeric',
                 'adresse' => 'required|string',
-                'image'    =>'required'
+                'image'    =>'dimensions:max_width=376,max_height=376',
 
             ]);
         }
 
         $form_data = array(
             'name' => request('name'),
+            'prenom' => request('prenom'),
             'telephone' => request('telephone'),
             'email' => request('email'),
             'adresse' => request('adresse'),
             'image'            =>   $image_name
+        );
+
+        $form_data1 = array(
+            'name' => request('name'),
+            'telephone' => request('telephone'),
+            'email' => request('email'),
         );
 
         Client::whereId($id)->update($form_data);

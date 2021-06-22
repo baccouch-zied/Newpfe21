@@ -80,7 +80,7 @@
                                                             <span>Voir</span>
                                                         </a>
 
-                                                        <form method="POST" action="{{ route('categorie.destroy', $categorie->id) }}"  onsubmit="return confirm('Vous etes sure de Supprimer Cette produit ?');">
+                                                        <form method="POST" action="{{ route('categorie.destroy', $categorie->id) }}"  onsubmit="return confirm('Vous etes sure de Supprimer cette catégorie ?');">
                                                      @csrf
                                                      @method('DELETE')
                                                   <button type="submit" class="btn btn-primary">

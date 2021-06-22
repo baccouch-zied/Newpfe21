@@ -64,13 +64,12 @@
                                             <td>{{$feedbacksite->commentaire}}</td>
                                             <td>
                                             <div class="dropdown">
-                                                <form method="POST" action="{{ route('commentaire.destroy', $feedbacksite->id) }}"  onsubmit="return confirm('Vous etes sure de Supprimer Cette Commentaire ?');">
-                                                    @csrf
-                                             @method('DELETE')
-                                                 <button type="submit" class="btn btn-primary">
-                                                 Supprimer
-                                               </button>
-                                               </form>
+                                                <form action="{{route("commentaire.destroy",$feedbacksite->id)}}" method="POST" onsubmit="return confirm('Vous etes sure de Supprimer Cette feed ?');" style="display: inline-block;">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <button class="btn waves-effect waves-light btn-danger" type="submit"> <i class="bi bi-archive"></i></button>
+
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach

@@ -79,9 +79,10 @@ class CommentaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Feedbacksite $feedbacksite)
+    public function destroy($id)
     {
-        $feedbacksite->delete();
-        return redirect('commentaire');
+        $feedbacksite= FeedbackSite::findOrFail($id)->delete();
+        return redirect('/commentaire');
+
     }
 }

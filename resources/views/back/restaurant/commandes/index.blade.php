@@ -70,9 +70,9 @@
                                          <td>{{$commande->commentaire}}</td>
 
                                          <td>
-                                         @foreach ($commande->commandeProduits->produits as $produit)
-                                         {{$produit->name}} *{{$commande->commandeProduits->quantity}}=
-                                         {{$commande->commandeProduits->total}}dt
+                                         @foreach ($commande->commandeProduits as $produitCommand)
+                                         {{$produitCommand->produit->name}} *{{$produitCommand->quantity}}=
+                                         {{$produitCommand->total * $produitCommand->quantity}}dt
                                         @endforeach
                                           </td>
                                           <td>{{$commande->payement_method}}</td>

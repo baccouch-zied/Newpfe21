@@ -68,9 +68,9 @@
                                          <td>{{$commande->adresse}}</td>
                                          <td>{{$commande->telephone}}</td>
                                          <td>
-                                         @foreach ($commande->commandeProduits->produits as $produit)
-                                         {{$produit->name}} =
-                                         {{$commande->commandeProduits->total}}dt
+                                         @foreach ($commande->commandeProduits as $produitCommand)
+                                         {{$produitCommand->produit->name}} *{{$produitCommand->quantity}}=
+                                         {{$produitCommand->total * $produitCommand->quantity}}dt
                                         @endforeach
                                           </td>
                                           <td>{{$commande->payement_method}}</td>

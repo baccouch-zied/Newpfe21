@@ -29,9 +29,9 @@ class IndexController extends Controller
     {
         $request->validate([
             'name'    =>  'required',
-            'email'    =>  'required',
+            'email'    =>  ['required', 'string', 'email', 'max:255'],
             'commentaire'    =>  'required',
-            'image'         =>  'required',
+            'image'         =>  'dimensions:max_width=65,max_height=65',
 
         ]);
 
@@ -49,7 +49,7 @@ class IndexController extends Controller
 
         FeedbackSite::create($form_data);
 
-        return redirect('/')->with('success', 'Merci pour vos avis');
+        return redirect('/');
     }
 
 }

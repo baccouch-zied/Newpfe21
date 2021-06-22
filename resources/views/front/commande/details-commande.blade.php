@@ -176,7 +176,7 @@
                                 <li>
                                     <div class="ppc">
                                         <span>{{$item->name}}</span>
-                                        <b>2x</b>
+                                        <b>{{$item->qty}}</b>
                                     </div>
                                     <span>{{$item->price}}</span>
                                 </li>

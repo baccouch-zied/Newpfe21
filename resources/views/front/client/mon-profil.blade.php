@@ -52,20 +52,21 @@
                         <div class="profile-section">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="true">Mes commandes</a>
+                                    <a class="nav-link active " id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Mes infrmations</a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a class="nav-link" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Mes infrmations</a>
+                                    <a class="nav-link " id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false">Mes commandes</a>
                                 </li>
+
                             </ul>
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                                <div class="tab-pane fade show " id="orders" role="tabpanel" aria-labelledby="orders-tab">
                                     <div class="order-tables-sec">
                                         <div class="ord-head">
                                             <ul>
                                                 <li class="date">Date</li>
                                                 <li class="delivery">Adress livraison</li>
-                                                <li class="amount">Montant</li>
                                                 <li>Etat</li>
                                             </ul>
                                     </div><!--ord-head end-->
@@ -76,16 +77,10 @@
                                                     <ul>
                                                         <li class="date">{{$commande->created_at}}</li>
                                                         <li class="delivery">{{$commande->adresse}}</li>
-                                                        @foreach ($commande->commandeProduits->produits as $produit)
-
-                                                        <li class="amount">{{$commande->commandeProduits->total}}dt</li>
                                                         <li class="status active">{{$commande->etat}}
-                                                        </li>
 
+                                                        </li>
                                                     </ul>
-                                                    @if ($commande->etat=="Livré")
-                                                    <a href="/feedbackclient" class="btn btn-primary" >Mettre un Feed</a>
-                                                    @endif
 
                                                     <a href="#" title="" class="tog-down"><i class="fa fa-angle-down"></i></a>
                                                 </div><!--oct-table-head end-->
@@ -93,20 +88,25 @@
                                                 <div class="oct-table-body">
                                                     <ul>
                                                         <li>
-                                                            <h4>{{$produit->name}} <span>x{{$commande->commandeProduits->quantity}}</span></h4>
-                                                            <span>{{$commande->commandeProduits->total}}dt</span>
+                                                            @foreach ($commande->commandeProduits as $produitCommand)
+
+                                                            <h4>{{$produitCommand->produit->name}} <span>x{{$produitCommand->quantity}}</span><br/></h4><br/>
+                                                            <span>{{$produitCommand->total}}dt</span>
+                                                            @endforeach
+                                                            @if ($commande->etat=="Livré")
+                                                            <a href="{{ route('getAddressFeed', ['id'=>$commande->userrestaurant_id]) }}" class="btn btn-primary" >Mettre un Feed</a>
+                                                            @endif
                                                         </li>
 
                                                     </ul>
                                                 </div>
-                                                @endforeach
 
                                                 @endforeach<!--oct-table-body end-->
                                             </div><!--oc-table end-->
                                         </div><!--ord-tablez end-->
                                     </div><!--order-tables-sec end-->
                                 </div>
-                                <div class="tab-pane fade show " id="info" role="tabpanel" aria-labelledby="info-tab">
+                                <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
                                 <div class="blog-posts blog-page">
 
                                 <div class="row">
@@ -135,33 +135,51 @@
                                               <div class="row">
                                                <div class="col-md-6">
                                               <div class="form-group">
-                                            <input type="text" name="name" class="form-control half-radius" required="" placeholder="First name *" value="{{$Client[0]->name}}">
+                                            <input type="text" name="name"  class="form-control half-radius" class="@error('name') is-invalid @enderror" id="name" required="" placeholder="First name *" value="{{$Client[0]->name}}">
+                                            @error('name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                               </div><!--form-group end-->
                                            </div>
                                             <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="prenom" class="form-control half-radius" required="" placeholder="Last name *" value="{{$Client[0]->prenom}}">
+                                            <input type="text" name="prenom"  class="form-control half-radius" class="@error('prenom') is-invalid @enderror" id="prenom" required="" placeholder="Last name *" value="{{$Client[0]->prenom}}">
+                                            @error('prenom')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                         </div><!--form-group end-->
                                           </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                            <input type="number" name="telephone" class="form-control half-radius" required="" placeholder="Phone number *" value="{{$Client[0]->telephone}}">
+                                            <input type="number" name="telephone" id="telephone" class="form-control half-radius" class="@error('telephone') is-invalid @enderror"  required="" placeholder="Phone number *" value="{{$Client[0]->telephone}}">
+                                            @error('telephone')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                            </div><!--form-group end-->
                                            </div>
                                           <div class="col-md-6">
                                              <div class="form-group">
-                                            <input type="email" name="email" class="form-control half-radius" required="" placeholder="Email *" value="{{$Client[0]->email}}">
+                                            <input type="email" name="email"  class="form-control half-radius" class="@error('email') is-invalid @enderror" id="email" required="" placeholder="Email *" value="{{$Client[0]->email}}">
+                                            @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                              </div><!--form-group end-->
                                          </div>
                                          <div class="col-md-6">
                                              <div class="form-group">
-                                            <input type="text" name="adresse" class="form-control half-radius" required="" placeholder="Adresse *" value="{{$Client[0]->adresse}}">
+                                            <input type="text" name="adresse"  class="form-control half-radius" class="@error('adresse') is-invalid @enderror" id="adresse" placeholder="Adresse *" value="{{$Client[0]->adresse}}">
+                                            @error('adresse')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                              </div><!--form-group end-->
                                          </div>
 
                                          <div class="col-md-6">
                                              <div class="form-group">
-                                                <input class="form-control half-radius" id="image" name="image" value="{{$Client[0]->image}}" type="file">
+                                                <input class="form-control half-radius" class="@error('image') is-invalid @enderror" id="image" id="image" name="image" value="{{$Client[0]->image}}" type="file">
+                                                @error('image')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                              </div><!--form-group end-->
                                          </div>
                                           </div>

@@ -56,8 +56,9 @@
                         <div class="sidebar">
                             <div class="widget widget-review">
                                 <h3 class="widget-title">Donner votre avis</h3>
-                                <form method="POST" action="{{ route('feed.store') }}"  enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('feedbackclient.store') }}"  enctype="multipart/form-data">
                                 @csrf
+                                <input type="text" hidden name="idres" value="{{$idres}}">
                                     <input type="text" name="name" placeholder="Name*" value="{{$Client[0]->name}}" class="half-radius">
                                     <input type="email" name="email" placeholder="Email*" value="{{$Client[0]->email}}" class="half-radius">
                                     <input class="form-control half-radius" id="image" name="image" value="{{$Client[0]->image}}" type="file">

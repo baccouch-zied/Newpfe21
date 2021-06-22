@@ -65,17 +65,26 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" name="name" class="form-control name half-radius" placeholder="Name*">
+                                            <input type="text" name="name" class="form-control name half-radius" class="@error('name') is-invalid @enderror" id="name" placeholder="Name*">
+                                            @error('name')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         </div><!--form-group end-->
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control email half-radius" placeholder="Email*">
+                                            <input type="email" name="email" class="form-control email half-radius" class="@error('email') is-invalid @enderror" id="email" placeholder="Email*">
+                                            @error('email')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         </div><!--form-group end-->
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <textarea name="message" placeholder="Message"></textarea>
+                                            <textarea name="message" class="@error('message') is-invalid @enderror" id="message" placeholder="Message"></textarea>
+                                            @error('message')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         </div><!--form-group end-->
                                     </div>
                                     <div class="col-sm-12">

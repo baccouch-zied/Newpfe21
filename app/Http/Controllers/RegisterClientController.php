@@ -50,12 +50,7 @@ class RegisterClientController extends Controller
         return view('auth.register_client');
     }
 
-    public function register(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        event (new Registered($user = $this->create($request->all())));
-        return redirect ('/login')->with('success', 'Votre compte a bien été crée, vous devez le confirmez avec l email que vous allez recevoir');
-    }
+
     public function validator(array $data)
     {
         return Validator::make($data, [
@@ -77,6 +72,14 @@ class RegisterClientController extends Controller
      */
     public function create(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'prenom' => ['required', 'string', 'max:255'],
+            'telephone' => ['required','numeric'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users','unique:clients'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],

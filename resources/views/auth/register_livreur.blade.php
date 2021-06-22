@@ -16,8 +16,8 @@
         <form class="auth-register-form mt-2" method="POST" action="{{ route('registerLivreur') }}">
           @csrf
           <div class="form-group">
-            <label for="register-username" class="form-label">Name</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="register-name" name="name" placeholder="votre name" aria-describedby="register-name" tabindex="1" autofocus value="{{ old('name') }}" />
+            <label for="register-username" class="form-label">Nom</label>
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="register-name" name="name" placeholder="votre nom" aria-describedby="register-name" tabindex="1" autofocus value="{{ old('name') }}" />
             @error('name')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -35,7 +35,7 @@
           </div>
           <div class="form-group">
             <label for="register-email" class="form-label">Email</label>
-            <input type="text" class="form-control @error('email') is-invalid @enderror" id="register-email" name="email" placeholder="john@example.com" aria-describedby="register-email" tabindex="2" value="{{ old('email') }}" />
+            <input type="text" class="form-control @error('email') is-invalid @enderror" id="register-email" name="email" placeholder="zied@example.com" aria-describedby="register-email" tabindex="2" value="{{ old('email') }}" />
             @error('name')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

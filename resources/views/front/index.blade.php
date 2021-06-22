@@ -188,9 +188,20 @@
                                 <h3 class="widget-title">Donner votre avis</h3>
                                 <form method="POST" action="{{ route('feedapp.store') }}"  enctype="multipart/form-data">
                                 @csrf
-                                    <input type="text" name="name" placeholder="Name*"  class="half-radius">
-                                    <input type="email" name="email" placeholder="Email*"   class="half-radius">
-                                    <input class="form-control half-radius" id="image" name="image"  type="file">
+                                    <input type="text" name="name" class="@error('name') is-invalid @enderror" id="name" placeholder="Name*"  class="half-radius">
+                                    @error('name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                                    <input type="email" name="email" class="@error('email') is-invalid @enderror" id="email" placeholder="Email*"   class="half-radius">
+                                    @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                                dimensions(65px/65px)
+
+                                    <input class="form-control half-radius" id="image" name="image"  class="@error('image') is-invalid @enderror" id="image" type="file">
+                                    @error('image')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
 
                                     <textarea name="commentaire" placeholder="Write a review"></textarea>
 

@@ -28,7 +28,8 @@ class CommandeRestoController extends Controller
         $id=Auth::user()->id;
         $UserLivreurs=UserLivreur::all();
         $UserRestaurants= DB::table('user_restaurants')->where('user_id' ,$id)->get();
-        $commandes= Commande::where('userrestaurant_id' ,'=' ,$id)->get();
+        $commandes= Commande::where('userrestaurant_id' ,'=' ,$id)->orderBy('id', 'DESC') ->get();
+        //dd($commandes);
         return view('back.restaurant.commandes.index',compact(['commandes','UserLivreurs','UserRestaurants']));
     }
 
@@ -37,8 +38,11 @@ class CommandeRestoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Commande $commande, UserRestaurant $UserRestaurants)
+    public function create(Request $request)
     {
+        $id=Auth::user()->id;
+        $UserRestaurants= DB::table('user_restaurants')->where('user_id' ,$id)->get();
+        $commande= Commande::where('userrestaurant_id' ,'=' ,$id)->get();
 
         return view('back.restaurant.commandes.telecharger',compact(['commande','UserRestaurants']));
 

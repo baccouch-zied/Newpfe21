@@ -68,9 +68,9 @@
                                                     </div>
                                                     @foreach ($UserRestaurants as $UserRestaurant)
 
-                                                    <p class="card-text mb-25">{{$UserRestaurants->name}}</p>
-                                                    <p class="card-text mb-25">{{$UserRestaurants->adresse}}</p>
-                                                    <p class="card-text mb-0">{{$UserRestaurants->telephone}}</p>
+                                                    <p class="card-text mb-25">{{$UserRestaurants[0]->name}}</p>
+                                                    <p class="card-text mb-25">{{$UserRestaurants[0]->adresse}}</p>
+                                                    <p class="card-text mb-0">{{$UserRestaurants[0]->telephone}}</p>
                                                     @endforeach
 
                                                 </div>
@@ -78,7 +78,7 @@
 
                                                     <div class="invoice-date-wrapper">
                                                         <p class="invoice-date-title">Date commande:</p>
-                                                        <p class="invoice-date">{{$commande->created_at}}</p>
+                                                        <p class="invoice-date">{{$commande[0]->created_at}}</p>
                                                     </div>
 
                                                 </div>
@@ -93,10 +93,10 @@
                                             <div class="row invoice-spacing">
                                                 <div class="col-xl-8 p-0">
                                                     <h6 class="mb-2">Commande pour :</h6>
-                                                    <h6 class="mb-25">Client :{{$commande->name}} {{$commande->prenom}}</h6>
-                                                    <p class="card-text mb-25">{{$commande->adresse}}</p>
-                                                    <p class="card-text mb-25">{{$commande->telephone}}</p>
-                                                    <p class="card-text mb-0">{{$commande->email}}</p>
+                                                    <h6 class="mb-25">Client :{{$commande[0]->name}} {{$commande[0]->prenom}}</h6>
+                                                    <p class="card-text mb-25">{{$commande[0]->adresse}}</p>
+                                                    <p class="card-text mb-25">{{$commande[0]->telephone}}</p>
+                                                    <p class="card-text mb-0">{{$commande[0]->email}}</p>
                                                 </div>
                                                 <div class="col-xl-4 p-0 mt-xl-0 mt-2">
                                                     <h6 class="mb-2">Payment Details:</h6>
@@ -104,8 +104,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td class="pr-1">Façon de paiement:</td>
-                                                                <td class="pr-1">{{$commande->payement_method}}</td>
-                                                                <td><span class="font-weight-bold">$12,110.55</span></td>
+                                                                <td class="pr-1">{{$commande[0]->payement_method}}</td>
                                                             </tr>
 
                                                             </tr>
@@ -148,12 +147,42 @@
                                             </table>
                                         </div> --}}
 
+
                                         <div class="card-body invoice-padding pb-0">
                                             <div class="row invoice-sales-total-wrapper">
                                                 <div class="invoice-total-wrapper">
                                                     <div class="invoice-total-item">
-                                                        <p class="invoice-total-title">Total commande:</p>
-                                                        <p class="invoice-total-amount">$1800</p>
+                                                        <p class="invoice-total-title">Commande:</p>
+
+                                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="py-1">Produits</th>
+                                                                        <th class="py-1">Quantity</th>
+                                                                        <th class="py-1">Total</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($commande[0]->commandeProduits as $produitCommand)
+                                                                    <tr>
+                                                                        <td class="py-1">
+                                                                            <p class="card-text font-weight-bold mb-25">{{$produitCommand->produit->name}}</p>
+
+                                                                        </td>
+                                                                        <td class="py-1">
+                                                                            <span class="font-weight-bold">{{$produitCommand->quantity}}
+                                                                            </span>
+                                                                        </td>
+
+                                                                        <td class="py-1">
+                                                                            <span class="font-weight-bold">{{$produitCommand->total}}DT</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                     </div>
 
                                                 </div>

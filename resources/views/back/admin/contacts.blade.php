@@ -47,6 +47,7 @@
                                             <th>Nom client</th>
                                             <th>Email</th>
                                             <th>Message</th>
+                                            <th>Reponse</th>
                                             <th>Actions</th>
 
                                         </tr>
@@ -59,16 +60,26 @@
                                             <td>{{$contact->name}}</td>
                                             <td>{{$contact->email}}</td>
                                             <td>{{$contact->message}}</td>
+                                            <td>{{$contact->reponse}}</td>
                                             <td>
+                                                @if ($contact->status=="en attente")
 
-                                                <form method="POST" action="{{ route('ListeContact.destroy', $contact->id) }}"  onsubmit="return confirm('Vous etes sure de Supprimer Cette message ?');">
-                                                    @csrf
-                                             @method('DELETE')
-                                                 <button type="submit" class="btn btn-primary">
-                                                 Supprimer
-                                               </button>
-                                               </form>
+                                                <a class="btn btn-primary" href="{{ route('ListeContact.edit', $contact->id) }}">Repondre</a><br/>
 
+                                                <form action="{{route("ListeContact.destroy",$contact->id)}}" method="POST" onsubmit="return confirm('Vous etes sure de Supprimer Ce message ?');" style="display: inline-block;">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <button class="btn waves-effect waves-light btn-danger" type="submit"> <i class="bi bi-archive"></i></button>
+
+                                                </form>
+                                               @else
+                                               <form action="{{route("ListeContact.destroy",$contact->id)}}" method="POST" onsubmit="return confirm('Vous etes sure de Supprimer Ce message ?');" style="display: inline-block;">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <button class="btn waves-effect waves-light btn-danger" type="submit"> <i class="bi bi-archive"></i></button>
+
+                                            </form>
+                                           @endif
                                             </td>
                                         </tr>
                                         @endforeach

@@ -82,6 +82,13 @@ class RegisterRestoController extends Controller
         if($user){
              echo('helo');
         }*/
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'telephone' => ['required','numeric'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users','unique:user_restaurants'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
@@ -90,6 +97,8 @@ class RegisterRestoController extends Controller
             'type' => "restaurant",
             'status' => "invalid",
         ]);
+
+
 
         $userrestaurant = UserRestaurant::create([
             'name' => $request['name'],
