@@ -86,7 +86,7 @@ class RejeterCommandeLivController extends Controller
         'etatlivreur' => "réjeté",
     ]);
 
-        return redirect('commandesLiv')->with('success','Mail envoyé ,Commande réjeté par livreur.');
+        return redirect('commandesLiv')->with('success','Commande réjeté par livreur.');
     }
 
     /**

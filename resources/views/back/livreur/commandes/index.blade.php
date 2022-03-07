@@ -49,6 +49,7 @@
                                             <th>Nom</th>
                                             <th>Prenom</th>
                                             <th>Adresse</th>
+                                            <th>Restaurant</th>
                                             <th>Telephone</th>
                                             <th>Details</th>
                                             <th>Mode paiement</th>
@@ -66,6 +67,10 @@
                                          <td>{{$commande->name}}</td>
                                          <td>{{$commande->prenom}}</td>
                                          <td>{{$commande->adresse}}</td>
+                                         @foreach($UserRestaurants as $UserRestaurant)
+                                         <td>{{$UserRestaurant->name}}</td>
+                                         @endforeach
+
                                          <td>{{$commande->telephone}}</td>
                                          <td>
                                          @foreach ($commande->commandeProduits as $produitCommand)

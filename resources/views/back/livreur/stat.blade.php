@@ -21,7 +21,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Nombre des commandes</h4>
 
-                                <a href="/commandes" class="btn btn-outline-primary">{{$commandes->count()}} Commandes</a>
+                                <a href="/commandesLiv" class="btn btn-outline-primary">{{$commandes->count()}} Commandes</a>
                             </div>
                         </div>
                     </div>

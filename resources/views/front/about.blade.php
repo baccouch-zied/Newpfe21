@@ -52,12 +52,12 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="abt-img">
-                                            <img src="https://via.placeholder.com/360x350" alt="" class="w-100">
+                                            <img src="{{asset('front/images/lg1.jpg')}}"  alt="" class="w-100">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="abt-img">
-                                            <img src="https://via.placeholder.com/360x350" alt="" class="w-100">
+                                            <img src="{{asset('front/images/lg2.jpg')}}"  alt="" class="w-100">
                                         </div>
                                     </div>
                                 </div>

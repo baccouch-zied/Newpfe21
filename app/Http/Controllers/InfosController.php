@@ -91,8 +91,13 @@ class InfosController extends Controller
             'image'            =>   $image_name,
 
         );
-        User::whereId($id)->update($form_data1);
+
         UserRestaurant::whereId($id)->update($form_data);
+        $id=Auth::User()->id;
+        $UserRestaurant=UserRestaurant::where('user_id' ,'=' ,$id)->first();
+        $id=$UserRestaurant->user_id;
+        User::whereId($id)->update($form_data1);
+
 
         return redirect('/infos')->with('success', 'Vos informations sont enregistrés');
 

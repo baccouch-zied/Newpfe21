@@ -89,7 +89,7 @@
                             <ul id="filter" class="option-set filters-nav" data-option-key="filter">
                             <li><a class="selected" data-option-value=".meat">Meat</a></li>
                             @foreach($categories as $categorie)
-                                <li><a data-option-value=".{{$categorie->nom}}">{{$categorie->nom}}</a></li>
+                                <li><a data-option-value=".{{$categorie->id}}">{{$categorie->nom}}</a></li>
                             @endforeach
                             </ul>
                         </div>
@@ -97,7 +97,7 @@
                     <div class="row">
                         <div class="masonary">
                         @foreach($produits as $produit)
-                            <div class="col-lg-4 col-md-4 col-sm-6 meat {{$categorie->nom}}">
+                            <div class="col-lg-4 col-md-4 col-sm-6 meat {{$produit->categorie_id}}">
                                 <div class="pd-item">
                                     <div class="pd-thumbnail">
                                         <img src="{{ URL::to('/') }}/images/{{ $produit->image }}" alt="" class="w-100">
@@ -124,7 +124,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="feedback-section">
-                            <h2>Feedbacks {{$feedback->count()}}</h2>
+                            <h2>Feedbacks ({{$feedback->count()}})</h2>
                             <div class="testimonials-list">
                             @foreach($feedback as $feedback)
                                 <div class="test-monial">

@@ -103,7 +103,7 @@ class RegisterClientController extends Controller
         ]);
         Mail::to('zizou.baccouch1998@gmail.com')->send(new RegisterClientForm($client));
 
-        return redirect ('/login')->with('success', 'Votre compte a bien été crée, Verfier le via votre email');
+        return redirect ('/login')->with('success', 'Votre compte a bien été crée, merci pour votre confiance cher client !');
 
     }
 }

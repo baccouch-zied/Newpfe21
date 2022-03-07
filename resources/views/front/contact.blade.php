@@ -36,7 +36,7 @@
                 <div class="pager-head">
                     <h2>Contact Us</h2>
                     <ul>
-                        <li><a href="#" title="">Home</a></li>
+                        <li><a href="/" title="">Accueil</a></li>
                         <li><span>Contact us</span></li>
                     </ul>
                 </div><!--pager-head end-->

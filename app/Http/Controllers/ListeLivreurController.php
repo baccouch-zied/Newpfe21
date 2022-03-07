@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\UserLivreur;
 use App\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ConfirmationCompte;
+use Illuminate\Support\Facades\Auth;
+
 class ListeLivreurController extends Controller
 {
     /**
@@ -79,6 +83,10 @@ class ListeLivreurController extends Controller
         ([
          'status' => "valid",
      ]);
+     $UserLivreur=UserLivreur::where('user_id' ,'=' ,$id)->first();
+     $id=$UserLivreur->user_id;
+     Mail::to($UserLivreur->email)->send(new ConfirmationCompte($id));
+
          return redirect('/ListeLivreur')->with('success', 'Livreur validé');
     }
 

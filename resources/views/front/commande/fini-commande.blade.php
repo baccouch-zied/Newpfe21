@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>DeliTaste</title>
+    <title>Zarzis Delivery</title>
     <meta name="description" content="Delitaste - Food delivery and Restaurant HTML Template" />
     <meta name="author" content="George_Fx">
     <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="assets/images/favicon.png">
+    <link rel="icon" href="{{asset('front/images/logo.png')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/all.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/animate.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/js/lib/slick/slick.css')}}">
@@ -60,10 +60,10 @@
             <div class="fixed-bg bg4"></div>
             <div class="container">
                 <div class="pager-head">
-                    <h2>Checkout</h2>
+                    <h2>Terminé</h2>
                     <ul>
-                        <li><a href="#" title="">Home</a></li>
-                        <li><span>Checkout</span></li>
+                        <li><a href="/" title="">Accueil</a></li>
+                        <li><span>Terminé</span></li>
                     </ul>
                 </div><!--pager-head end-->
             </div>

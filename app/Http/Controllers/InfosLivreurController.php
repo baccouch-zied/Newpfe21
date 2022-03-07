@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UserLivreur;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -62,11 +63,21 @@ class InfosLivreurController extends Controller
             'email' => request('email'),
             'adresse' => request('adresse'),
             'image'            =>   $image_name,
+        );
 
-
+        $form_data1 = array(
+            'name' => request('name'),
+            'telephone' => request('telephone'),
+            'email' => request('email'),
+            'adresse' => request('adresse'),
+            'image'            =>   $image_name,
         );
 
         UserLivreur::whereId($id)->update($form_data);
+        $id=Auth::User()->id;
+        $UserLivreur=UserLivreur::where('user_id' ,'=' ,$id)->first();
+        $id=$UserLivreur->user_id;
+        User::whereId($id)->update($form_data1);
 
         return redirect('/infosLivreur')->with('success', 'Vos informations sont enregistrés');
 

@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>DeliTaste</title>
+    <title>Zarzis Delivery</title>
     <meta name="description" content="Delitaste - Food delivery and Restaurant HTML Template" />
     <meta name="author" content="George_Fx">
     <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" href="assets/images/favicon.png">
+    <link rel="icon" href="{{asset('front/images/logo.png')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/all.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/animate.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/js/lib/slick/slick.css')}}">
@@ -33,41 +33,16 @@
 
         @include('front.header')<!--header end-->
 
-        <div class="responsive-mobile-menu">
-            <ul>
-                <li><a class="active" href="index.html" title="">Home</a></li>
-                <li><a href="about.html" title="">About Us</a></li>
-                <li><a href="#" title="">Pages</a>
-                    <ul>
-                        <li><a href="restaurants.html" title="">Restaurants</a></li>
-                        <li><a href="restaurant-details.html" title="">Restaurant detail</a></li>
-                        <li><a href="cart.html" title="">Cart</a></li>
-                        <li><a href="checkout.html" title="">Checkout</a></li>
-                        <li><a href="profile.html" title="">My profile</a></li>
-                        <li><a href="faqs.html" title="">FAQs</a></li>
-                        <li><a href="testimonials.html" title="">Testimonials</a></li>
-                        <li><a href="404.html" title="">404</a></li>
-                    </ul>
-                </li>
-                <li><a href="#" title="">Blog</a>
-                    <ul>
-                        <li><a href="blog1.html" title="">Blog 1</a></li>
-                        <li><a href="blog2.html" title="">Blog 2</a></li>
-                        <li><a href="blog-single.html" title="">Blog Single</a></li>
-                    </ul>
-                </li>
-                <li><a href="contact.html" title="">Contact Us</a></li>
-            </ul>
-        </div><!--responsive-mobile-menu end-->
+    <!--responsive-mobile-menu end-->
 
         <section class="pager-section text-center">
             <div class="fixed-bg bg4"></div>
             <div class="container">
                 <div class="pager-head">
-                    <h2>Payement</h2>
+                    <h2>Détails commande</h2>
                     <ul>
-                        <li><a href="#" title="">Accueil</a></li>
-                        <li><span>Payement</span></li>
+                        <li><a href="/" title="">Accueil</a></li>
+                        <li><span>Détails commande</span></li>
                     </ul>
                 </div><!--pager-head end-->
             </div>
@@ -134,7 +109,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="time" name="heure" class="form-control half-radius" required="" placeholder="Delivery time *">
+                                            <input type="time" name="heure" class="form-control half-radius"  placeholder="Delivery time *">
                                         </div><!--form-group end-->
                                     </div>
                                 </div>
@@ -150,13 +125,14 @@
                                 <h4>Mode paiement:</h4>
                                 <div class="form-group">
                                     <input class="form-check-input" name="payement_method" type="checkbox" value="sur place" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <label class="form-check-label">
                                       Paiement sur place
-                                    </label>  <br/>
-                                    <input class="form-check-input" name="payement_method" type="checkbox" value="carte bancaire" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                      Carte bancaire
-                                    </label>  <br/>
+                                    </label><br/>
+                                    <input class="form-check-input" name="payement_method" type="checkbox" value="sur place" id="flexCheckDefault">
+                                    <label class="form-check-label">
+                                      Paiement par carte
+                                    </label><br/>
+
                                     <label class="label">Montant de votre commande</label>
                             <input type="text" name="amount" value="{{Cart::total()}}"class="form-control amount">
                           <button type="button" class="btn btn-primary btn-block">Payer</button><br/>

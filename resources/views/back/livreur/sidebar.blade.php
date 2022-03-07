@@ -24,9 +24,6 @@
                     </li>
                     </li>
 
-
-
-
                 </ul>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="padding-left: 50px;">
                                             @csrf
@@ -36,5 +33,16 @@
 
                                         </form>
             </div>
+            <div class="responsive-mobile-menu">
+                    <ul>
+                    <li><a  href="/infosLivreur">Mes Coordonées</a>
+                    </li>
+                    <li><a  href="commandesLiv">Mes Coordonées</a>
+                    </li>
+                    </li>
+                    </ul>
+            </div>
+
+
         </div>
         <!-- END: Main Menu-->

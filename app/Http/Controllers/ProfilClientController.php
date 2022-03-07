@@ -73,9 +73,15 @@ class ProfilClientController extends Controller
             'name' => request('name'),
             'telephone' => request('telephone'),
             'email' => request('email'),
+            'adresse' => request('adresse'),
+            'image'            =>   $image_name,
         );
 
         Client::whereId($id)->update($form_data);
+        $id=Auth::User()->id;
+        $Client=Client::where('user_id' ,'=' ,$id)->first();
+        $id=$Client->user_id;
+        User::whereId($id)->update($form_data1);
 
         return redirect('/mon-profil')->with('success', 'Vos informations sont modifiées');
 

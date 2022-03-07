@@ -73,19 +73,24 @@
                                         <div class="ord-tablez">
                                             <div class="oc-table">
                                                 @foreach ($commandes as $commande)
-                                                <div class="oct-table-head">
+                                                <div  id="headingTwo" class="oct-table-head"  data-target="#{{$commande->id ?? ''}}" aria-expanded="true" aria-controls="{{$commande->id ?? ''}}">
                                                     <ul>
                                                         <li class="date">{{$commande->created_at}}</li>
                                                         <li class="delivery">{{$commande->adresse}}</li>
-                                                        <li class="status active">{{$commande->etat}}
+
+                                                            @if (($commande->etat=="en attente")||($commande->etat=="en cours")||($commande->etat=="réjété"))
+                                                            <li class="status active">{{$commande->etat}}</li>
+                                                            @else
+                                                            <li class="status">{{$commande->etat}}</li>
+                                                            @endif
 
                                                         </li>
                                                     </ul>
 
-                                                    <a href="#" title="" class="tog-down"><i class="fa fa-angle-down"></i></a>
+                                                    <a title="" class="tog-down"><i class="fa fa-angle-down"></i></a>
                                                 </div><!--oct-table-head end-->
 
-                                                <div class="oct-table-body">
+                                                <div class="oct-table-body" id="{{$commande->id ?? ''}}" aria-labelledby="headingTwo">
                                                     <ul>
                                                         <li>
                                                             @foreach ($commande->commandeProduits as $produitCommand)
@@ -112,6 +117,12 @@
                                 <div class="row">
                                 <div class="col-lg-10">
                                      <div class="blog">
+                                        @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                        @endif
+
                                             <div class="blog-thumbnail">
                                     <img src="{{ URL::to('/') }}/images/{{ $Client[0]->image }}" alt="" class="w-100">
                                      <span class="category">{{$Client[0]->name}}</span>

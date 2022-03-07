@@ -21,7 +21,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Nombre des restaurants</h4>
 
-                                <a href="/commandes" class="btn btn-outline-primary">{{$UserRestaurant->count()}} Restaurants</a>
+                                <a href="/ListeResto" class="btn btn-outline-primary">{{$UserRestaurant->count()}} Restaurants</a>
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Nombre des livreurs</h4>
 
-                                <a href="/categorie" class="btn btn-outline-primary">{{$UserLivreur->count()}} Livreurs</a>
+                                <a href="/ListeLivreur" class="btn btn-outline-primary">{{$UserLivreur->count()}} Livreurs</a>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Nombres des clients</h4>
 
-                                <a href="/produit" class="btn btn-outline-primary">{{$Client->count()}} Clients</a>
+                                <a href="/ListeClients" class="btn btn-outline-primary">{{$Client->count()}} Clients</a>
                             </div>
                         </div>
                     </div>

@@ -25,49 +25,84 @@
                                         <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Nom</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="nom" name="name" type="text" required="" value="{{$UserLivreur[0]->name}}">
+                                                <input class="form-control col-xl-8 col-md-7 @error('name') is-invalid @enderror" id="nom" name="name" type="text" value="{{$UserLivreur[0]->name}}">
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                                </span>
+                                              @enderror
                                             </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Prénom</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="prenom" name="prenom" type="text" required="" value="{{$UserLivreur[0]->prenom}}">
+                                                <input class="form-control col-xl-8 col-md-7 @error('prenom') is-invalid @enderror" id="prenom" name="prenom" type="text" value="{{$UserLivreur[0]->prenom}}">
+                                                @error('prenom')
+                                                <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                                </span>
+                                              @enderror
                                             </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Age</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="age" name="age" type="text" required="" value="{{$UserLivreur[0]->age}}">
+                                                <input class="form-control col-xl-8 col-md-7 @error('age') is-invalid @enderror" id="age" name="age" type="text" value="{{$UserLivreur[0]->age}}">
+                                                @error('age')
+                                                <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                                </span>
+                                              @enderror
                                             </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Adresse</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="adresse" name="adresse" type="text" required="" value="{{$UserLivreur[0]->adresse}}">
+                                                <input class="form-control col-xl-8 col-md-7 @error('adresse') is-invalid @enderror" id="adresse" name="adresse" type="text" value="{{$UserLivreur[0]->adresse}}">
+                                                @error('adresse')
+                                                <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                                </span>
+                                              @enderror
                                             </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Telephone</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="telephone" name="telephone" type="text" required="" value="{{$UserLivreur[0]->telephone}}">
+                                                <input class="form-control col-xl-8 col-md-7 @error('telephone') is-invalid @enderror" id="telephone" name="telephone" type="text" value="{{$UserLivreur[0]->telephone}}">
+                                                @error('telephone')
+                                                <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                                </span>
+                                              @enderror
                                             </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Email</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="email" name="email" type="text" required="" value="{{$UserLivreur[0]->email}}">
+                                                <input class="form-control col-xl-8 col-md-7 @error('email') is-invalid @enderror" id="email" name="email" type="text" value="{{$UserLivreur[0]->email}}">
+                                                @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                                </span>
+                                              @enderror
                                             </div>
                                             </div>
 
                                             <div class="col-12">
                                             <div class="form-group row">
                                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Image</label>
-                                                <input class="form-control col-xl-8 col-md-7" id="image" name="image" value="{{$UserLivreur[0]->image}}"type="file">
+                                                <input class="form-control col-xl-8 col-md-7 @error('image') is-invalid @enderror" id="image" name="image" value="{{$UserLivreur[0]->image}}"type="file">
+                                                @error('image')
+                                                <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                                </span>
+                                              @enderror
                                             </div>
                                             </div>
 

@@ -106,7 +106,7 @@ class RegisterLivreurController extends Controller
             'status' => "invalid",
             'user_id' => $user->id,
         ]);
-        return redirect ('/login');
+        return redirect ('/login')->with('success', 'Votre compte a bien été crée, Vous attendez la validation par  le gérant , Merci !');
 
     }
 }

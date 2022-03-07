@@ -81,8 +81,9 @@ class ListeRestoController extends Controller
        ([
         'status' => "valid",
         ]);
-
-        Mail::to('zizou.baccouch1998@gmail.com')->send(new ConfirmationCompte($id));
+        $UserRestaurant=UserRestaurant::where('user_id' ,'=' ,$id)->first();
+        $id=$UserRestaurant->user_id;
+        Mail::to($UserRestaurant->email)->send(new ConfirmationCompte($id));
         return redirect('/ListeResto')->with('success', 'Restaurant validé');
     }
 

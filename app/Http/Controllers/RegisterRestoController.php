@@ -112,7 +112,7 @@ class RegisterRestoController extends Controller
         ]);
         Mail::to('zied.baccouch213@gmail.com')->send(new RegisterFormMail($userrestaurant));
 
-        return redirect ('/login');
+        return redirect ('/login')->with('success', 'Votre compte a bien été crée, Vous attendez la validation par  le gérant , Merci !');
 
     }
 }

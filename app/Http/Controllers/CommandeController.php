@@ -65,8 +65,8 @@ class CommandeController extends Controller
             'telephone' => 'required',
             'email' => 'required',
             'adresse' => 'required',
+            'heure' => 'required',
             'produits' => 'required',
-            'payement_method' =>'required'
             //'client_id'=> 'required'
         ]);
 

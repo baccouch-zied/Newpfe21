@@ -95,7 +95,7 @@ class AccepterCommandeController extends Controller
     ]);
 
     Mail::to('zizou.baccouch1998@gmail.com')->send(new AccepterCommande($request));
-     return redirect('commandes')->with('success','Mail envoyé ,Commande validé et en attente la confirmation de livreur.');
+     return redirect('commandes')->with('success','Commande validé et en attente la confirmation de livreur.');
     }
 
     /**

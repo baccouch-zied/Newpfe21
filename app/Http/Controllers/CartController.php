@@ -52,7 +52,7 @@ class CartController extends Controller
         Cart::add($produit->id, $produit->name, 1,$produit->price)
             ->associate('App\Produit');
 
-        return redirect('/restaurants')->with('success', 'le produit a bien été ajouté a votre panier');
+        return redirect('/restaurants')->with('success', 'le produit a bien  ajouté a votre panier');
 
        /* $produit = Produit::findOrFail($request->id);
 

@@ -99,7 +99,7 @@ class RejeterCommandeController extends Controller
     ]);
 
         Mail::to('zizou.baccouch1998@gmail.com')->send(new RejeteCommande($request));
-        return redirect('commandes')->with('success','Mail envoyé ,Commande réjeté.');
+        return redirect('commandes')->with('success','Commande réjeté.');
     }
 
     /**

@@ -74,8 +74,8 @@
                                          {{$produitCommand->produit->name}} *{{$produitCommand->quantity}}=
                                          {{$produitCommand->total * $produitCommand->quantity}}dt
                                         @endforeach
-                                          </td>
                                           <td>{{$commande->payement_method}}</td>
+
 
                                           @if ($commande->etat=="en attente")
                                           <td><span class="badge badge-primary">{{$commande->etat}}</span></td>

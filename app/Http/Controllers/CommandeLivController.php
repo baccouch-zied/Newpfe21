@@ -26,7 +26,8 @@ class CommandeLivController extends Controller
         $id=Auth::User()->id;
         $UserLivreur=UserLivreur::where('user_id' ,'=' ,$id)->first();
         $commandes= Commande::where('userlivreur_id' ,'=' ,$UserLivreur->id)->orderBy('id', 'DESC')->get();
-        return view('back.livreur.commandes.index',compact('commandes'));
+        $UserRestaurants=UserRestaurant::where('id' ,'=' ,$commandes[0]->userrestaurant_id)->get();
+        return view('back.livreur.commandes.index',compact(['commandes','UserRestaurants']));
     }
 
     /**

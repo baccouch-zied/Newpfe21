@@ -36,8 +36,7 @@
                 <div class="pager-head">
                     <h2>FAQ</h2>
                     <ul>
-                        <li><a href="#" title="">Home</a></li>
-                        <li><a href="#" title="">About us</a></li>
+                        <li><a href="/" title="">Accueil</a></li>
                         <li><span>FAQ</span></li>
                     </ul>
                 </div><!--pager-head end-->
